@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0543fe805424df99fe08ce744cbe49, type: 3}
+  m_Name: Inicial
+  m_EditorClassIdentifier: 
+  m_PoseEntries:
+  - path: Huesos/Cuerpo_Trasero
+    localPosition: {x: 0.9941845, y: -0.107066005, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9999906, w: -0.004345231}
+    localScale: {x: 0.54722476, y: 1, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cuerpo_Central
+    localPosition: {x: 1.0000991, y: 0.0000000018626451, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.00562697, w: 0.9999842}
+    localScale: {x: 1.3494854, y: 1, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cuerpo_Central/Cuerpo_Delantero
+    localPosition: {x: 1.0002456, y: -0.000000010106191, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.00000017526453, w: 1}
+    localScale: {x: 1.3889321, y: 1, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cuerpo_Central/Cuerpo_Delantero/PataDelantera_Derecha
+    localPosition: {x: 0.012544928, y: 0.2069293, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9691626, w: 0.24642234}
+    localScale: {x: 0.23786715, y: 1, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cuerpo_Central/Cuerpo_Delantero/PataDelantera_Izquierda
+    localPosition: {x: 0.19970827, y: 0.19520772, z: 0}
+    localRotation: {x: -0, y: -0, z: 0.9556922, w: 0.29436797}
+    localScale: {x: 0.23792058, y: 1.0002075, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cuerpo_Central/Cuerpo_Delantero/Antena
+    localPosition: {x: 0.74582905, y: -0.36817196, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.945554, w: 0.3254654}
+    localScale: {x: 1, y: 1, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cuerpo_Central/PataCentral_Derecha
+    localPosition: {x: 0.046763837, y: 0.22297809, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.96962875, w: 0.24458174}
+    localScale: {x: 0.29192162, y: 1.0105685, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cuerpo_Central/PataCentral_Izquierda
+    localPosition: {x: 0.29039648, y: 0.21762417, z: 0}
+    localRotation: {x: 0, y: 0, z: 0.9720883, w: 0.23461542}
+    localScale: {x: 0.280429, y: 1.0256813, z: 1}
+  - path: Huesos/Cuerpo_Trasero/PataTrasera_Derecha
+    localPosition: {x: -0.17630166, y: 0.2004284, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.9845922, w: -0.17486632}
+    localScale: {x: 0.30674058, y: 0.8656572, z: 1}
+  - path: Huesos/Cuerpo_Trasero/PataTrasera_Izquierda
+    localPosition: {x: 0.15932524, y: 0.20945807, z: 0}
+    localRotation: {x: -0, y: -0, z: -0.9845922, w: -0.17486632}
+    localScale: {x: 0.31874382, y: 0.89954793, z: 1}
+  - path: Huesos/Cuerpo_Trasero/Cola
+    localPosition: {x: -0.5261395, y: 0.12320067, z: 0}
+    localRotation: {x: 0, y: 0, z: -0.99810445, w: -0.061543416}
+    localScale: {x: 1.4327952, y: 1, z: 1}
