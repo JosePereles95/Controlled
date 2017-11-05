@@ -1,8 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 21abc4c9fcee4ca418ece364c442f238
 timeCreated: 1470771119
 licenseType: Store
 MonoImporter:
+=======
+guid: 5f1f9e56c7dcb4746856b5e1dd038242
+timeCreated: 1508878683
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+>>>>>>> SergioL
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
