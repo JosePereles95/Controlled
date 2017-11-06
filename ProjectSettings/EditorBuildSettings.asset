@@ -4,4 +4,22 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SergiT/Escenas/Sc_IntroScreen.unity
+    guid: 49833b1ae377d6549953b157d4fc0a61
+  - enabled: 1
+    path: Assets/Scenes/SergiT/Escenas/Sc_Level1.unity
+    guid: 919513d12f2edb444a1da9d047fcb2bf
+  - enabled: 1
+    path: Assets/Scenes/SergiT/Escenas/Sc_Level2.unity
+    guid: 45621076eed530a4da8322dccafe1121
+  - enabled: 1
+    path: Assets/Scenes/SergiT/Escenas/Sc_Level3.unity
+    guid: 899a920cb3a24ca4d905c621401f4d70
+  - enabled: 1
+    path: Assets/Scenes/SergiT/Escenas/Sc_PauseScreen.unity
+    guid: 0b4fc07535462bc4b8a4a6efd26e1288
+  - enabled: 1
+    path: Assets/Scenes/SergiT/Escenas/Sc_VictoryScreen.unity
+    guid: 1b8ab1f6b90b79341813dfbbe0470193
