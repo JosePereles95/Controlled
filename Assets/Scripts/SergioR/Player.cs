@@ -1,53 +1,142 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent (typeof (Controller2D))]
-
-public class Player : MonoBehaviour {
-
-    public float jumpHeight = 4;
+[RequireComponent(typeof(Controller2D))]
+public class Player : MonoBehaviour
+{
+    public float maxJumpHeight = 4f;
+    public float minJumpHeight = 1f;
     public float timeToJumpApex = .4f;
+    private float accelerationTimeAirborne = .2f;
+    private float accelerationTimeGrounded = .1f;
+    private float moveSpeed = 6f;
 
-    public float accelerationTimeAirbone = .2f;
-    public float accelerationTimeGrounded = .1f;
+    public Vector2 wallJumpClimb;
+    public Vector2 wallJumpOff;
+    public Vector2 wallLeap;
 
-    float moveSpeed = 6;
-    float gravity;
+    public bool canDoubleJump;
+    private bool isDoubleJumping = false;
 
-    float jumpVelocity;
-    Vector3 velocity;
+    public float wallSlideSpeedMax = 3f;
+    public float wallStickTime = .25f;
+    private float timeToWallUnstick;
 
-    float velocityXSmoothing;
+    private float gravity;
+    private float maxJumpVelocity;
+    private float minJumpVelocity;
+    private Vector3 velocity;
+    private float velocityXSmoothing;
 
-    Controller2D controller;
+    private Controller2D controller;
 
-	void Start ()
+    private Vector2 directionalInput;
+    private bool wallSliding;
+    private int wallDirX;
+
+    private void Start()
     {
         controller = GetComponent<Controller2D>();
+        gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
+        maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+        minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+    }
 
-        gravity = -(2 * jumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-        jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
-        print("Gravity: " + gravity + " Jump velocity: " + jumpVelocity);
-	}
-	
-    void Update()
+    private void Update()
     {
-        if(controller.collisions.above || controller.collisions.below)
+        CalculateVelocity();
+        HandleWallSliding();
+
+        controller.Move(velocity * Time.deltaTime, directionalInput);
+
+        if (controller.collisions.above || controller.collisions.below)
         {
-            velocity.y = 0;
+            velocity.y = 0f;
         }
+    }
 
-        Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    public void SetDirectionalInput(Vector2 input)
+    {
+        directionalInput = input;
+    }
 
-        if(Input.GetKeyDown(KeyCode.Space) && controller.collisions.below)
+    public void OnJumpInputDown()
+    {
+        if (wallSliding)
         {
-            velocity.y = jumpVelocity;
+            if (wallDirX == directionalInput.x)
+            {
+                velocity.x = -wallDirX * wallJumpClimb.x;
+                velocity.y = wallJumpClimb.y;
+            }
+            else if (directionalInput.x == 0)
+            {
+                velocity.x = -wallDirX * wallJumpOff.x;
+                velocity.y = wallJumpOff.y;
+            }
+            else
+            {
+                velocity.x = -wallDirX * wallLeap.x;
+                velocity.y = wallLeap.y;
+            }
+            isDoubleJumping = false;
         }
+        if (controller.collisions.below)
+        {
+            velocity.y = maxJumpVelocity;
+            isDoubleJumping = false;
+        }
+        if (canDoubleJump && !controller.collisions.below && !isDoubleJumping && !wallSliding)
+        {
+            velocity.y = maxJumpVelocity;
+            isDoubleJumping = true;
+        }
+    }
 
-        float targetVelocityX = input.x * moveSpeed;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirbone);
+    public void OnJumpInputUp()
+    {
+        if (velocity.y > minJumpVelocity)
+        {
+            velocity.y = minJumpVelocity;
+        }
+    }
+
+    private void HandleWallSliding()
+    {
+        wallDirX = (controller.collisions.left) ? -1 : 1;
+        wallSliding = false;
+        if ((controller.collisions.left || controller.collisions.right) && !controller.collisions.below && velocity.y < 0)
+        {
+            wallSliding = true;
+
+            if (velocity.y < -wallSlideSpeedMax)
+            {
+                velocity.y = -wallSlideSpeedMax;
+            }
+
+            if (timeToWallUnstick > 0f)
+            {
+                velocityXSmoothing = 0f;
+                velocity.x = 0f;
+                if (directionalInput.x != wallDirX && directionalInput.x != 0f)
+                {
+                    timeToWallUnstick -= Time.deltaTime;
+                }
+                else
+                {
+                    timeToWallUnstick = wallStickTime;
+                }
+            }
+            else
+            {
+                timeToWallUnstick = wallStickTime;
+            }
+        }
+    }
+
+    private void CalculateVelocity()
+    {
+        float targetVelocityX = directionalInput.x * moveSpeed;
+        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne));
         velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
     }
 }
