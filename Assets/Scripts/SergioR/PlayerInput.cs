@@ -4,11 +4,13 @@
 public class PlayerInput : MonoBehaviour
 {
     private Player player;
+    Animator anim;
     private bool facingRight; //variable para saber si el sprite mira a la derecha
 
     private void Start()
     {
         player = GetComponent<Player>();
+        anim = GetComponent<Animator>();
         facingRight = false; //al principio no mira a la derecha
         Flip(1); //lo giramos para que mire a la derecha
     }
@@ -22,7 +24,12 @@ public class PlayerInput : MonoBehaviour
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
+            anim.SetBool("isWalking", true);
             Flip(directionalInput[0]);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
 
         //Para el salto. Las funciones están en Player.cs
