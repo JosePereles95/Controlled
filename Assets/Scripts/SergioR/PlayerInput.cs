@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
 
     Animator anim;
     private bool facingRight; //variable para saber si el sprite mira a la derecha
+    private bool isJumping = false;
 
     private void Start()
     {
@@ -38,13 +39,19 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             player.OnJumpInputDown();
+
             anim.SetBool("isJumping", true);
+            isJumping = true;
+        }
+        else if(Input.GetButton("Jump"))
+        {
+            anim.SetBool("isJumping", false);
         }
 
         if (Input.GetButtonUp("Jump"))
         {
             player.OnJumpInputUp();
-            anim.SetBool("isJumping", false);
+            isJumping = false;
         }
 
     }
