@@ -4,23 +4,17 @@
 public class PlayerInput : MonoBehaviour
 {
     private Player player;
-<<<<<<< HEAD
+
     Animator anim;
     private bool facingRight; //variable para saber si el sprite mira a la derecha
-=======
-    private Animator anim;
-    private bool jumping = false;
->>>>>>> origin/CarlosH
 
     private void Start()
     {
         player = GetComponent<Player>();
         anim = GetComponent<Animator>();
-<<<<<<< HEAD
+
         facingRight = false; //al principio no mira a la derecha
         Flip(1); //lo giramos para que mire a la derecha
-=======
->>>>>>> origin/CarlosH
     }
 
     private void Update()
@@ -44,22 +38,15 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             player.OnJumpInputDown();
- 
-                anim.SetBool("Jumping", true);
-                jumping = true;
-
-        }
-        else if (Input.GetButton("Jump"))
-        {
-                anim.SetBool("Jumping", false);
+            anim.SetBool("isJumping", true);
         }
 
         if (Input.GetButtonUp("Jump"))
         {
             player.OnJumpInputUp();
-                jumping = false;
-
+            anim.SetBool("isJumping", false);
         }
+
     }
 
     //Detecta la orientacion del sprite y la cambia
