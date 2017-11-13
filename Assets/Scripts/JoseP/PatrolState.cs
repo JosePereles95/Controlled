@@ -25,17 +25,20 @@ public class PatrolState : IEnemyState {
 	}
 
 	void Patrol() {
+		
 		Vector3 dir = target.position - enemy.transform.position;
 		dir.z = 0.0f;
 
 		if (dir != Vector3.zero) {
+			
 			enemy.transform.rotation = Quaternion.Slerp (enemy.transform.rotation, 
 				Quaternion.FromToRotation (Vector3.right, dir), rotationSpeed * Time.deltaTime);
 		}
-			
-		enemy.transform.position += (target.position - enemy.transform.position).normalized * moveSpeed * Time.deltaTime;
 
+		enemy.transform.position += (target.position - enemy.transform.position).normalized * moveSpeed * Time.deltaTime;
+		Debug.Log ("MOVING");
 		if (Vector3.Distance (enemy.transform.position, enemy.wayPoints [nextWayPoint].position) < 1f) {
+			Debug.Log ("Change");
 			if (nextWayPoint < enemy.wayPoints.Length - 1)
 				nextWayPoint++;
 			else
