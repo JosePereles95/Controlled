@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Controller2D))]
 public class Player : MonoBehaviour
 {
+    //Variables modificables. Movimientos básicos
     public float maxJumpHeight = 4f;
     public float minJumpHeight = 1f;
     public float timeToJumpApex = .4f;
@@ -10,25 +11,29 @@ public class Player : MonoBehaviour
     private float accelerationTimeGrounded = .1f;
     private float moveSpeed = 6f;
 
+    //No tocar
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpOff;
     public Vector2 wallLeap;
 
+    //No tocar
     public bool canDoubleJump;
     private bool isDoubleJumping = false;
 
+    //Variables modificables. Movimiento en pared
     public float wallSlideSpeedMax = 3f;
     public float wallStickTime = .25f;
     private float timeToWallUnstick;
 
+    //No tocar
     private float gravity;
     private float maxJumpVelocity;
     private float minJumpVelocity;
     private Vector3 velocity;
     private float velocityXSmoothing;
 
+    //No tocar
     private Controller2D controller;
-
     private Vector2 directionalInput;
     private bool wallSliding;
     private int wallDirX;
