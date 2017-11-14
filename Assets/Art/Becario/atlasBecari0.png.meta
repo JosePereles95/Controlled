@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 8eb2f734ee67a64459e46873ab60c53d
-timeCreated: 1510005633
+guid: f5645cc2925b9d141bec9b4cef3bf244
+timeCreated: 1510604293
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,7 @@ TextureImporter:
     21300006: atlasBecari0_3
     21300008: atlasBecari0_4
     21300010: atlasBecari0_5
+    21300012: atlasBecari0_6
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -114,12 +115,12 @@ TextureImporter:
       name: atlasBecari0_0
       rect:
         serializedVersion: 2
-        x: 380.11523
-        y: 1836.4874
-        width: 336.73047
-        height: 439.51257
+        x: 326
+        y: 805
+        width: 146
+        height: 196
       alignment: 9
-      pivot: {x: 0.49857312, y: 0.503996}
+      pivot: {x: 0.5, y: 0.5127551}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -128,12 +129,12 @@ TextureImporter:
       name: atlasBecari0_1
       rect:
         serializedVersion: 2
-        x: 473.06696
-        y: 1663.0079
-        width: 163.36334
-        height: 78.90234
+        x: 364
+        y: 730
+        width: 79
+        height: 41
       alignment: 9
-      pivot: {x: 0.49541706, y: 0.5005167}
+      pivot: {x: 0.5, y: 0.49999997}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,11 +144,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 873.1621
-        width: 291.38962
-        height: 696.8009
+        y: 360
+        width: 133
+        height: 316
       alignment: 9
-      pivot: {x: 0.48903596, y: 0.50134534}
+      pivot: {x: 0.47368422, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -156,12 +157,12 @@ TextureImporter:
       name: atlasBecari0_3
       rect:
         serializedVersion: 2
-        x: 351.59558
-        y: 1034.2422
-        width: 341.17578
-        height: 575.666
+        x: 305
+        y: 437
+        width: 159
+        height: 273
       alignment: 9
-      pivot: {x: 0.4950655, y: 0.49900082}
+      pivot: {x: 0.49999997, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,12 +171,12 @@ TextureImporter:
       name: atlasBecari0_4
       rect:
         serializedVersion: 2
-        x: 927.4262
-        y: 903.3789
-        width: 254.57379
-        height: 719.02734
+        x: 757
+        y: 341
+        width: 117
+        height: 326
       alignment: 9
-      pivot: {x: 0.5089828, y: 0.49875864}
+      pivot: {x: 0.52991456, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +185,26 @@ TextureImporter:
       name: atlasBecari0_5
       rect:
         serializedVersion: 2
-        x: 418.63046
+        x: 331
         y: 0
-        width: 396.74222
-        height: 954.9072
+        width: 83
+        height: 406.40115
       alignment: 9
-      pivot: {x: 0.49873564, y: 0.49638328}
+      pivot: {x: 0.49999997, y: 0.450294}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: atlasBecari0_6
+      rect:
+        serializedVersion: 2
+        x: 454.00003
+        y: 31
+        width: 92.99997
+        height: 342
+      alignment: 9
+      pivot: {x: 0.49999985, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,6 +212,6 @@ TextureImporter:
     outline: []
     physicsShape: []
   spritePackingTag: 
-  userData: 98959318374584
+  userData: 98998959516230
   assetBundleName: 
   assetBundleVariant: 
