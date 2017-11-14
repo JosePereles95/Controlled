@@ -43,4 +43,36 @@ public class Scr_ChangeLevel : MonoBehaviour {
 
     }
 
+    public void Goto_Lvl_1()//ir al nivel 1
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Goto_Lvl_2()//ir al nivel 2
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void Goto_Lvl_3()//ir al nivel 3
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void Goto_MainMenu()//ir al Menú Principal
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Goto_VictoryScreen()//ir a la pantalla de victoria
+    {
+        SceneManager.LoadScene(5);
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")) {
+            Debug.Log("TOUCH");
+            Change_Lvl();
+        }
+    }
 }
