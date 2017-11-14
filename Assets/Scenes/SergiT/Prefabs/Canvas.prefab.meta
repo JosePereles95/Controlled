@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs.meta
+guid: c957e52809605394b9a34f8baf054031
+folderAsset: yes
+timeCreated: 1510601855
+licenseType: Free
+DefaultImporter:
+=======
+guid: e8293ccbee3876c47b63c22d3d6c1619
+timeCreated: 1510610680
+licenseType: Free
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+>>>>>>> SergiT:Assets/Scenes/SergiT/Prefabs/Canvas.prefab.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
