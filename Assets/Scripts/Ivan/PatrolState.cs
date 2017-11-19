@@ -9,8 +9,10 @@ public class PatrolState : IEnemyState {
 	public Transform target;
 	public int moveSpeed = 4;
 	public int rotationSpeed = 0;
+    private float time = 0.0f;
+    private bool stopping = false;
 
-	public PatrolState (StateEnemyBehavior enemy) {
+    public PatrolState (StateEnemyBehavior enemy) {
 		this.enemy = enemy;
 	}
 
@@ -18,6 +20,14 @@ public class PatrolState : IEnemyState {
 		target = enemy.wayPoints [nextWayPoint];
 
 		Patrol ();
+        if (stopping) {
+            time += Time.deltaTime;
+            if (time > 2f)
+            {
+                moveSpeed = 4;
+                stopping = false;
+            }
+        }
 	}
 
 	public void ToPatrolState() {
@@ -45,4 +55,13 @@ public class PatrolState : IEnemyState {
 				nextWayPoint = 0;
 		}
 	}
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "vomit")
+        {
+            moveSpeed = 0;
+            stopping = true;
+            time = 0.0f;
+        }
+    }
 }

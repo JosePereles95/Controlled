@@ -6,7 +6,8 @@ public class vomitController : MonoBehaviour {
     public int duration = 2;
     private Animator anim;
     //public SkinnedMeshRenderer sr;
-    public GameObject sr;
+    public Player p;
+    public GameObject g;
     private bool vomiting = false;
  // private bool vomitlake = false;
     private bool jumping = false;
@@ -21,14 +22,15 @@ public class vomitController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        sr = GetComponent<GameObject>();
+        this.enabled = false;
+        jumping = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
         timeVomiting += Time.deltaTime;
-
+      //this.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
         if (Input.GetKeyDown("Space"))
         {
             jumping = true;
@@ -42,30 +44,37 @@ public class vomitController : MonoBehaviour {
             anim.Play("idle");
             vomiting = true;
             jumping = false;
-            // this.GetComponentInChildren<SpriteRenderer>().enabled = true;
-            sr.SetActive(false);
+          //this.GetComponentInChildren<SpriteRenderer>().enabled = true;
 
+        }
+        if (timeVomiting > 2f && vomiting) {
+            Disappear();
+            Destroy(g);
         }
 
         if (vomiting && jumping)
         {
             timeVomiting = 0.0f;
             vomiting = false;
-            // this.GetComponentInChildren<SpriteRenderer>().enabled = false;
-            sr.SetActive(false);
+        //  this.enabled = false;
+        //this.GetComponentInChildren<SpriteRenderer>().enabled = false;
         }
 
-        if (vomiting)
+     /* if (vomiting)
             Appear();
-        else if (jumping)
-            Disappear();
+        else if (jumping || !vomiting)
+            Disappear();*/
 
-        if (Input.GetKeyDown("v"))
+        if (Input.GetKeyDown("v") && !jumping)
         {
             anim.enabled = true;
             anim.Play("Vomit");
-            vomiting = true;
-            sr.SetActive(true);
+            
+         /* this.enabled = true;
+            this.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
+            this.GetComponentInChildren<SpriteRenderer>().enabled = true;*/
+            g = Instantiate(g);
+            g.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
         }
 
         
@@ -89,28 +98,21 @@ public class vomitController : MonoBehaviour {
           }*/
 
     }
-    void Disappear()
-    {
-           //his.GetComponent<SkinnedMeshRenderer>().enabled = true;
-        sr.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-
-     // this.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(minimum, maximum, timeVomiting / duration));
-        sr.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(minimum, maximum, timeVomiting / duration));
-    }
-
     void Appear()
     {
-          //this.GetComponent<SkinnedMeshRenderer>().enabled = false;
-        sr.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+        this.GetComponent<SkinnedMeshRenderer>().enabled = true;
+        
+        this.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(minimum, maximum, timeVomiting / duration));
+        this.enabled = true;
+    }
 
-     // this.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(maximum, minimum, timeVomiting / duration));
-        sr.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(maximum, minimum, timeVomiting / duration));
-    }
-    private void OnCollisionEnter2D(Collision2D coll)
+    void Disappear()
     {
-        if (coll.gameObject.tag == "enemy") {
-          //GameObject.Stop("enemy");
-          //En los NPCs, if stop, time = 10f parados, después reanudar y destroy vomit
-        }
+       
+      this.GetComponent<SkinnedMeshRenderer>().enabled = false;
+
+      this.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, Mathf.SmoothStep(maximum, minimum, timeVomiting / duration));
+        this.enabled = false;
     }
+    
 }
