@@ -68,7 +68,7 @@ public class vomitController : MonoBehaviour {
             sr.SetActive(true);
         }
 
-        if (sr.
+        
         /*if (cont == 60 && vomiting) {
               anim.Play("idle");
               vomiting = false;
