@@ -49,7 +49,9 @@ public class vomitController : MonoBehaviour {
         }
         if (timeVomiting > 2f && vomiting) {
             Disappear();
+            Debug.Log("Va a destruirlo");
             Destroy(g);
+            Debug.Log("Destruido");
         }
 
         if (vomiting && jumping)
@@ -68,13 +70,15 @@ public class vomitController : MonoBehaviour {
         if (Input.GetKeyDown("v") && !jumping)
         {
             anim.enabled = true;
+            Debug.Log("Va a vomitar");
             anim.Play("Vomit");
-            
-         /* this.enabled = true;
-            this.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
-            this.GetComponentInChildren<SpriteRenderer>().enabled = true;*/
+            Debug.Log("Vomitaaa");
+            /* this.enabled = true;
+               this.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
+               this.GetComponentInChildren<SpriteRenderer>().enabled = true;*/
             g = Instantiate(g);
             g.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
+            Debug.Log("Creado charco");
         }
 
         

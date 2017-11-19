@@ -46,7 +46,8 @@ public class PatrolState : IEnemyState {
 		}
 
 		enemy.transform.position += (target.position - enemy.transform.position).normalized * moveSpeed * Time.deltaTime;
-		Debug.Log ("MOVING");
+        /*
+		Debug.Log ("MOVING");*/
 		if (Vector3.Distance (enemy.transform.position, enemy.wayPoints [nextWayPoint].position) < 1f) {
 			Debug.Log ("Change");
 			if (nextWayPoint < enemy.wayPoints.Length - 1)
