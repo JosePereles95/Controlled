@@ -5,9 +5,9 @@ using System.Collections.Generic;
 public class StateEnemyBehavior : MonoBehaviour {
 	
 	public Transform[] wayPoints;
-	public Vector3 posPlayer;
-	public Transform target;
-	public int moveSpeed = 4;
+	[HideInInspector] public Vector3 posPlayer;
+	[HideInInspector] public Transform target;
+	[HideInInspector] public int moveSpeed = 4;
 
 	[HideInInspector] public IEnemyState currentState;
 	[HideInInspector] public PatrolState patrolState;
