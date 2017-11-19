@@ -22,7 +22,7 @@ public class PatrolState : IEnemyState {
 		Patrol ();
         if (stopping) {
             time += Time.deltaTime;
-            if (time > 2f)
+            if (time > 22f)
             {
                 moveSpeed = 4;
                 stopping = false;
@@ -56,10 +56,11 @@ public class PatrolState : IEnemyState {
 				nextWayPoint = 0;
 		}
 	}
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "vomit")
         {
+            Debug.Log("TRIGGERED");
             moveSpeed = 0;
             stopping = true;
             time = 0.0f;
