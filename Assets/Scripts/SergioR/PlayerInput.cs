@@ -60,11 +60,11 @@ public class PlayerInput : MonoBehaviour
 
             if (facingRight == false)
             {
-                thePosition -= 1.5f;
+                //thePosition -= 1.5f;
             }
             else
             {
-                thePosition += 1.5f;
+                //thePosition += 1.5f;
             }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
