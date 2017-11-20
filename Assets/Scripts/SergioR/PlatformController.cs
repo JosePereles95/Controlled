@@ -45,6 +45,7 @@ public class PlatformController : RaycastController
         MovePassengers(false);
     }
 
+
     private float Ease(float x)
     {
         float a = easeAmount + 1f;
