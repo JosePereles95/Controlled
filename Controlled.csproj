@@ -245,6 +245,7 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
     <Compile Include="Assets\Scripts\Ivan\ChaseState.cs" />
     <Compile Include="Assets\Scripts\Ivan\IEnemyState.cs" />
+    <Compile Include="Assets\Scripts\Ivan\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\Ivan\particleSystemController.cs" />
     <Compile Include="Assets\Scripts\Ivan\PatrolState.cs" />
     <Compile Include="Assets\Scripts\Ivan\SightTrigger.cs" />
