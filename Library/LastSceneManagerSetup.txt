@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/IvanD/TestID.unity
+- path: Assets/Scenes/IvanD/MENU/Menu.unity
   isLoaded: 1
   isActive: 1
