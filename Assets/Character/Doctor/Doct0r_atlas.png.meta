@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: 5bbeb8535c1ec4f4595a65c7931e4266
-timeCreated: 1511273380
+guid: 306d974e2809503478b35e5cbfdde162
+timeCreated: 1511217711
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ParaUnityAlien_0
-    21300002: ParaUnityAlien_1
-    21300004: ParaUnityAlien_2
-    21300006: ParaUnityAlien_3
-    21300008: ParaUnityAlien_4
-    21300010: ParaUnityAlien_5
-    21300012: ParaUnityAlien_6
-    21300014: ParaUnityAlien_7
+    21300000: Doct0r_atlas_0
+    21300002: Doct0r_atlas_1
+    21300004: Doct0r_atlas_2
+    21300006: Doct0r_atlas_3
+    21300008: Doct0r_atlas_4
+    21300010: Doct0r_atlas_5
+    21300012: Doct0r_atlas_6
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -82,59 +81,44 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ParaUnityAlien_0
+      name: Doct0r_atlas_0
       rect:
         serializedVersion: 2
-        x: 6.5910864
-        y: 567.4559
-        width: 80.91126
-        height: 38.37213
-      alignment: 9
-      pivot: {x: 0.49942258, y: 0.5093313}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ParaUnityAlien_1
-      rect:
-        serializedVersion: 2
-        x: 202.21199
-        y: 522.2886
-        width: 75.425644
-        height: 114.70477
-      alignment: 9
-      pivot: {x: 0.5076259, y: 0.50748914}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ParaUnityAlien_2
-      rect:
-        serializedVersion: 2
-        x: 352.59924
-        y: 573.19714
-        width: 91.00253
-        height: 44.60565
-      alignment: 9
-      pivot: {x: 0.5043899, y: 0.50000066}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ParaUnityAlien_3
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 310
-        width: 88
-        height: 185
+        x: 376
+        y: 735
+        width: 106
+        height: 43
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,57 +126,85 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: ParaUnityAlien_4
+      name: Doct0r_atlas_1
       rect:
         serializedVersion: 2
-        x: 210.97029
-        y: 309.7714
-        width: 78.256454
-        height: 131.25833
+        x: 599
+        y: 764
+        width: 152
+        height: 198
       alignment: 9
-      pivot: {x: 0.49874106, y: 0.49694833}
+      pivot: {x: 0.5, y: 0.5126263}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: ParaUnityAlien_5
+      name: Doct0r_atlas_2
       rect:
         serializedVersion: 2
-        x: 384
-        y: 316
-        width: 73
-        height: 181
+        x: 0
+        y: 342
+        width: 142
+        height: 339
       alignment: 9
-      pivot: {x: 0.5, y: 0.4972376}
+      pivot: {x: 0.4753521, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: ParaUnityAlien_6
+      name: Doct0r_atlas_3
       rect:
         serializedVersion: 2
-        x: 86.56391
+        x: 333
+        y: 177.49998
+        width: 190
+        height: 494
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49696362}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Doct0r_atlas_4
+      rect:
+        serializedVersion: 2
+        x: 749
+        y: 75
+        width: 105
+        height: 337
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Doct0r_atlas_5
+      rect:
+        serializedVersion: 2
+        x: 895
+        y: 301
+        width: 128
+        height: 340
+      alignment: 9
+      pivot: {x: 0.52734375, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Doct0r_atlas_6
+      rect:
+        serializedVersion: 2
+        x: 189
         y: 0
-        width: 52.43609
-        height: 232
+        width: 92
+        height: 355
       alignment: 9
-      pivot: {x: 0.48508745, y: 0.49784482}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ParaUnityAlien_7
-      rect:
-        serializedVersion: 2
-        x: 399.75684
-        y: 0.6687317
-        width: 56.408813
-        height: 207.74188
-      alignment: 9
-      pivot: {x: 0.49182323, y: 0.49740222}
+      pivot: {x: 0.5, y: 0.49014083}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,6 +212,6 @@ TextureImporter:
     outline: []
     physicsShape: []
   spritePackingTag: 
-  userData: 99042779134993
+  userData: 99039162219310
   assetBundleName: 
   assetBundleVariant: 

@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
     public Animator anim;
     private bool facingRight; //variable para saber si el sprite mira a la derecha
 	private string playerState;
-    private Player controlledTripulant;
+    private NpcMovement controlledTripulant;
     public GameObject vujBody;
     public GameObject canControlFlag;
 
@@ -60,11 +60,11 @@ public class PlayerInput : MonoBehaviour
 
             if (facingRight == false)
             {
-                //thePosition -= 1.5f;
+                thePosition -= 1.5f;
             }
             else
             {
-                //thePosition += 1.5f;
+                thePosition += 1.5f;
             }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
@@ -148,7 +148,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (other.tag == "TripB" && playerState == "NotControlling")
         {
-            controlledTripulant = other.gameObject.GetComponent<Player>();
+            controlledTripulant = other.gameObject.GetComponent<NpcMovement>();
             canControlFlag.SetActive(true);
             playerState = "CanControl";
         }
