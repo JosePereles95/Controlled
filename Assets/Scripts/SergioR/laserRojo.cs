@@ -6,7 +6,11 @@ using UnityEngine;
 
 public class laserRojo : MonoBehaviour {
 
+<<<<<<< HEAD
     /*private LineRenderer lr;
+=======
+    private LineRenderer lr;
+>>>>>>> master
 
 	// Use this for initialization
 	void Start ()
@@ -30,6 +34,7 @@ public class laserRojo : MonoBehaviour {
         {
             lr.SetPosition(1, new Vector3(20, 0, 0));
         }
+<<<<<<< HEAD
 	}*/
 
     /*private LineRenderer lineRenderer;
@@ -65,5 +70,8 @@ public class laserRojo : MonoBehaviour {
             }
         }
     }
+=======
+	}
+>>>>>>> master
 
 }

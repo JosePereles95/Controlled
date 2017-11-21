@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 guid: f5645cc2925b9d141bec9b4cef3bf244
+<<<<<<< HEAD:Assets/Character/Becario/atlasBecari0.png.meta
 timeCreated: 1510604293
+=======
+timeCreated: 1511273460
+>>>>>>> master:Assets/Character/Becario/atlasBecari0.png.meta
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -212,6 +216,10 @@ TextureImporter:
     outline: []
     physicsShape: []
   spritePackingTag: 
+<<<<<<< HEAD:Assets/Character/Becario/atlasBecari0.png.meta
   userData: 98998959516230
+=======
+  userData: 99042762975497
+>>>>>>> master:Assets/Character/Becario/atlasBecari0.png.meta
   assetBundleName: 
   assetBundleVariant: 
