@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: f5645cc2925b9d141bec9b4cef3bf244
-timeCreated: 1511269576
+guid: e2343953a3b0cd243ad82bbe8c1b83f2
+timeCreated: 1511236620
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: atlasBecari0_0
-    21300002: atlasBecari0_1
-    21300004: atlasBecari0_2
-    21300006: atlasBecari0_3
-    21300008: atlasBecari0_4
-    21300010: atlasBecari0_5
-    21300012: atlasBecari0_6
+    21300000: Alien 5 Illustrator Atlas_0
+    21300002: Alien 5 Illustrator Atlas_1
+    21300004: Alien 5 Illustrator Atlas_2
+    21300006: Alien 5 Illustrator Atlas_3
+    21300008: Alien 5 Illustrator Atlas_4
+    21300010: Alien 5 Illustrator Atlas_5
+    21300012: Alien 5 Illustrator Atlas_6
+    21300014: Alien 5 Illustrator Atlas_7
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -81,130 +82,117 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-  - buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: atlasBecari0_0
-      rect:
-        serializedVersion: 2
-        x: 326
-        y: 805
-        width: 146
-        height: 196
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5127551}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: atlasBecari0_1
-      rect:
-        serializedVersion: 2
-        x: 364
-        y: 730
-        width: 79
-        height: 41
-      alignment: 9
-      pivot: {x: 0.5, y: 0.49999997}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: atlasBecari0_2
+      name: Alien 5 Illustrator Atlas_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 133
-        height: 316
+        y: 1001
+        width: 477
+        height: 730
       alignment: 9
-      pivot: {x: 0.47368422, y: 0.5}
+      pivot: {x: 0.4947589, y: 0.50342464}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: atlasBecari0_3
+      name: Alien 5 Illustrator Atlas_1
       rect:
         serializedVersion: 2
-        x: 305
-        y: 437
-        width: 159
-        height: 273
+        x: 714
+        y: 1203
+        width: 380
+        height: 449
       alignment: 9
-      pivot: {x: 0.49999997, y: 0.5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: atlasBecari0_4
+      name: Alien 5 Illustrator Atlas_2
       rect:
         serializedVersion: 2
-        x: 757
-        y: 341
-        width: 117
-        height: 326
-      alignment: 9
-      pivot: {x: 0.52991456, y: 0.5}
+        x: 489
+        y: 1115
+        width: 328
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: atlasBecari0_5
+      name: Alien 5 Illustrator Atlas_3
       rect:
         serializedVersion: 2
-        x: 331
+        x: 69
+        y: 622
+        width: 364
+        height: 370
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alien 5 Illustrator Atlas_4
+      rect:
+        serializedVersion: 2
+        x: 447.49997
+        y: 425.5
+        width: 268.00003
+        height: 525
+      alignment: 9
+      pivot: {x: 0.49440306, y: 0.50095236}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alien 5 Illustrator Atlas_5
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 482.00003
+        width: 188
+        height: 490.99997
+      alignment: 9
+      pivot: {x: 0.49999997, y: 0.49999997}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alien 5 Illustrator Atlas_6
+      rect:
+        serializedVersion: 2
+        x: 6
         y: 0
-        width: 83
-        height: 406.40115
+        width: 445
+        height: 605
       alignment: 9
-      pivot: {x: 0.49999997, y: 0.450294}
+      pivot: {x: 0.5, y: 0.4966942}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: atlasBecari0_6
+      name: Alien 5 Illustrator Atlas_7
       rect:
         serializedVersion: 2
-        x: 454.00003
-        y: 31
-        width: 92.99997
-        height: 342
+        x: 745
+        y: 0
+        width: 474
+        height: 411
       alignment: 9
-      pivot: {x: 0.49999985, y: 0.5}
+      pivot: {x: 0.50738394, y: 0.49270073}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,6 +200,6 @@ TextureImporter:
     outline: []
     physicsShape: []
   spritePackingTag: 
-  userData: 99042430609634
+  userData: 99040396126652
   assetBundleName: 
   assetBundleVariant: 
