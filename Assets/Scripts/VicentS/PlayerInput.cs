@@ -7,17 +7,17 @@ public class PlayerInput : MonoBehaviour
 
     public Animator anim;
     private bool facingRight; //variable para saber si el sprite mira a la derecha
-	private string playerState;
     private NpcMovement controlledTripulant;
     public GameObject vujBody;
     public GameObject canControlFlag;
+    private VujStates playerState;
 
     private void Start()
     {
         player = GetComponent<Player>();
         //anim = GetComponent<Animator>();
-		
-		playerState = "NotControlling";
+
+        playerState = VujStates.NotControlling;
         canControlFlag.SetActive(false);
 
         facingRight = false; //al principio no mira a la derecha
@@ -28,15 +28,15 @@ public class PlayerInput : MonoBehaviour
     {
           switch (playerState)
         {
-            case "CanControl":
+            case VujStates.CanControl:
                 if(Input.GetKeyDown(KeyCode.E)) Parasitar();
 
                 else ControlVuj();
                 break;
-            case "NotControlling":
+            case VujStates.NotControlling:
                 ControlVuj();
                 break;
-            case "Controlling":
+            case VujStates.Controlling:
                 if (Input.GetKeyDown(KeyCode.E)) Desparasitar();
                 else
                 {
@@ -57,15 +57,6 @@ public class PlayerInput : MonoBehaviour
 
             Vector3 theScale = transform.localScale;
             float thePosition = transform.localPosition.x;
-
-            if (facingRight == false)
-            {
-                thePosition -= 1.5f;
-            }
-            else
-            {
-                thePosition += 1.5f;
-            }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
 
@@ -133,7 +124,7 @@ public class PlayerInput : MonoBehaviour
 
         player.enabled = false;
         vujBody.SetActive(false);
-        playerState = "Controlling";
+        playerState = VujStates.Controlling;
     }
 
     private void Desparasitar()
@@ -141,27 +132,34 @@ public class PlayerInput : MonoBehaviour
         controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
         player.enabled = true;
         vujBody.SetActive(true);
-        playerState = "NotControlling";
+        playerState = VujStates.NotControlling;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "TripB" && playerState == "NotControlling")
+        if (other.tag == "TripB" && playerState == VujStates.NotControlling)
         {
             controlledTripulant = other.gameObject.GetComponent<NpcMovement>();
             canControlFlag.SetActive(true);
-            playerState = "CanControl";
+            playerState = VujStates.CanControl;
         }
 
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-       if(other.tag == "TripB" && playerState == "CanControl")
+       if(other.tag == "TripB" && playerState == VujStates.CanControl)
         {
             canControlFlag.SetActive(false);
             controlledTripulant = null;
-            playerState = "NotControlling";
+            playerState = VujStates.NotControlling;
         }
+    }
+
+    //Enumerator para comparar los estados de Vuj
+    private enum VujStates
+    {
+        NotControlling, CanControl, Controlling, Dead
+
     }
 }

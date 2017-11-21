@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(NpcMovement))]
 public class StateEnemyBehavior : MonoBehaviour {
 	
 	public Transform[] wayPoints;
@@ -15,9 +16,13 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 	public static StateEnemyBehavior Instance;
 
+    private NpcMovement theController;
+
 	void Awake(){
-		patrolState = new PatrolState (this);
-		chaseState = new ChaseState (this);
+        theController = GetComponent<NpcMovement>();
+
+		patrolState = new PatrolState (this, theController);
+		chaseState = new ChaseState (this, theController);
 	}
 
 	void Start (){

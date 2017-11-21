@@ -13,8 +13,11 @@ public class PatrolState : IEnemyState {
     private float time = 0.0f;
     private bool stopping = false;
 
-	public PatrolState (StateEnemyBehavior enemy) {
+    private NpcMovement theController;
+
+	public PatrolState (StateEnemyBehavior enemy, NpcMovement controller) {
 		this.enemy = enemy;
+        theController = controller;
 	}
 
 	public void UpdateState () {
@@ -43,8 +46,8 @@ public class PatrolState : IEnemyState {
 	}
 
 	private void Patrol() {
-		
-		Vector3 dir = enemy.target.position - enemy.transform.position;
+
+        Vector3 dir = enemy.target.position - enemy.transform.position;
 		dir.z = 0.0f;
 
 		if (dir != Vector3.zero) {
@@ -52,12 +55,15 @@ public class PatrolState : IEnemyState {
 				Quaternion.FromToRotation (Vector3.right, dir), rotationSpeed * Time.deltaTime);
 		}
 
-		enemy.transform.position += (enemy.target.position - enemy.transform.position).normalized * enemy.moveSpeed * Time.deltaTime;
+        //enemy.transform.position += (enemy.target.position - enemy.transform.position).normalized * enemy.moveSpeed * Time.deltaTime;
 
-		if (((enemy.target.position - enemy.transform.position).normalized).x > 0)
+        Vector3 movementDir = (enemy.target.position - enemy.transform.position).normalized;
+        theController.SetDirectionalInput(movementDir);
+
+		/*if (((enemy.target.position - enemy.transform.position).normalized).x > 0)
 			FlipDroide (1);
 		else
-			FlipDroide (-1);
+			FlipDroide (-1);*/
 
 		if (Vector3.Distance (enemy.transform.position, enemy.wayPoints [nextWayPoint].position) < 1f) {
 			if (nextWayPoint < enemy.wayPoints.Length - 1)
