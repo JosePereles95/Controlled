@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f5645cc2925b9d141bec9b4cef3bf244
-timeCreated: 1510761299
+timeCreated: 1511273460
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -171,12 +171,12 @@ TextureImporter:
       name: atlasBecari0_4
       rect:
         serializedVersion: 2
-        x: 758
+        x: 757
         y: 341
-        width: 116
+        width: 117
         height: 326
       alignment: 9
-      pivot: {x: 0.52586204, y: 0.5}
+      pivot: {x: 0.52991456, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -188,9 +188,9 @@ TextureImporter:
         x: 331
         y: 0
         width: 83
-        height: 372.70056
+        height: 406.40115
       alignment: 9
-      pivot: {x: 0.49999997, y: 0.49101081}
+      pivot: {x: 0.49999997, y: 0.450294}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,6 +212,6 @@ TextureImporter:
     outline: []
     physicsShape: []
   spritePackingTag: 
-  userData: 99009249108641
+  userData: 99042762975497
   assetBundleName: 
   assetBundleVariant: 
