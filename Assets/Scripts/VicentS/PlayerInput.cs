@@ -21,7 +21,11 @@ public class PlayerInput : MonoBehaviour
         canControlFlag.SetActive(false);
 
         facingRight = false; //al principio no mira a la derecha
-        Flip(1); //lo giramos para que mire a la derecha
+
+        if(this.tag != "AlienSalvaje")
+        {
+            Flip(1); //lo giramos para que mire a la derecha
+        }
     }
 
     private void Update()
@@ -58,13 +62,13 @@ public class PlayerInput : MonoBehaviour
             Vector3 theScale = transform.localScale;
             float thePosition = transform.localPosition.x;
 
-            if (facingRight == false)
+            if (facingRight == false && this.tag == "AlienSalvaje")
             {
-                thePosition -= 1.5f;
+                thePosition -= -3f;
             }
-            else
+            else if(this.tag == "AlienSalvaje")
             {
-                thePosition += 1.5f;
+                thePosition += -3f;
             }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
