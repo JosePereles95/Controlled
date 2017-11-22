@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SightTrigger : MonoBehaviour {
 
-	void OnTriggerStay2D(Collider2D other) {
+	void OnTriggerEnter2D(Collider2D other) {
 		gameObject.GetComponentInParent<StateEnemyBehavior> ().SightTriggered (other);
 	}
 

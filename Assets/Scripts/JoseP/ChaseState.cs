@@ -43,5 +43,7 @@ public class ChaseState : IEnemyState {
         if (Vector3.Distance (enemy.transform.position, enemy.target.position) < 1f) {
 			Debug.Log ("Dead");
 		}
+
+        Debug.Log("Chasing");
 	}
 }

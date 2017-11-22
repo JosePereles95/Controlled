@@ -71,6 +71,8 @@ public class PatrolState : IEnemyState {
 			else
 				nextWayPoint = 0;
 		}
+
+        Debug.Log("Patrolling");
 	}
 
 	private void FlipDroide(float horizontal)
