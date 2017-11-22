@@ -53,6 +53,11 @@ public class PlayerInput : MonoBehaviour
     }
 
     //Detecta la orientacion del sprite y la cambia
+    /*///////////////////////////////////
+     * ///////////////////////////
+     * ////////////////////////
+     * //////////////////////////////////
+     * */
     private void Flip(float horizontal)
     {
         if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
@@ -77,8 +82,13 @@ public class PlayerInput : MonoBehaviour
             transform.localScale = theScale;
         }
     }
-	
-	private void ControlVuj()
+    /*//////////////////////////////
+     * ////////////////////////
+     * ////////////////////////
+     * //////////////////////////////////////
+     * */
+
+    private void ControlVuj()
 	{
 		//Guardamos en un vector si se mueve en algún eje y aplicamos el movimiento
         Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
