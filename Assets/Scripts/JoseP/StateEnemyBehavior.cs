@@ -13,16 +13,16 @@ public class StateEnemyBehavior : MonoBehaviour {
 	[HideInInspector] public PatrolState patrolState;
 	[HideInInspector] public ChaseState chaseState;
 
-	public static StateEnemyBehavior Instance;
+    public static StateEnemyBehavior Instance;
 
-	void Awake(){
-		patrolState = new PatrolState (this);
+    void Awake(){
+        patrolState = new PatrolState (this);
 		chaseState = new ChaseState (this);
 	}
 
 	void Start (){
 		currentState = patrolState;
-	}
+    }
 
 	void Update (){
 		currentState.UpdateState ();

@@ -24,7 +24,7 @@ public class ChaseState : IEnemyState {
 		//Cant change to same state
 	}
 
-	void Chase() {
+    void Chase() {
 
 		Vector3 dir = enemy.target.position - enemy.transform.position;
 		dir.z = 0.0f;

@@ -13,11 +13,11 @@ public class PatrolState : IEnemyState {
     private float time = 0.0f;
     private bool stopping = false;
 
-	public PatrolState (StateEnemyBehavior enemy) {
+    public PatrolState (StateEnemyBehavior enemy) {
 		this.enemy = enemy;
 	}
 
-	public void UpdateState () {
+    public void UpdateState () {
         if (stopping)
         {
             time += Time.deltaTime;
@@ -71,7 +71,7 @@ public class PatrolState : IEnemyState {
 	{
 		if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
 		{
-			facingRight = !facingRight;
+            facingRight = !facingRight;
 
 			Vector3 theScale = enemy.transform.localScale;
 			float thePosition = enemy.transform.localPosition.x;
@@ -92,4 +92,5 @@ public class PatrolState : IEnemyState {
             time = 0.0f;
         }
     }
+
 }
