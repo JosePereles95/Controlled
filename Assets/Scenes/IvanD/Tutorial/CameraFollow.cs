@@ -3,6 +3,10 @@
 public class CameraFollow : MonoBehaviour
 {
     public Controller2D target;
+    public Controller2D target1;
+    Controller2D targetTotal;
+    public static bool cambiarVUJ = false;
+
     public float verticalOffset;
     public float lookAheadDstX;
     public float lookSmoothTimeX;
@@ -21,19 +25,26 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        focusArea = new FocusArea(target.coll.bounds, focusAreaSize);
+        targetTotal = target;
+        focusArea = new FocusArea(targetTotal.coll.bounds, focusAreaSize);
     }
 
     private void LateUpdate()
     {
-        focusArea.Update(target.coll.bounds);
+        if(cambiarVUJ == true)
+        {
+            targetTotal = target1;
+            cambiarVUJ = false;
+        }
+
+        focusArea.Update(targetTotal.coll.bounds);
 
         Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset;
 
         if (focusArea.velocity.x != 0)
         {
             lookAheadDirX = Mathf.Sign(focusArea.velocity.x);
-            if (Mathf.Sign(target.playerInput.x) == Mathf.Sign(focusArea.velocity.x) && target.playerInput.x != 0)
+            if (Mathf.Sign(targetTotal.playerInput.x) == Mathf.Sign(focusArea.velocity.x) && targetTotal.playerInput.x != 0)
             {
                 lookAheadStopped = false;
                 targetLookAheadX = lookAheadDirX * lookAheadDstX;
