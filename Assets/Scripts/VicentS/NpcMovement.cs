@@ -6,7 +6,7 @@ using UnityEngine;
 public class NpcMovement : MonoBehaviour {
     public Animator anim;
 
-    private bool facingRight; //Variable para saber si el sprite mira a la derecha
+    public bool facingRight; //Variable para saber si el sprite mira a la derecha
 
     //Script de comportamiento de movimiento
     private Player movementController;
