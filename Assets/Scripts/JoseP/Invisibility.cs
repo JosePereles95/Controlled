@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Invisibility : MonoBehaviour {
 
-	public int duration = 2;
+	public int durationFade = 2;
 	public SkinnedMeshRenderer[] listSprites;
+	public float waitTime = 2f;
 
 	private float minimum = 0f;
 	private float maximum = 1f;
@@ -27,12 +28,11 @@ public class Invisibility : MonoBehaviour {
 
 		}
 
-		if (time > 2f && !invisible) {
+		if (time > waitTime && !invisible) {
 			timeVisibility = 0.0f;
 			invisible = true;
 			moving = false;
 			this.GetComponentInChildren<SpriteRenderer> ().enabled = true;
-
 		}
 
 		if (invisible && moving) {
@@ -52,7 +52,7 @@ public class Invisibility : MonoBehaviour {
 			listSprites [i].GetComponent<SkinnedMeshRenderer>().enabled = true;
 		}
 
-		this.GetComponentInChildren<SpriteRenderer> ().color = new Color (1f, 1f, 1f, Mathf.SmoothStep (minimum, maximum, timeVisibility/duration));
+		this.GetComponentInChildren<SpriteRenderer> ().color = new Color (1f, 1f, 1f, Mathf.SmoothStep (minimum, maximum, timeVisibility/1));
 	}
 
 	void GoInvisible (){
@@ -61,6 +61,6 @@ public class Invisibility : MonoBehaviour {
 			listSprites [i].GetComponent<SkinnedMeshRenderer>().enabled = false;
 		}
 
-		this.GetComponentInChildren<SpriteRenderer> ().color = new Color (1f, 1f, 1f, Mathf.SmoothStep (maximum, minimum, timeVisibility/duration));
+		this.GetComponentInChildren<SpriteRenderer> ().color = new Color (1f, 1f, 1f, Mathf.SmoothStep (maximum, minimum, timeVisibility/durationFade));
 	}
 }
