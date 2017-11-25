@@ -82,14 +82,26 @@ public class PatrolState : IEnemyState {
 			enemy.transform.localScale = theScale;
 		}
 	}
-    private void OnTriggerEnter2D(Collision2D coll)
+    private void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "vomit")
         {
             Debug.Log("TRIGGERED");
-            enemy.moveSpeed = 0;
+            /*enemy.moveSpeed = 0;
             stopping = true;
-            time = 0.0f;
+            time = 0.0f;*/
+            enemy.moveSpeed = 0;
+            new WaitForSecondsVomit();
+            enemy.moveSpeed = 4;
+            //StartCoroutine(TimeLapse());
+            /* Vector3 velocity;
+                if (!this.rigidbody2D.isSleeping){
+                    this.rigidbody.sleep();
+                    this.velocity = this.rigidbody.velocity;
+                } else {
+                    this.rigidbody.WakeUp();
+                    this.rigidbody.velocity = this.velocity;
+                }*/
         }
     }
 }
