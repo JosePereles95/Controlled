@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Invisibility : MonoBehaviour {
 
-	public int durationFade = 2;
+	public int durationFade;
 	public SkinnedMeshRenderer[] listSprites;
-	public float waitTime = 2f;
+	public float waitTime;
+	public float vomitTime;
 
 	private float minimum = 0f;
 	private float maximum = 1f;
@@ -16,6 +17,12 @@ public class Invisibility : MonoBehaviour {
 
 	private bool invisible = false;
 	private bool moving = false;
+	private bool vomiting = false;
+	private GameObject vomito;
+
+	void Start(){
+		vomito = GameObject.FindGameObjectWithTag ("vomit");
+	}
 
 	void Update () {
 		time += Time.deltaTime;
@@ -25,7 +32,6 @@ public class Invisibility : MonoBehaviour {
 		if (Input.anyKeyDown) {
 			moving = true;
 			time = 0.0f;
-
 		}
 
 		if (time > waitTime && !invisible) {
@@ -34,11 +40,21 @@ public class Invisibility : MonoBehaviour {
 			moving = false;
 			this.GetComponentInChildren<SpriteRenderer> ().enabled = true;
 		}
+		Debug.Log ("time: " + time + " ;  vomitTime: " + vomitTime);
+		if (time > vomitTime) {
+			if (invisible) {
+				vomiting = true;
+				moving = true;
+				vomito.GetComponent<vomitController> ().Vomit ();
+			}
+		}
 
-		if (invisible && moving) {
+		if ((invisible && moving) || vomiting) {
 			timeVisibility = 0.0f;
 			invisible = false;
 			this.GetComponentInChildren<SpriteRenderer> ().enabled = false;
+			vomiting = false;
+			time = 0.0f;
 		}
 
 		if (invisible)
