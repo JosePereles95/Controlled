@@ -58,13 +58,21 @@ public class PlayerInput : MonoBehaviour
             Vector3 theScale = transform.localScale;
             float thePosition = transform.localPosition.x;
 
-            if (facingRight == false)
+			if (facingRight == false && this.tag == "AlienSalvaje")
             {
+<<<<<<< HEAD:Assets/Scripts/VicentS/PlayerInput.cs
                 thePosition -= 1.5f;
+=======
+                thePosition -= -3f;
+>>>>>>> JoseP:Assets/Scripts/VicentS/PlayerInput.cs
             }
-            else
+			else if(this.tag == "AlienSalvaje")
             {
+<<<<<<< HEAD:Assets/Scripts/VicentS/PlayerInput.cs
                 thePosition += 1.5f;
+=======
+                thePosition += -3f;
+>>>>>>> JoseP:Assets/Scripts/VicentS/PlayerInput.cs
             }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);

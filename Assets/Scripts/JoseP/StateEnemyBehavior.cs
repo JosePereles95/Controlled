@@ -41,4 +41,27 @@ public class StateEnemyBehavior : MonoBehaviour {
 			currentState.ToPatrolState();
 		}
 	}
+
+	private void OnTriggerEnter2D(Collider2D coll)
+	{
+		if (coll.tag == "vomit")
+		{
+			Debug.Log("TRIGGERED");
+			/*enemy.moveSpeed = 0;
+            stopping = true;
+            time = 0.0f;*/
+			moveSpeed = 0;
+			//new WaitForSecondsVomit();
+			//moveSpeed = 4;
+			//StartCoroutine(TimeLapse());
+			/* Vector3 velocity;
+                if (!this.rigidbody2D.isSleeping){
+                    this.rigidbody.sleep();
+                    this.velocity = this.rigidbody.velocity;
+                } else {
+                    this.rigidbody.WakeUp();
+                    this.rigidbody.velocity = this.velocity;
+                }*/
+		}
+	}
 }

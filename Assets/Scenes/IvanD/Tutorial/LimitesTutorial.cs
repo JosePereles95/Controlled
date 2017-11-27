@@ -9,7 +9,11 @@ public class LimitesTutorial : MonoBehaviour {
     {
         if (collision.gameObject.tag == "AlienSalvaje")
         {
+<<<<<<< HEAD
             SceneManager.LoadScene(0);
+=======
+            SceneManager.LoadScene(1);
+>>>>>>> JoseP
         }
     }
 }
