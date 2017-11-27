@@ -61,13 +61,13 @@ public class PlayerInput : MonoBehaviour
         {
             facingRight = !facingRight;
 
-            Vector3 theScale = transform.localScale;
+            Vector3 theScale = vujBody.transform.localScale;
             float thePosition = transform.localPosition.x;
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
 
             theScale.x *= -1;
-            transform.localScale = theScale;
+            vujBody.transform.localScale = theScale;
         }
     }
 	
