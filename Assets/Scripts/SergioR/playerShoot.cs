@@ -52,6 +52,11 @@ public class playerShoot : MonoBehaviour
         {
             lr.SetPosition(1, new Vector3(100, 0, 0));
         }
+
+        if(hit.collider.gameObject.tag == "Player")
+        {
+            print("Estas muerto. Laser.");
+        }
     }
 
     void Update()
