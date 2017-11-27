@@ -5,6 +5,8 @@ using UnityEngine;
 public class gunControl : MonoBehaviour {
     Rigidbody2D rb;
     public Transform brazo;
+    public Transform pistola;
+    public Transform firePoint;
     Vector2 dir;
     float angle;
     float lastAngle;
@@ -23,7 +25,7 @@ public class gunControl : MonoBehaviour {
     public Transform BulletTrailPrefab;
 
     float timeToFiere = 0;
-    Transform firePoint;
+    //Transform firePoint;
     //------------------------Prueba---------------------------------
 
 
@@ -37,7 +39,7 @@ public class gunControl : MonoBehaviour {
     //------------------------Prueba---------------------------------
     void Awake()
     {
-        firePoint = transform.Find("FirePoint");
+        //firePoint = transform.Find("FirePoint");
         if (firePoint == null)
         {
             Debug.LogError("No firePoint? WHAT?!");
@@ -55,13 +57,6 @@ public class gunControl : MonoBehaviour {
             dir *= -1;
         }
         angle =Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-        /*if (angle > 180 - maxAngle && angle > 180 - minAngle)
-        {
-            angle -= 180;
-            rb.MoveRotation(angle);
-        }*/
-
 
         if (angle < maxAngle && angle > minAngle) //Comprabar que el angulo se encuentre en el espacio que queremos
         {
@@ -112,7 +107,14 @@ public class gunControl : MonoBehaviour {
 
     void Effect()
     {
-        Instantiate(BulletTrailPrefab, brazo.position, brazo.rotation);
+        if (theController.facingRight)
+        {
+            Instantiate(BulletTrailPrefab, firePoint.position, brazo.rotation);
+        }
+        else
+        {
+            Instantiate(BulletTrailPrefab, firePoint.position, Quaternion.Euler(brazo.rotation.eulerAngles + new Vector3(0, 0, 180)));
+        }
     }
     //------------------------Prueba---------------------------------
 }
