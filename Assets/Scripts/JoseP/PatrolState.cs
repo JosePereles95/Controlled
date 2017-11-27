@@ -45,6 +45,12 @@ public class PatrolState : IEnemyState {
 		enemy.currentState = enemy.chaseState;
 	}
 
+    public void ToControlledState()
+    {
+        theController.SetDirectionalInput(new Vector2(0, 0));
+        enemy.currentState = enemy.controlledState;
+    }
+
 	private void Patrol() {
 
         Vector3 dir = enemy.target.position - enemy.transform.position;
@@ -71,8 +77,6 @@ public class PatrolState : IEnemyState {
 			else
 				nextWayPoint = 0;
 		}
-
-        Debug.Log("Patrolling");
 	}
 
 	private void FlipDroide(float horizontal)

@@ -26,6 +26,11 @@ public class ChaseState : IEnemyState {
 		//Cant change to same state
 	}
 
+    public void ToControlledState()
+    {
+        enemy.currentState = enemy.controlledState;
+    }
+
 	void Chase() {
 
 		Vector3 dir = enemy.target.position - enemy.transform.position;
@@ -43,7 +48,5 @@ public class ChaseState : IEnemyState {
         if (Vector3.Distance (enemy.transform.position, enemy.target.position) < 1f) {
 			Debug.Log ("Dead");
 		}
-
-        Debug.Log("Chasing");
 	}
 }

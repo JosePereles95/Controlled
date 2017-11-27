@@ -13,8 +13,9 @@ public class StateEnemyBehavior : MonoBehaviour {
 	[HideInInspector] public IEnemyState currentState;
 	[HideInInspector] public PatrolState patrolState;
 	[HideInInspector] public ChaseState chaseState;
+    [HideInInspector] public ControlledState controlledState;
 
-	public static StateEnemyBehavior Instance;
+    public static StateEnemyBehavior Instance;
 
     private NpcMovement theController;
 
@@ -23,6 +24,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 		patrolState = new PatrolState (this, theController);
 		chaseState = new ChaseState (this, theController);
+        controlledState = new ControlledState(this, theController);
 	}
 
 	void Start (){
@@ -46,4 +48,32 @@ public class StateEnemyBehavior : MonoBehaviour {
 			currentState.ToPatrolState();
 		}
 	}
+
+    public void EnterControlZone(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerInput>().ToCanControl(theController);
+        }
+    }
+
+    public void ControlZoneStay(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                other.GetComponent<PlayerInput>().Parasitar();
+                currentState.ToControlledState();
+            }
+        }
+    }
+
+    public void ExitControlZone(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerInput>().ExitControlZone();
+        }
+    }
 }

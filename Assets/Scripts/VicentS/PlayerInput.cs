@@ -35,10 +35,10 @@ public class PlayerInput : MonoBehaviour
           switch (playerState)
         {
             case VujStates.CanControl:
-                if(Input.GetKeyDown(KeyCode.E)) Parasitar();
+               /* if(Input.GetKeyDown(KeyCode.E)) Parasitar();
 
                 else ControlVuj();
-                break;
+                break;*/
             case VujStates.NotControlling:
                 ControlVuj();
                 break;
@@ -129,12 +129,15 @@ public class PlayerInput : MonoBehaviour
         }
     }
 	
-    private void Parasitar()
+    public void Parasitar()
     {
-        if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
-        anim.SetTrigger("parasitar");
+        if(playerState == VujStates.CanControl)
+        {
+            if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
+            anim.SetTrigger("parasitar");
 
-        StartCoroutine("Parasitando");
+            StartCoroutine("Parasitando");
+        }
     }
 
 	 private IEnumerator Parasitando()
@@ -159,26 +162,25 @@ public class PlayerInput : MonoBehaviour
         playerState = VujStates.NotControlling;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void ToCanControl(NpcMovement enemy)
     {
-        if (other.tag == "TripB" && playerState == VujStates.NotControlling)
+        if(playerState == VujStates.NotControlling)
         {
-            controlledTripulant = other.gameObject.GetComponent<NpcMovement>();
+            controlledTripulant = enemy;
             canControlFlag.SetActive(true);
             playerState = VujStates.CanControl;
         }
-
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void ExitControlZone()
     {
-       if(other.tag == "TripB" && playerState == VujStates.CanControl)
+        if(playerState == VujStates.CanControl)
         {
             canControlFlag.SetActive(false);
-            controlledTripulant = null;
             playerState = VujStates.NotControlling;
         }
     }
+
 
     //Enumerator para comparar los estados de Vuj
     private enum VujStates

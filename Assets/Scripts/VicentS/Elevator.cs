@@ -19,7 +19,6 @@ public class Elevator : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) //Mover al ascensor de arriba
             {
-                Debug.Log("Oh");
                 if (ascensorSuperior != null)
                     other.transform.position = ascensorSuperior.transform.position;
             }
