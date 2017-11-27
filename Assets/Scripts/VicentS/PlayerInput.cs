@@ -58,13 +58,13 @@ public class PlayerInput : MonoBehaviour
             Vector3 theScale = transform.localScale;
             float thePosition = transform.localPosition.x;
 
-            if (facingRight == false)
+			if (facingRight == false && this.tag == "AlienSalvaje")
             {
-                thePosition -= 1.5f;
+                thePosition -= -3f;
             }
-            else
+			else if(this.tag == "AlienSalvaje")
             {
-                thePosition += 1.5f;
+                thePosition += -3f;
             }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);

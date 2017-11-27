@@ -29,7 +29,7 @@ public class Invisibility : MonoBehaviour {
 		timeVisibility += Time.deltaTime;
 		//Debug.Log (time);
 
-		if (Input.anyKeyDown) {
+		if (Input.anyKeyDown || Input.anyKey) {
 			moving = true;
 			time = 0.0f;
 		}
@@ -40,7 +40,7 @@ public class Invisibility : MonoBehaviour {
 			moving = false;
 			this.GetComponentInChildren<SpriteRenderer> ().enabled = true;
 		}
-		Debug.Log ("time: " + time + " ;  vomitTime: " + vomitTime);
+		//Debug.Log ("time: " + time + " ;  vomitTime: " + vomitTime);
 		if (time > vomitTime) {
 			if (invisible) {
 				vomiting = true;

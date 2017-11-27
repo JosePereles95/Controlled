@@ -33,6 +33,8 @@ public class puertaVertical : MonoBehaviour {
             col.gameObject.tag == "Droide" && droide ||
             col.gameObject.tag == "Robot" && robot ||
             col.gameObject.tag == "Mono" && mono ||
+			col.gameObject.tag == "AlienSalvaje" && mono ||
+			col.gameObject.tag == "TripB" && mono ||
             col.gameObject.tag == "Gato" && gato)
         {
             doorOpen = true;

@@ -52,10 +52,10 @@ public class vomitController : MonoBehaviour {
 
         if (!isVomiting && Input.GetKeyDown(KeyCode.V) && !jumping)
         {
-			Vomit ();
+            Vomit ();
         }
     }
-
+	
 	public void Vomit(){
 		Debug.Log("Vomitaaa");
 		GameObject clon = Instantiate(v[0], transform.position, transform.rotation) as GameObject;
