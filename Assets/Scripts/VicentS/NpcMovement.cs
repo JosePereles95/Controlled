@@ -64,7 +64,7 @@ public class NpcMovement : MonoBehaviour {
     public void OnJumpInputDown()
     {
         movementController.OnJumpInputDown();
-        //anim.SetBool("isJumping", true);
+        anim.SetBool("isJumping", true);
     }
 
     public void OnJumpInputUp()
@@ -75,6 +75,11 @@ public class NpcMovement : MonoBehaviour {
 
     public void Falling()
     {
-        //anim.SetBool("isJumping", false);
+        anim.SetBool("isJumping", false);
+    }
+
+    public void Parasitar()
+    {
+        anim.SetTrigger("parasitado");
     }
 }

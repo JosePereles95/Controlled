@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Player))]
 public class PlayerInput : MonoBehaviour
@@ -112,18 +113,33 @@ public class PlayerInput : MonoBehaviour
             controlledTripulant.OnJumpInputDown();
         }
 
+        else if (Input.GetButton("Jump"))
+        {
+            controlledTripulant.Falling();
+        }
+
         if (Input.GetButtonUp("Jump"))
         {
             controlledTripulant.OnJumpInputUp();
         }
     }
 	
-	 private void Parasitar()
+    private void Parasitar()
     {
         if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
+        anim.SetTrigger("parasitar");
 
+        StartCoroutine("Parasitando");
+    }
+
+	 private IEnumerator Parasitando()
+    {
+        yield return new WaitForSeconds(0.2f);
+        controlledTripulant.Parasitar();
         player.enabled = false;
         vujBody.SetActive(false);
+
+        yield return new WaitForSeconds(1.0f);
         playerState = VujStates.Controlling;
     }
 
