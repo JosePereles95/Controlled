@@ -8,15 +8,20 @@ public class PlayerInput : MonoBehaviour
 
     public Animator anim;
     private bool facingRight; //variable para saber si el sprite mira a la derecha
+
     private NpcMovement controlledTripulant;
     public GameObject vujBody;
     public GameObject canControlFlag;
+
     private VujStates playerState;
+
+    private CameraFollow theCamera;
 
     private void Start()
     {
         player = GetComponent<Player>();
         //anim = GetComponent<Animator>();
+        theCamera = FindObjectOfType<CameraFollow>();
 
         playerState = VujStates.NotControlling;
         canControlFlag.SetActive(false);
@@ -138,6 +143,7 @@ public class PlayerInput : MonoBehaviour
         controlledTripulant.Parasitar();
         player.enabled = false;
         vujBody.SetActive(false);
+        theCamera.target = controlledTripulant.GetComponent<Controller2D>();
 
         yield return new WaitForSeconds(1.0f);
         playerState = VujStates.Controlling;
@@ -148,6 +154,8 @@ public class PlayerInput : MonoBehaviour
         controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
         player.enabled = true;
         vujBody.SetActive(true);
+        theCamera.target = this.GetComponent<Controller2D>();
+
         playerState = VujStates.NotControlling;
     }
 
