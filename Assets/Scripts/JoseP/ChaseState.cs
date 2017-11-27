@@ -28,7 +28,7 @@ public class ChaseState : IEnemyState {
 
     public void ToControlledState()
     {
-        enemy.currentState = enemy.controlledState;
+        //
     }
 
 	void Chase() {

@@ -133,9 +133,9 @@ public class PlayerInput : MonoBehaviour
     {
         if(playerState == VujStates.CanControl)
         {
+            playerState = VujStates.OnControlling;
             if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
             anim.SetTrigger("parasitar");
-
             StartCoroutine("Parasitando");
         }
     }
@@ -149,7 +149,9 @@ public class PlayerInput : MonoBehaviour
         theCamera.target = controlledTripulant.GetComponent<Controller2D>();
 
         yield return new WaitForSeconds(1.0f);
+
         playerState = VujStates.Controlling;
+
     }
 
     private void Desparasitar()
@@ -185,7 +187,7 @@ public class PlayerInput : MonoBehaviour
     //Enumerator para comparar los estados de Vuj
     private enum VujStates
     {
-        NotControlling, CanControl, Controlling, Dead
+        NotControlling, CanControl, Controlling, Dead, OnControlling
 
     }
 }
