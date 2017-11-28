@@ -52,12 +52,16 @@ public class vomitController : MonoBehaviour {
 
         if (!isVomiting && Input.GetKeyDown(KeyCode.V) && !jumping)
         {
-            Debug.Log("Vomitaaa");
-            GameObject clon = Instantiate(v[0], transform.position, transform.rotation) as GameObject;
-            this.isVomiting = true;
-            clon.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
-            Destroy(clon, 10);
-            Debug.Log("Creado charco");
+            Vomit ();
         }
     }
+	
+	public void Vomit(){
+		Debug.Log("Vomitaaa");
+		GameObject clon = Instantiate(v[0], transform.position, transform.rotation) as GameObject;
+		this.isVomiting = true;
+		clon.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
+		Destroy(clon, 10);
+		Debug.Log("Creado charco");
+	}
 }
