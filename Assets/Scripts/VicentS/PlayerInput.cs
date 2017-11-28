@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
         canControlFlag.SetActive(false);
 
         facingRight = false; //al principio no mira a la derecha
-        Flip(1); //lo giramos para que mire a la derecha
+        //Flip(1); //lo giramos para que mire a la derecha
     }
 
     private void Update()
@@ -65,6 +65,15 @@ public class PlayerInput : MonoBehaviour
 			else if(this.tag == "AlienSalvaje")
             {
                 thePosition += -3f;
+            }
+
+            if (facingRight == false && this.tag == "Player")
+            {
+                thePosition -= 1.5f;
+            }
+            else if (this.tag == "Player")
+            {
+                thePosition += 1.5f;
             }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
