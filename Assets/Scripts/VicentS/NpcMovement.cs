@@ -6,7 +6,7 @@ using UnityEngine;
 public class NpcMovement : MonoBehaviour {
     public Animator anim;
 
-    private bool facingRight; //Variable para saber si el sprite mira a la derecha
+    public bool facingRight; //Variable para saber si el sprite mira a la derecha
 
     //Script de comportamiento de movimiento
     private Player movementController;
@@ -14,8 +14,7 @@ public class NpcMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         movementController = GetComponent<Player>();
-
-        facingRight = true; //al principio no mira a la derecha
+		anim = GetComponent<Animator> ();
         Flip(1); //lo giramos para que mire a la derecha
     }
 
@@ -49,24 +48,25 @@ public class NpcMovement : MonoBehaviour {
     public void SetDirectionalInput(Vector2 directionalInput)
     {
         //Introducir justo debajo lo necesario para ejecutar la animación de movimiento
+        movementController.SetDirectionalInput(directionalInput);
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
-            anim.SetBool("isWalking", true);
+			anim.Play("walking");
+			anim.SetBool("isWalking", true);
             Flip(directionalInput[0]);
         }
         else
         {
+			anim.Play("Iddle");
             anim.SetBool("isWalking", false);
         }
-
-        movementController.SetDirectionalInput(directionalInput);
     }
 
     public void OnJumpInputDown()
     {
         movementController.OnJumpInputDown();
-        //anim.SetBool("isJumping", true);
+		anim.SetBool("isJumping", true);
     }
 
     public void OnJumpInputUp()
@@ -77,6 +77,11 @@ public class NpcMovement : MonoBehaviour {
 
     public void Falling()
     {
-        //anim.SetBool("isJumping", false);
+        anim.SetBool("isJumping", false);
+    }
+
+    public void Parasitar()
+    {
+        anim.SetTrigger("parasitado");
     }
 }

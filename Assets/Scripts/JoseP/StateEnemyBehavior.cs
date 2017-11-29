@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(NpcMovement))]
 public class StateEnemyBehavior : MonoBehaviour {
 	
 	public Transform[] wayPoints;
@@ -12,12 +13,18 @@ public class StateEnemyBehavior : MonoBehaviour {
 	[HideInInspector] public IEnemyState currentState;
 	[HideInInspector] public PatrolState patrolState;
 	[HideInInspector] public ChaseState chaseState;
+    [HideInInspector] public ControlledState controlledState;
 
-	public static StateEnemyBehavior Instance;
+    public static StateEnemyBehavior Instance;
+
+    private NpcMovement theController;
 
 	void Awake(){
-		patrolState = new PatrolState (this);
-		chaseState = new ChaseState (this);
+        theController = GetComponent<NpcMovement>();
+
+		patrolState = new PatrolState (this, theController);
+		chaseState = new ChaseState (this, theController);
+        controlledState = new ControlledState(this, theController);
 	}
 
 	void Start (){
@@ -30,38 +37,39 @@ public class StateEnemyBehavior : MonoBehaviour {
 	}
 
 	public void SightTriggered(Collider2D other) {
-		if (other.tag == "Player") {
-			target = other.transform;
-			currentState.ToChaseState();
-		}
+		target = other.transform;
+		currentState.ToChaseState();
 	}
 
 	public void SightExit(Collider2D other) {
-		if (other.tag == "Player") {;
-			currentState.ToPatrolState();
-		}
+		currentState.ToPatrolState();
 	}
 
-	private void OnTriggerEnter2D(Collider2D coll)
-	{
-		if (coll.tag == "vomit")
-		{
-			Debug.Log("TRIGGERED");
-			/*enemy.moveSpeed = 0;
-            stopping = true;
-            time = 0.0f;*/
-			moveSpeed = 0;
-			//new WaitForSecondsVomit();
-			//moveSpeed = 4;
-			//StartCoroutine(TimeLapse());
-			/* Vector3 velocity;
-                if (!this.rigidbody2D.isSleeping){
-                    this.rigidbody.sleep();
-                    this.velocity = this.rigidbody.velocity;
-                } else {
-                    this.rigidbody.WakeUp();
-                    this.rigidbody.velocity = this.velocity;
-                }*/
-		}
-	}
+    public void EnterControlZone(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerInput>().ToCanControl(theController);
+        }
+    }
+
+    public void ControlZoneStay(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                other.GetComponent<PlayerInput>().Parasitar();
+                currentState.ToControlledState();
+            }
+        }
+    }
+
+    public void ExitControlZone(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerInput>().ExitControlZone();
+        }
+    }
 }
