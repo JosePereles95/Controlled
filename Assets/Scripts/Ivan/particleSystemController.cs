@@ -5,12 +5,14 @@ using UnityEngine;
 public class particleSystemController : MonoBehaviour {
     private ParticleSystem pS;
     private Animator anim;
-    
+    public Material newMat;
 	// Use this for initialization
 	void Start () {
         pS = GetComponent<ParticleSystem>();
         anim = GetComponentInParent<Animator>();
-	}
+        pS.GetComponent< ParticleSystemRenderer > ().material = newMat;
+
+    }
 
 	// Update is called once per frame
 	void Update () {

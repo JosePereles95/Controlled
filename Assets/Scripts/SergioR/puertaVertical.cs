@@ -26,6 +26,7 @@ public class puertaVertical : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("col.tag");
         if (col.gameObject.tag == "Player" && Vuj || 
             col.gameObject.tag == "Tripulante" && tripulante ||
             col.gameObject.tag == "TripulanteAlien" && tripulanteAlien ||
@@ -33,6 +34,8 @@ public class puertaVertical : MonoBehaviour {
             col.gameObject.tag == "Droide" && droide ||
             col.gameObject.tag == "Robot" && robot ||
             col.gameObject.tag == "Mono" && mono ||
+			col.gameObject.tag == "AlienSalvaje" && mono ||
+			col.gameObject.tag == "TripB" && mono ||
             col.gameObject.tag == "Gato" && gato)
         {
             doorOpen = true;

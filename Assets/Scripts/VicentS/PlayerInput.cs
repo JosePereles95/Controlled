@@ -27,7 +27,7 @@ public class PlayerInput : MonoBehaviour
         canControlFlag.SetActive(false);
 
         facingRight = false; //al principio no mira a la derecha
-        Flip(1); //lo giramos para que mire a la derecha
+        //Flip(1); //lo giramos para que mire a la derecha
     }
 
     private void Update()
