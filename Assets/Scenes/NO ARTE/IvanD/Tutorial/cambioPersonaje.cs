@@ -16,7 +16,11 @@ public class cambioPersonaje : MonoBehaviour {
 
     public float speed;
     int next = 0;
+<<<<<<< HEAD
     bool caida = false;
+=======
+    public bool caida = false;
+>>>>>>> JoseP
 
     void Start()
     {

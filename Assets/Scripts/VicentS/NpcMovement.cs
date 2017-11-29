@@ -14,7 +14,11 @@ public class NpcMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         movementController = GetComponent<Player>();
+<<<<<<< HEAD
 
+=======
+		anim = GetComponent<Animator> ();
+>>>>>>> JoseP
         Flip(1); //lo giramos para que mire a la derecha
     }
 
@@ -52,11 +56,13 @@ public class NpcMovement : MonoBehaviour {
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
-            anim.SetBool("isWalking", true);
+			anim.Play("walking");
+			anim.SetBool("isWalking", true);
             Flip(directionalInput[0]);
         }
         else
         {
+			anim.Play("Iddle");
             anim.SetBool("isWalking", false);
         }
     }
@@ -64,7 +70,11 @@ public class NpcMovement : MonoBehaviour {
     public void OnJumpInputDown()
     {
         movementController.OnJumpInputDown();
+<<<<<<< HEAD
         anim.SetBool("isJumping", true);
+=======
+		anim.SetBool("isJumping", true);
+>>>>>>> JoseP
     }
 
     public void OnJumpInputUp()

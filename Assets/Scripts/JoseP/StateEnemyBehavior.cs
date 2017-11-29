@@ -37,16 +37,12 @@ public class StateEnemyBehavior : MonoBehaviour {
 	}
 
 	public void SightTriggered(Collider2D other) {
-		if (other.tag == "Player") {
-			target = other.transform;
-			currentState.ToChaseState();
-		}
+		target = other.transform;
+		currentState.ToChaseState();
 	}
 
 	public void SightExit(Collider2D other) {
-		if (other.tag == "Player") {;
-			currentState.ToPatrolState();
-		}
+		currentState.ToPatrolState();
 	}
 
     public void EnterControlZone(Collider2D other)

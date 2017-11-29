@@ -52,6 +52,8 @@ public class PlayerInput : MonoBehaviour
                 break;
         }
 
+		CheckInvisibility ();
+
     }
 
     //Detecta la orientacion del sprite y la cambia
@@ -190,4 +192,16 @@ public class PlayerInput : MonoBehaviour
         NotControlling, CanControl, Controlling, Dead, OnControlling
 
     }
+<<<<<<< HEAD
+=======
+
+	private void CheckInvisibility(){
+		if (this.tag == "Player") {
+			if (playerState == VujStates.Controlling || player.enabled == false)
+				this.GetComponent<Invisibility> ().enabled = false;
+			else
+				this.GetComponent<Invisibility> ().enabled = true;
+		}
+	}
+>>>>>>> JoseP
 }
