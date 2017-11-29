@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Elevator : MonoBehaviour {
-    public string tagSubir; //Etiqueta del rango del tripulante con el que se puede subir en el ascensor
-    public string tagBajar;        //Etiqueta del rango del tripulante con el que se puede bajar en el ascensor
+    public string tagSubir = ""; //Etiqueta del rango del tripulante con el que se puede subir en el ascensor
+    public string tagBajar = "";        //Etiqueta del rango del tripulante con el que se puede bajar en el ascensor
 
     public Elevator ascensorSuperior;
     public Elevator ascensorInferior;
@@ -15,7 +15,7 @@ public class Elevator : MonoBehaviour {
     public SpriteRenderer botonSuperior;
     public SpriteRenderer botonInferior;
 
-    private void Awake()
+    private void Start()
     {
         ColocarBotonInferior();
         ColocarBotonInferior();
@@ -57,6 +57,20 @@ public class Elevator : MonoBehaviour {
 
     private void ColocarBotonSuperior()
     {
+        if (ascensorSuperior != null)
+        {
+            if (!botonSuperior.gameObject.activeInHierarchy)
+                botonSuperior.gameObject.SetActive(true);
+
+            CambiarColorBotonSuperior();
+        }
+        else
+            botonSuperior.gameObject.SetActive(false);
+        
+    }
+
+    private void CambiarColorBotonSuperior()
+    {
         switch(tagSubir)
         {
             case "Tripulante":
@@ -78,6 +92,19 @@ public class Elevator : MonoBehaviour {
     }
 
     private void ColocarBotonInferior()
+    {
+        if (ascensorInferior != null)
+        {
+            if (!botonInferior.gameObject.activeInHierarchy)
+                botonInferior.gameObject.SetActive(true);
+
+            CambiarColorBotonInferior();
+        }
+        else
+            botonInferior.gameObject.SetActive(false);
+    }
+
+    private void CambiarColorBotonInferior()
     {
         switch (tagBajar)
         {
