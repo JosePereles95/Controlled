@@ -74,7 +74,13 @@ public class cambioPersonaje : MonoBehaviour {
                 listSprites[i].GetComponent<SkinnedMeshRenderer>().enabled = true;
             }
 
-            caida = true;
+            StartCoroutine(Wait());
         }
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1.2f);
+        caida = true;
     }
 }
