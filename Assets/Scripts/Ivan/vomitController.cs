@@ -31,27 +31,12 @@ public class vomitController : MonoBehaviour {
             jumping = false;
         }
 
-<<<<<<< HEAD
-        if (!isVomiting && Input.GetKeyDown(KeyCode.V) && !jumping)
-        {
-=======
 		if (vomiting && Input.GetKeyDown(KeyCode.V) && !jumping && !cambio.GetComponent<cambioPersonaje>().caida){
->>>>>>> JoseP
             Vomit ();
         }
     }
 	
 	public void Vomit(){
-<<<<<<< HEAD
-		Debug.Log("Vomitaaa");
-		GameObject clon = Instantiate(v[0], transform.position, transform.rotation) as GameObject;
-		this.isVomiting = true;
-		clon.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
-		Destroy(clon, 10);
-		Debug.Log("Creado charco");
-	}
-}
-=======
 		GameObject clon = Instantiate(vomito, transform.position, transform.rotation) as GameObject;
 		vomiting = false;
 		StartCoroutine (Wait());
@@ -64,4 +49,3 @@ public class vomitController : MonoBehaviour {
 		vomiting = true;
 	}
 }
->>>>>>> JoseP

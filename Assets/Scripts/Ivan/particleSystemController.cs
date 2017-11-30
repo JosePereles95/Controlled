@@ -5,23 +5,14 @@ using UnityEngine;
 public class particleSystemController : MonoBehaviour {
     private ParticleSystem pS;
     private Animator anim;
-<<<<<<< HEAD
-    public Material newMat;
-=======
 	private bool vomiting = true;
 	private GameObject cambio;
 
->>>>>>> JoseP
 	// Use this for initialization
 	void Start () {
 		cambio = GameObject.FindGameObjectWithTag ("cambioPersonaje");
         pS = GetComponent<ParticleSystem>();
         anim = GetComponentInParent<Animator>();
-<<<<<<< HEAD
-        pS.GetComponent< ParticleSystemRenderer > ().material = newMat;
-
-=======
->>>>>>> JoseP
     }
 
 	// Update is called once per frame

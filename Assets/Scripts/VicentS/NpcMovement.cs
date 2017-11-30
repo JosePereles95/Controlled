@@ -14,11 +14,7 @@ public class NpcMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         movementController = GetComponent<Player>();
-<<<<<<< HEAD
-
-=======
 		anim = GetComponent<Animator> ();
->>>>>>> JoseP
         Flip(1); //lo giramos para que mire a la derecha
     }
 
@@ -70,11 +66,7 @@ public class NpcMovement : MonoBehaviour {
     public void OnJumpInputDown()
     {
         movementController.OnJumpInputDown();
-<<<<<<< HEAD
-        anim.SetBool("isJumping", true);
-=======
 		anim.SetBool("isJumping", true);
->>>>>>> JoseP
     }
 
     public void OnJumpInputUp()

@@ -192,8 +192,6 @@ public class PlayerInput : MonoBehaviour
         NotControlling, CanControl, Controlling, Dead, OnControlling
 
     }
-<<<<<<< HEAD
-=======
 
 	private void CheckInvisibility(){
 		if (this.tag == "Player") {
@@ -203,5 +201,4 @@ public class PlayerInput : MonoBehaviour
 				this.GetComponent<Invisibility> ().enabled = true;
 		}
 	}
->>>>>>> JoseP
 }
