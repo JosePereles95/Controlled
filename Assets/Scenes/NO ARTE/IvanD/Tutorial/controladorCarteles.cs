@@ -20,6 +20,7 @@ public class controladorCarteles : MonoBehaviour {
         cartelPuertas.SetActive(false);
         cartelVUJ.SetActive(false);
         cartelFIN.SetActive(false);
+        cartelTutorial.SetActive(true);
 
         AlienSalvaje.SetActive(false);
     }
