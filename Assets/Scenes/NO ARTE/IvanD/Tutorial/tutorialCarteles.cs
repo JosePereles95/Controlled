@@ -6,6 +6,7 @@ public class tutorialCarteles : MonoBehaviour {
 
     public GameObject AlienSalvaje;
     public GameObject VUJ;
+    public GameObject tutorial;
 
     void Update ()
     {
@@ -17,8 +18,9 @@ public class tutorialCarteles : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelPuertas")
         {
-            this.gameObject.SetActive(false);
             VUJ.SetActive(true);
+            this.gameObject.SetActive(false);
+            tutorial.SetActive(false);
         }
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelVUJ")
