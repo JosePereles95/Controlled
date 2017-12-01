@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(Player))]
 public class PlayerInput : MonoBehaviour
@@ -7,36 +8,41 @@ public class PlayerInput : MonoBehaviour
 
     public Animator anim;
     private bool facingRight; //variable para saber si el sprite mira a la derecha
-	private string playerState;
+
     private NpcMovement controlledTripulant;
     public GameObject vujBody;
     public GameObject canControlFlag;
+
+    private VujStates playerState;
+
+    private CameraFollow theCamera;
 
     private void Start()
     {
         player = GetComponent<Player>();
         //anim = GetComponent<Animator>();
-		
-		playerState = "NotControlling";
+        theCamera = FindObjectOfType<CameraFollow>();
+
+        playerState = VujStates.NotControlling;
         canControlFlag.SetActive(false);
 
         facingRight = false; //al principio no mira a la derecha
-        Flip(1); //lo giramos para que mire a la derecha
+        //Flip(1); //lo giramos para que mire a la derecha
     }
 
     private void Update()
     {
           switch (playerState)
         {
-            case "CanControl":
-                if(Input.GetKeyDown(KeyCode.E)) Parasitar();
+            case VujStates.CanControl:
+               /* if(Input.GetKeyDown(KeyCode.E)) Parasitar();
 
                 else ControlVuj();
-                break;
-            case "NotControlling":
+                break;*/
+            case VujStates.NotControlling:
                 ControlVuj();
                 break;
-            case "Controlling":
+            case VujStates.Controlling:
                 if (Input.GetKeyDown(KeyCode.E)) Desparasitar();
                 else
                 {
@@ -45,6 +51,8 @@ public class PlayerInput : MonoBehaviour
                 }
                 break;
         }
+
+		CheckInvisibility ();
 
     }
 
@@ -55,22 +63,13 @@ public class PlayerInput : MonoBehaviour
         {
             facingRight = !facingRight;
 
-            Vector3 theScale = transform.localScale;
+            Vector3 theScale = vujBody.transform.localScale;
             float thePosition = transform.localPosition.x;
-
-            if (facingRight == false)
-            {
-                thePosition -= 1.5f;
-            }
-            else
-            {
-                thePosition += 1.5f;
-            }
 
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
 
             theScale.x *= -1;
-            transform.localScale = theScale;
+            vujBody.transform.localScale = theScale;
         }
     }
 	
@@ -121,19 +120,40 @@ public class PlayerInput : MonoBehaviour
             controlledTripulant.OnJumpInputDown();
         }
 
+        else if (Input.GetButton("Jump"))
+        {
+            controlledTripulant.Falling();
+        }
+
         if (Input.GetButtonUp("Jump"))
         {
             controlledTripulant.OnJumpInputUp();
         }
     }
 	
-	 private void Parasitar()
+    public void Parasitar()
     {
-        if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
+        if(playerState == VujStates.CanControl)
+        {
+            playerState = VujStates.OnControlling;
+            if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
+            anim.SetTrigger("parasitar");
+            StartCoroutine("Parasitando");
+        }
+    }
 
+	 private IEnumerator Parasitando()
+    {
+        yield return new WaitForSeconds(0.2f);
+        controlledTripulant.Parasitar();
         player.enabled = false;
         vujBody.SetActive(false);
-        playerState = "Controlling";
+        theCamera.target = controlledTripulant.GetComponent<Controller2D>();
+
+        yield return new WaitForSeconds(1.0f);
+
+        playerState = VujStates.Controlling;
+
     }
 
     private void Desparasitar()
@@ -141,27 +161,44 @@ public class PlayerInput : MonoBehaviour
         controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
         player.enabled = true;
         vujBody.SetActive(true);
-        playerState = "NotControlling";
+        theCamera.target = this.GetComponent<Controller2D>();
+
+        playerState = VujStates.NotControlling;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void ToCanControl(NpcMovement enemy)
     {
-        if (other.tag == "TripB" && playerState == "NotControlling")
+        if(playerState == VujStates.NotControlling)
         {
-            controlledTripulant = other.gameObject.GetComponent<NpcMovement>();
+            controlledTripulant = enemy;
             canControlFlag.SetActive(true);
-            playerState = "CanControl";
+            playerState = VujStates.CanControl;
         }
-
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    public void ExitControlZone()
     {
-       if(other.tag == "TripB" && playerState == "CanControl")
+        if(playerState == VujStates.CanControl)
         {
             canControlFlag.SetActive(false);
-            controlledTripulant = null;
-            playerState = "NotControlling";
+            playerState = VujStates.NotControlling;
         }
     }
+
+
+    //Enumerator para comparar los estados de Vuj
+    private enum VujStates
+    {
+        NotControlling, CanControl, Controlling, Dead, OnControlling
+
+    }
+
+	private void CheckInvisibility(){
+		if (this.tag == "Player") {
+			if (playerState == VujStates.Controlling || player.enabled == false)
+				this.GetComponent<Invisibility> ().enabled = false;
+			else
+				this.GetComponent<Invisibility> ().enabled = true;
+		}
+	}
 }
