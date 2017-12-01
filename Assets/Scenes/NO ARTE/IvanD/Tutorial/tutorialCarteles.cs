@@ -7,6 +7,7 @@ public class tutorialCarteles : MonoBehaviour {
     public GameObject AlienSalvaje;
     public GameObject VUJ;
     public GameObject tutorial;
+    public GameObject Tripulante;
 
     void Update ()
     {
@@ -19,6 +20,7 @@ public class tutorialCarteles : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelPuertas")
         {
             VUJ.SetActive(true);
+            Tripulante.SetActive(true);
             this.gameObject.SetActive(false);
             tutorial.SetActive(false);
         }

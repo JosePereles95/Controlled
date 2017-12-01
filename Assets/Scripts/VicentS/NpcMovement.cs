@@ -23,12 +23,14 @@ public class NpcMovement : MonoBehaviour {
 
 	void Update(){
 		if (this.GetComponentInChildren<ControlledZone>() != null) {
-			if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.Controlling) {
-				shootingArm.GetComponent<gunControl> ().enabled = true;
-			}
-			else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.NotControlling) {
-				shootingArm.GetComponent<gunControl> ().enabled = false;
-			}
+            if(GameObject.FindGameObjectWithTag("Player") != null){
+                if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.Controlling) {
+                    shootingArm.GetComponent<gunControl>().enabled = true;
+                }
+                else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.NotControlling) {
+                    shootingArm.GetComponent<gunControl>().enabled = false;
+                }
+            }
 		}
 	}
 
