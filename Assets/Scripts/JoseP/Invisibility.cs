@@ -72,7 +72,6 @@ public class Invisibility : MonoBehaviour {
 	}
 
 	void GoInvisible (){
-		Debug.Log ("Invisible");
 		for (int i = 0; i < listSprites.Length; i++) {
 			listSprites [i].GetComponent<SkinnedMeshRenderer>().enabled = false;
 		}

@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class NpcMovement : MonoBehaviour {
     public Animator anim;
+	private GameObject shootingArm;
 
     public bool facingRight; //Variable para saber si el sprite mira a la derecha
 
@@ -13,11 +14,23 @@ public class NpcMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		shootingArm = GameObject.FindGameObjectWithTag ("shootingArm");
         movementController = GetComponent<Player>();
-
+		anim = GetComponent<Animator> ();
         Flip(1); //lo giramos para que mire a la derecha
     }
 
+
+	void Update(){
+		if (this.GetComponentInChildren<ControlledZone>() != null) {
+			if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.Controlling) {
+				shootingArm.GetComponent<gunControl> ().enabled = true;
+			}
+			else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.NotControlling) {
+				shootingArm.GetComponent<gunControl> ().enabled = false;
+			}
+		}
+	}
 
     //Detecta la orientacion del sprite y la cambia
     private void Flip(float horizontal)
@@ -52,11 +65,13 @@ public class NpcMovement : MonoBehaviour {
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
-            anim.SetBool("isWalking", true);
+			anim.Play("walking");
+			anim.SetBool("isWalking", true);
             Flip(directionalInput[0]);
         }
         else
         {
+			anim.Play("Iddle");
             anim.SetBool("isWalking", false);
         }
     }
@@ -64,7 +79,7 @@ public class NpcMovement : MonoBehaviour {
     public void OnJumpInputDown()
     {
         movementController.OnJumpInputDown();
-        anim.SetBool("isJumping", true);
+		anim.SetBool("isJumping", true);
     }
 
     public void OnJumpInputUp()
