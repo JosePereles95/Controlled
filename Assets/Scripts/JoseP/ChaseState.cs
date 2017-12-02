@@ -6,9 +6,11 @@ public class ChaseState : IEnemyState {
 	StateEnemyBehavior enemy;
 
 	public int rotationSpeed = 0;
+    private NpcMovement theController;
 
-	public ChaseState (StateEnemyBehavior enemy) {
+	public ChaseState (StateEnemyBehavior enemy, NpcMovement controller) {
 		this.enemy = enemy;
+        theController = controller;
 	}
 
 	public void UpdateState () {
@@ -24,6 +26,11 @@ public class ChaseState : IEnemyState {
 		//Cant change to same state
 	}
 
+    public void ToControlledState()
+    {
+        //
+    }
+
 	void Chase() {
 
 		Vector3 dir = enemy.target.position - enemy.transform.position;
@@ -34,8 +41,11 @@ public class ChaseState : IEnemyState {
 				Quaternion.FromToRotation (Vector3.right, dir), rotationSpeed * Time.deltaTime);
 		}
 
-		enemy.transform.position += (enemy.target.position - enemy.transform.position).normalized * enemy.moveSpeed * Time.deltaTime;
-		if (Vector3.Distance (enemy.transform.position, enemy.target.position) < 1f) {
+        //enemy.transform.position += (enemy.target.position - enemy.transform.position).normalized * enemy.moveSpeed * Time.deltaTime;
+        Vector3 moveDir = (enemy.target.position - enemy.transform.position).normalized;
+        theController.SetDirectionalInput(moveDir);
+
+        if (Vector3.Distance (enemy.transform.position, enemy.target.position) < 1f) {
 			Debug.Log ("Dead");
 		}
 	}
