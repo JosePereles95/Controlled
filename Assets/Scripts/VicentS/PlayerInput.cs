@@ -67,26 +67,6 @@ public class PlayerInput : MonoBehaviour
             Vector3 theScale = vujBody.transform.localScale;
             float thePosition = transform.localPosition.x;
 
-<<<<<<< HEAD
-=======
-			if (facingRight == false && this.tag == "AlienSalvaje")
-            {
-<<<<<<< HEAD:Assets/Scripts/VicentS/PlayerInput.cs
-                thePosition -= 1.5f;
-=======
-                thePosition -= -3f;
->>>>>>> JoseP:Assets/Scripts/VicentS/PlayerInput.cs
-            }
-			else if(this.tag == "AlienSalvaje")
-            {
-<<<<<<< HEAD:Assets/Scripts/VicentS/PlayerInput.cs
-                thePosition += 1.5f;
-=======
-                thePosition += -3f;
->>>>>>> JoseP:Assets/Scripts/VicentS/PlayerInput.cs
-            }
-
->>>>>>> a8f1a5bf6eac4acc03c23fb766740b2a75af9274
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
 
             theScale.x *= -1;
