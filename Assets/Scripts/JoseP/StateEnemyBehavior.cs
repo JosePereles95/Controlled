@@ -72,17 +72,4 @@ public class StateEnemyBehavior : MonoBehaviour {
             other.GetComponent<PlayerInput>().ExitControlZone();
         }
     }
-
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if (other.tag == "vomit") {
-            moveSpeed = 0;
-            StartCoroutine(Espera());
-        }
-    }
-
-    IEnumerator Espera() {
-        yield return new WaitForSeconds(4);
-        moveSpeed = 4;
-    }
 }
