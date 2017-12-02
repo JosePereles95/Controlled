@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class cartelesTutorial : MonoBehaviour {
 
-    [HideInInspector] public Renderer rend;
-	private GameObject tutorial;
-    private bool soloUnaVez = true;
+    public GameObject tutorial;
+    [HideInInspector]public Renderer rend;
+    bool soloUnaVez = true;
 
     void Start()
     {
-		tutorial = GameObject.FindGameObjectWithTag ("Tutorial").GetComponent<GameObject>();
-        rend = this.GetComponent<SpriteRenderer>();
+        tutorial = GetComponent<GameObject>();
+        rend = GetComponent<Renderer>();
         rend.enabled = false;
     }
 
@@ -30,7 +30,7 @@ public class cartelesTutorial : MonoBehaviour {
             rend.enabled = false;
             soloUnaVez = false;
         }
-        if (this.gameObject.name == "Player")
+        if (this.gameObject.name == "Teclas_1")
         {
             tutorial.SetActive(false);
         }

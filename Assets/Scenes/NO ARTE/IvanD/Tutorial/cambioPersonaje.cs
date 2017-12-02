@@ -16,7 +16,7 @@ public class cambioPersonaje : MonoBehaviour {
 
     public float speed;
     int next = 0;
-    public bool caida = false;
+    bool caida = false;
 
     void Start()
     {
@@ -60,28 +60,21 @@ public class cambioPersonaje : MonoBehaviour {
     {
         if (collision.gameObject.tag == "AlienSalvaje")
         {
-            anim.SetBool("isDead", true);
+            CameraFollow.cambiarVUJ = true;
+
             anim.SetBool("isWalking", false);
+			anim.SetBool("isDead", true);
 
             alienTuto.GetComponent<PlayerInput>().enabled = false;
             alienTuto.GetComponent<Controller2D>().enabled = false;
             alienTuto.GetComponent<Player>().enabled = false;
 
-            StartCoroutine(Wait());
-        }
-    }
+            for (int i = 0; i < listSprites.Length; i++)
+            {
+                listSprites[i].GetComponent<SkinnedMeshRenderer>().enabled = true;
+            }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1.2f);
-
-        caida = true;
-
-        CameraFollow.cambiarVUJ = true;
-
-        for (int i = 0; i < listSprites.Length; i++)
-        {
-            listSprites[i].GetComponent<SkinnedMeshRenderer>().enabled = true;
+            caida = true;
         }
     }
 }

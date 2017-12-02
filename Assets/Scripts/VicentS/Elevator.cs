@@ -15,8 +15,6 @@ public class Elevator : MonoBehaviour {
     public SpriteRenderer botonSuperior;
     public SpriteRenderer botonInferior;
 
-    public Transform teleportPoint;
-
     private void Start()
     {
         ColocarBotonInferior();
@@ -42,24 +40,19 @@ public class Elevator : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) //Mover al ascensor de arriba
             {
                 if (ascensorSuperior != null)
-                    other.transform.position = ascensorSuperior.teleportPoint.position;
+                    other.transform.position = ascensorSuperior.transform.position;
             }
         }
-        
-        if (other.tag == tagBajar)
+
+        else if(other.tag == tagBajar)
         {
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) //Mover al ascensor de arriba
             {
-               ;
-                if (ascensorInferior != null)
-                    other.transform.position = ascensorInferior.teleportPoint.position;
+                if (ascensorSuperior != null)
+                    other.transform.position = ascensorSuperior.transform.position;
             }
         }
-
-        Debug.Log(other.tag);
-        Debug.Log(tagBajar);
-
-
+            
     }
 
     private void ColocarBotonSuperior()

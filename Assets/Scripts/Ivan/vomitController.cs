@@ -3,48 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class vomitController : MonoBehaviour {
-    public GameObject vomito;
-	public Transform vomitPos;
-
-	private GameObject cambio;
-    private bool vomiting = true;
+    public int duration = 2;
+    public Player p;
+    public GameObject[] v;
+    public bool isVomiting;
+    private bool vomiting = false;
     private bool jumping = false;
+    private float minimum = 0f;
+    private float maximum = 1f;
 
     private float time = 0.0f;
+    private float timeVomiting = 0.0f;
 
     // Use this for initialization
     void Start () {
-		cambio = GameObject.FindGameObjectWithTag ("cambioPersonaje");
+        jumping = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
         time += Time.deltaTime;
-
-        if (Input.GetKeyDown(KeyCode.Space)){
+        timeVomiting += Time.deltaTime;
+        if (Input.GetKeyDown("space"))
+        {
             jumping = true;
             time = 0.0f;
+
         }
 
-        if (time > 2f){
+        if (time > 2f && !vomiting)
+        {
+            timeVomiting = 0.0f;
+            vomiting = true;
             jumping = false;
+
+        }
+        if (timeVomiting >22f && vomiting) {
+            Debug.Log("Eliminar");
+            this.isVomiting = false;
+            vomiting = false;
         }
 
-		if (vomiting && Input.GetKeyDown(KeyCode.V) && !jumping && !cambio.GetComponent<cambioPersonaje>().caida){
+        if (vomiting && jumping)
+        {
+            timeVomiting = 0.0f;
+            vomiting = false;
+        }
+
+        if (!isVomiting && Input.GetKeyDown(KeyCode.V) && !jumping)
+        {
             Vomit ();
         }
     }
 	
 	public void Vomit(){
-		GameObject clon = Instantiate(vomito, transform.position, transform.rotation) as GameObject;
-		vomiting = false;
-		StartCoroutine (Wait());
-		clon.transform.position = vomitPos.transform.position;
-		Destroy(clon, 4);
-	}
-
-	IEnumerator Wait(){
-		yield return new WaitForSeconds (4);
-		vomiting = true;
+		Debug.Log("Vomitaaa");
+		GameObject clon = Instantiate(v[0], transform.position, transform.rotation) as GameObject;
+		this.isVomiting = true;
+		clon.transform.position = new Vector2(p.transform.position.x + 5, p.transform.position.y);
+		Destroy(clon, 10);
+		Debug.Log("Creado charco");
 	}
 }

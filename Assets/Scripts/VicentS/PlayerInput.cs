@@ -13,7 +13,7 @@ public class PlayerInput : MonoBehaviour
     public GameObject vujBody;
     public GameObject canControlFlag;
 
-    public VujStates playerState;
+    private VujStates playerState;
 
     private CameraFollow theCamera;
 
@@ -32,7 +32,6 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-
           switch (playerState)
         {
             case VujStates.CanControl:
@@ -52,8 +51,6 @@ public class PlayerInput : MonoBehaviour
                 }
                 break;
         }
-
-		CheckInvisibility ();
 
     }
 
@@ -188,18 +185,9 @@ public class PlayerInput : MonoBehaviour
 
 
     //Enumerator para comparar los estados de Vuj
-    public enum VujStates
+    private enum VujStates
     {
         NotControlling, CanControl, Controlling, Dead, OnControlling
 
     }
-
-	private void CheckInvisibility(){
-		if (this.tag == "Player") {
-			if (playerState == VujStates.Controlling || player.enabled == false)
-				this.GetComponent<Invisibility> ().enabled = false;
-			else
-				this.GetComponent<Invisibility> ().enabled = true;
-		}
-	}
 }
