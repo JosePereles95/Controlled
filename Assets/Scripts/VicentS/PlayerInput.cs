@@ -43,13 +43,9 @@ public class PlayerInput : MonoBehaviour
             case VujStates.NotControlling:
                 ControlVuj();
                 break;
-            case VujStates.Controlling:
-                if (Input.GetKeyDown(KeyCode.E)) Desparasitar();
-                else
-                {
-                    ControlTripulant();
-                    transform.position = controlledTripulant.transform.position;
-                }
+            case VujStates.Controlling:    
+                ControlTripulant();
+                transform.position = controlledTripulant.transform.position;
                 break;
         }
 
@@ -157,7 +153,7 @@ public class PlayerInput : MonoBehaviour
 
     }
 
-    private void Desparasitar()
+    public void Desparasitar()
     {
         controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
         player.enabled = true;

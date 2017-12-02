@@ -7,6 +7,7 @@ public class ControlledState : IEnemyState {
     StateEnemyBehavior enemy;
 
     private NpcMovement theController;
+    private float damagePerSecond = 10f;
 
     public ControlledState (StateEnemyBehavior enemy, NpcMovement controller)
     {
@@ -21,12 +22,12 @@ public class ControlledState : IEnemyState {
 
     public void ToPatrolState()
     {
-        enemy.currentState = enemy.patrolState;
+       // enemy.currentState = enemy.patrolState;
     }
 
     public void ToChaseState()
     {
-        enemy.currentState = enemy.chaseState;
+        //enemy.currentState = enemy.chaseState;
     }
 
     public void ToControlledState()
@@ -36,6 +37,12 @@ public class ControlledState : IEnemyState {
 
     private void Controlled()
     {
-        //Lo que sea que haga mientras se esta controlado
+        if (enemy.controlled)
+        {
+            enemy.TakeDamage(damagePerSecond * Time.deltaTime);
+
+            if (Input.GetKeyDown(KeyCode.E))
+                enemy.Desparasitar();
+        }
     }
 }

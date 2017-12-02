@@ -6,8 +6,6 @@ using UnityEditor;
 [CustomEditor(typeof(Elevator))]
 public class TagSelector : Editor{
 
-    List<string> tags = new List<string>() { "Player, Tripulante, TripulanteAlien", "TripulanteIngeniera", "Droide", "Robot" };
-
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
