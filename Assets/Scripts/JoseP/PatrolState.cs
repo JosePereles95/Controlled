@@ -17,10 +17,16 @@ public class PatrolState : IEnemyState {
 
 	public PatrolState (StateEnemyBehavior enemy, NpcMovement controller) {
 		this.enemy = enemy;
+<<<<<<< HEAD
         theController = controller;
+=======
+
+		enemy.moveSpeed = 4;
+>>>>>>> a8f1a5bf6eac4acc03c23fb766740b2a75af9274
 	}
 
 	public void UpdateState () {
+<<<<<<< HEAD
         if (stopping)
         {
             time += Time.deltaTime;
@@ -31,6 +37,8 @@ public class PatrolState : IEnemyState {
             }
         }
         else { enemy.moveSpeed = 4; }
+=======
+>>>>>>> JoseP
 
 		enemy.target = enemy.wayPoints [nextWayPoint];
 

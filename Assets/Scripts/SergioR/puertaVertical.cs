@@ -34,9 +34,17 @@ public class puertaVertical : MonoBehaviour {
             col.gameObject.tag == "Droide" && droide ||
             col.gameObject.tag == "Robot" && robot ||
             col.gameObject.tag == "Mono" && mono ||
+<<<<<<< HEAD
 			col.gameObject.tag == "AlienSalvaje" && mono ||
 			col.gameObject.tag == "TripB" && mono ||
 			col.gameObject.tag == "Doctor" && doctor ||
+=======
+<<<<<<< HEAD
+=======
+			col.gameObject.tag == "AlienSalvaje" && mono ||
+			col.gameObject.tag == "TripB" && mono ||
+>>>>>>> JoseP
+>>>>>>> a8f1a5bf6eac4acc03c23fb766740b2a75af9274
             col.gameObject.tag == "Gato" && gato)
         {
             doorOpen = true;

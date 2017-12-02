@@ -45,6 +45,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 		currentState.ToPatrolState();
 	}
 
+<<<<<<< HEAD
     public void EnterControlZone(Collider2D other)
     {
         if(other.tag == "Player")
@@ -72,4 +73,28 @@ public class StateEnemyBehavior : MonoBehaviour {
             other.GetComponent<PlayerInput>().ExitControlZone();
         }
     }
+=======
+	private void OnTriggerEnter2D(Collider2D coll)
+	{
+		if (coll.tag == "vomit")
+		{
+			Debug.Log("TRIGGERED");
+			/*enemy.moveSpeed = 0;
+            stopping = true;
+            time = 0.0f;*/
+			moveSpeed = 0;
+			//new WaitForSecondsVomit();
+			//moveSpeed = 4;
+			//StartCoroutine(TimeLapse());
+			/* Vector3 velocity;
+                if (!this.rigidbody2D.isSleeping){
+                    this.rigidbody.sleep();
+                    this.velocity = this.rigidbody.velocity;
+                } else {
+                    this.rigidbody.WakeUp();
+                    this.rigidbody.velocity = this.velocity;
+                }*/
+		}
+	}
+>>>>>>> a8f1a5bf6eac4acc03c23fb766740b2a75af9274
 }

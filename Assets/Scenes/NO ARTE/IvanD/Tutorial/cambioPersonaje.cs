@@ -26,7 +26,14 @@ public class cambioPersonaje : MonoBehaviour {
         playerVuJ.GetComponent<PlayerInput>().enabled = false;
         playerVuJ.GetComponent<Controller2D>().enabled = false;
         playerVuJ.GetComponent<Player>().enabled = false;
+<<<<<<< HEAD:Assets/Scenes/NO ARTE/IvanD/Tutorial/cambioPersonaje.cs
 		playerVuJ.GetComponent<Invisibility>().enabled = false;
+=======
+<<<<<<< HEAD
+=======
+		playerVuJ.GetComponent<Invisibility>().enabled = false;
+>>>>>>> JoseP
+>>>>>>> a8f1a5bf6eac4acc03c23fb766740b2a75af9274:Assets/Scenes/IvanD/Tutorial/cambioPersonaje.cs
 
         for (int i = 0; i < listSprites.Length; i++)
         {
@@ -49,7 +56,14 @@ public class cambioPersonaje : MonoBehaviour {
                 playerVuJ.GetComponent<PlayerInput>().enabled = true;
                 playerVuJ.GetComponent<Controller2D>().enabled = true;
                 playerVuJ.GetComponent<Player>().enabled = true;
+<<<<<<< HEAD:Assets/Scenes/NO ARTE/IvanD/Tutorial/cambioPersonaje.cs
 				playerVuJ.GetComponent<Invisibility>().enabled = true;
+=======
+<<<<<<< HEAD
+=======
+				playerVuJ.GetComponent<Invisibility>().enabled = true;
+>>>>>>> JoseP
+>>>>>>> a8f1a5bf6eac4acc03c23fb766740b2a75af9274:Assets/Scenes/IvanD/Tutorial/cambioPersonaje.cs
             }
 
             trans.position = Vector3.MoveTowards(trans.position, wayPoints[next].position, step);
@@ -62,6 +76,10 @@ public class cambioPersonaje : MonoBehaviour {
         {
             anim.SetBool("isDead", true);
             anim.SetBool("isWalking", false);
+<<<<<<< HEAD
+=======
+			anim.SetBool("isDead", true);
+>>>>>>> JoseP
 
             alienTuto.GetComponent<PlayerInput>().enabled = false;
             alienTuto.GetComponent<Controller2D>().enabled = false;
