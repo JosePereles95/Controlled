@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: c181eca520dc59d41a9dfe7ffa4386c7
-timeCreated: 1511194775
+guid: a4fdeaa0a2cf18340afc90d4c81405bd
+timeCreated: 1512248504
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: MenuAtlas150_0
-    21300002: MenuAtlas150_1
-    21300004: MenuAtlas150_9
-    21300006: MenuAtlas150_19
-    21300008: MenuAtlas150_26
-    21300010: MenuAtlas150_33
-    21300012: MenuAtlas150_40
+    21300000: Teleport Point_2_0
+    21300002: Teleport Point_2_1
+    21300004: Teleport Point_2_2
+    21300006: Teleport Point_2_3
+    21300008: Teleport Point_2_4
+    21300010: Teleport Point_2_5
+    21300012: Teleport Point_2_6
+    21300014: Teleport Point_2_7
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -85,26 +86,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MenuAtlas150_0
+      name: Teleport Point_2_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 1317
-        width: 2874
-        height: 1658
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: MenuAtlas150_1
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 1097
-        width: 320
+        x: 123
+        y: 1434
+        width: 790
         height: 104
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -113,13 +100,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MenuAtlas150_9
+      name: Teleport Point_2_1
       rect:
         serializedVersion: 2
-        x: 906
-        y: 1019
-        width: 881
-        height: 224
+        x: 122
+        y: 1271
+        width: 791
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,13 +114,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MenuAtlas150_19
+      name: Teleport Point_2_2
       rect:
         serializedVersion: 2
-        x: 2096
-        y: 996
-        width: 405
-        height: 106
+        x: 124
+        y: 1123
+        width: 790
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,13 +128,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MenuAtlas150_26
+      name: Teleport Point_2_3
       rect:
         serializedVersion: 2
-        x: 201
-        y: 544
-        width: 277
-        height: 106
+        x: 123
+        y: 962
+        width: 790
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,13 +142,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MenuAtlas150_33
+      name: Teleport Point_2_4
       rect:
         serializedVersion: 2
-        x: 1125
-        y: 561
-        width: 248
-        height: 104
+        x: 122
+        y: 736
+        width: 791
+        height: 204
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,13 +156,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MenuAtlas150_40
+      name: Teleport Point_2_5
       rect:
         serializedVersion: 2
-        x: 1722
+        x: 122
+        y: 510
+        width: 791
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Teleport Point_2_6
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 284
+        width: 791
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Teleport Point_2_7
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 1233
-        height: 577
+        width: 1047
+        height: 257
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
