@@ -94,16 +94,14 @@ public class PlayerInput : MonoBehaviour
 
             anim.SetBool("isJumping", true);
         }
-        else if(Input.GetButton("Jump"))
-        {
-            anim.SetBool("isJumping", false);
-        }
 
         if (Input.GetButtonUp("Jump"))
         {
             player.OnJumpInputUp();
-			anim.SetBool("isJumping", false);
         }
+
+        if (player.IsGrounded())
+            anim.SetBool("isJumping", false);
 		
 	}
 	
@@ -117,15 +115,12 @@ public class PlayerInput : MonoBehaviour
             controlledTripulant.OnJumpInputDown();
         }
 
-        else if (Input.GetButton("Jump"))
-        {
-            controlledTripulant.Falling();
-        }
-
         if (Input.GetButtonUp("Jump"))
         {
             controlledTripulant.OnJumpInputUp();
         }
+
+        controlledTripulant.IsGrounded();
     }
 	
     public void Parasitar()

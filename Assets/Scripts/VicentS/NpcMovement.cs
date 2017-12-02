@@ -83,12 +83,12 @@ public class NpcMovement : MonoBehaviour {
     public void OnJumpInputUp()
     {
         movementController.OnJumpInputUp();
-        Falling();
     }
 
-    public void Falling()
+    public void IsGrounded()
     {
-        anim.SetBool("isJumping", false);
+        if(movementController.IsGrounded())
+            anim.SetBool("isJumping", false);
     }
 
     public void Parasitar()
