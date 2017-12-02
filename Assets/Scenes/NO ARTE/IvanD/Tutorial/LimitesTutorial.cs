@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LimitesTutorial : MonoBehaviour {
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "AlienSalvaje")
+        if (collision.tag == "AlienSalvaje")
         {
             SceneManager.LoadScene(1);
         }

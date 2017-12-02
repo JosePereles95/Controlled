@@ -28,7 +28,6 @@ public class gunControl : MonoBehaviour {
     float timeToFiere = 0;
     //Transform firePoint;
 
-
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -36,11 +35,9 @@ public class gunControl : MonoBehaviour {
         //brazo.localEulerAngles = Vector3.forward;
 	}
 
-    void Awake()
-    {
+    void Awake() {
         //firePoint = transform.Find("FirePoint");
-        if (firePoint == null)
-        {
+        if (firePoint == null) {
             Debug.LogError("No firePoint? WHAT?!");
         }
     }
@@ -50,14 +47,12 @@ public class gunControl : MonoBehaviour {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         dir = mousePos - transform.position;
 
-        if (!theController.facingRight)             //Comprobar a que lado esta mirando el personaje
-        {
+		if (!theController.facingRight) {  //Comprobar a que lado esta mirando el personaje
             dir *= -1;
         }
         angle =Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        if (angle < maxAngle && angle > minAngle) //Comprabar que el angulo se encuentre en el espacio que queremos
-        {
+		if (angle < maxAngle && angle > minAngle) {//Comprabar que el angulo se encuentre en el espacio que queremos
             //rb.MoveRotation(angle);
             if (theController.facingRight)
                 lastAngle = angle;
@@ -67,18 +62,14 @@ public class gunControl : MonoBehaviour {
         
         brazo.localEulerAngles = brazo.localEulerAngles + new Vector3(0, 0, lastAngle+90);
 
-        if (fireRate == 0)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
+        if (fireRate == 0) {
+            if (Input.GetButtonDown("Fire1")) {
                 Shoot();
             }
         }
 
-        else
-        {
-            if (Input.GetButtonDown("Fire1") && Time.time > timeToFiere)
-            {
+        else {
+            if (Input.GetButtonDown("Fire1") && Time.time > timeToFiere) {
                 timeToFiere = Time.time + 1 / fireRate;
                 Shoot();
             }
@@ -91,14 +82,13 @@ public class gunControl : MonoBehaviour {
         Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
         RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100, whatToHit);
-        if (Time.time >= timeToSpawnEffect)
-        {
+        
+		if (Time.time >= timeToSpawnEffect) {
             Effect();
             timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
         }
         Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition) * 100, Color.cyan);
-        if (hit.collider != null)
-        {
+        if (hit.collider != null) {
             Debug.DrawLine(firePointPosition, hit.point, Color.red);
             Debug.Log("We hit " + hit.collider.name + " an did " + Damage + " damage");
         }
@@ -106,12 +96,10 @@ public class gunControl : MonoBehaviour {
 
     void Effect()
     {
-        if (theController.facingRight)
-        {
+        if (theController.facingRight){
             Instantiate(BulletTrailPrefab, firePoint.position, brazo.rotation);
         }
-        else
-        {
+        else {
             Instantiate(BulletTrailPrefab, firePoint.position, Quaternion.Euler(brazo.rotation.eulerAngles + new Vector3(0, 0, 180)));
         }
     }
