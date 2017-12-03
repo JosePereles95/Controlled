@@ -62,6 +62,7 @@ public class cambioPersonaje : MonoBehaviour {
         {
             anim.SetBool("isDead", true);
             anim.SetBool("isWalking", false);
+			anim.Play ("Dead");
 
             alienTuto.GetComponent<PlayerInput>().enabled = false;
             alienTuto.GetComponent<Controller2D>().enabled = false;

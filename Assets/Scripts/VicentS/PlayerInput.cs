@@ -157,7 +157,7 @@ public class PlayerInput : MonoBehaviour
 
     }
 
-    private void Desparasitar()
+    public void Desparasitar()
     {
         controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
         player.enabled = true;

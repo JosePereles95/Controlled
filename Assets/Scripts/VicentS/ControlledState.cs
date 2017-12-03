@@ -5,7 +5,6 @@ using UnityEngine;
 public class ControlledState : IEnemyState {
 
     StateEnemyBehavior enemy;
-
     private NpcMovement theController;
 
     public ControlledState (StateEnemyBehavior enemy, NpcMovement controller)
@@ -34,8 +33,17 @@ public class ControlledState : IEnemyState {
         //Cant change to the same state
     }
 
+	public void ToDiedState(){
+		enemy.currentState = enemy.diedState;
+	}
+
     private void Controlled()
     {
-        //Lo que sea que haga mientras se esta controlado
+		if (enemy.parasitado) {
+			if (Input.GetKeyDown (KeyCode.E)) {
+				enemy.parasitado = false;
+				ToDiedState ();
+			}
+		}
     }
 }

@@ -56,8 +56,8 @@ public class Elevator : MonoBehaviour {
             }
         }
 
-        Debug.Log(other.tag);
-        Debug.Log(tagBajar);
+        //Debug.Log(other.tag);
+        //Debug.Log(tagBajar);
 
 
     }
