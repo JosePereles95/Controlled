@@ -74,7 +74,7 @@ public class cambioPersonaje : MonoBehaviour {
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.9f);
 
         caida = true;
 
