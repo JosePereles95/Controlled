@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sistema_Jueg : MonoBehaviour {
+public class Sistema_Juego : MonoBehaviour {
 
     public GameObject Checkpoint_Actual;
     private PlayerInput player;
