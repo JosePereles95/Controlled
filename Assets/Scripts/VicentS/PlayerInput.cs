@@ -41,12 +41,8 @@ public class PlayerInput : MonoBehaviour
                 ControlVuj();
                 break;
             case VujStates.Controlling:
-                if (Input.GetKeyDown(KeyCode.E)) Desparasitar();
-                else
-                {
-                    ControlTripulant();
-                    transform.position = controlledTripulant.transform.position;
-                }
+                ControlTripulant();
+                transform.position = controlledTripulant.transform.position;
                 break;
         }
 

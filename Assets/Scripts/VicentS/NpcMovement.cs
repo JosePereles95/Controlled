@@ -4,8 +4,10 @@ using UnityEngine;
 
 [RequireComponent(typeof(Player))]
 public class NpcMovement : MonoBehaviour {
-    public Animator anim;
+    private Animator anim;
 	public GameObject shootingArm;
+
+    public bool debugDirectional = false;
 
     public bool facingRight; //Variable para saber si el sprite mira a la derecha
 
@@ -66,6 +68,8 @@ public class NpcMovement : MonoBehaviour {
 
     public void SetDirectionalInput(Vector2 directionalInput)
     {
+        if (debugDirectional)
+            Debug.Log(directionalInput);
         //Introducir justo debajo lo necesario para ejecutar la animación de movimiento
         movementController.SetDirectionalInput(directionalInput);
         //si el movimiento en el eje X giramos el sprite
