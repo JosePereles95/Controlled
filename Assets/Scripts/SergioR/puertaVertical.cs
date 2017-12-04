@@ -14,6 +14,7 @@ public class puertaVertical : MonoBehaviour {
     public bool robot;
     public bool mono;
     public bool gato;
+	public bool doctor;
 
     bool doorOpen;
 
@@ -33,6 +34,9 @@ public class puertaVertical : MonoBehaviour {
             col.gameObject.tag == "Droide" && droide ||
             col.gameObject.tag == "Robot" && robot ||
             col.gameObject.tag == "Mono" && mono ||
+			col.gameObject.tag == "AlienSalvaje" && mono ||
+			col.gameObject.tag == "TripB" && mono ||
+			col.gameObject.tag == "Doctor" && doctor ||
             col.gameObject.tag == "Gato" && gato)
         {
             doorOpen = true;
