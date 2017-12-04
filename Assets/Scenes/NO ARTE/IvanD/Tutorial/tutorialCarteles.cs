@@ -31,6 +31,7 @@ public class tutorialCarteles : MonoBehaviour {
         {
             this.gameObject.SetActive(false);
             VUJ.SetActive(true);
+			monoTutorial.moverse = true;
         }
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelFIN")

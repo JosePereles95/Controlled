@@ -39,7 +39,6 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 	void Update (){
 		currentState.UpdateState ();
-		Debug.Log (this.name + " -- " + currentState);
 		posPlayer = this.transform.position;
 	}
 
