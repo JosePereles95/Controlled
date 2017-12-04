@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class tutorialCarteles : MonoBehaviour {
 
@@ -29,13 +30,15 @@ public class tutorialCarteles : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelVUJ")
         {
+			VUJ.SetActive(true);
+			monoTutorial.moverse = true;
             this.gameObject.SetActive(false);
-            VUJ.SetActive(true);
         }
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelFIN")
         {
             this.gameObject.SetActive(false);
+			SceneManager.LoadScene(2);
         }
     }
 
