@@ -9,33 +9,36 @@ public class StateEnemyBehavior : MonoBehaviour {
 	[HideInInspector] public Vector3 posPlayer;
 	[HideInInspector] public Transform target;
 	[HideInInspector] public int moveSpeed = 4;
+	[HideInInspector] public bool parasitado = false;
+	[HideInInspector] public bool muerto = false;
+	[HideInInspector] public bool canPatrol = true;
+	[HideInInspector] public bool parado = false;
 
 	[HideInInspector] public IEnemyState currentState;
 	[HideInInspector] public PatrolState patrolState;
 	[HideInInspector] public ChaseState chaseState;
     [HideInInspector] public ControlledState controlledState;
+	[HideInInspector] public DiedState diedState;
 
     //Life management
     private TankHealth healthBar;
-    public float initialHealth = 100f;
-    private bool dead = false;
+    public float startingLife = 100f;
 
     public static StateEnemyBehavior Instance;
 
     private NpcMovement theController;
 
-    public bool controlled = false;
-    private PlayerInput parasite;
-
 	void Awake(){
         theController = GetComponent<NpcMovement>();
-
+		parado = false;
 		patrolState = new PatrolState (this, theController);
 		chaseState = new ChaseState (this, theController);
         controlledState = new ControlledState(this, theController);
+		diedState = new DiedState(this, theController);
 
+        //Life initialitation
         healthBar = GetComponent<TankHealth>();
-        healthBar.m_StartingHealth = initialHealth;
+        healthBar.m_StartingHealth = startingLife;
         healthBar.DisableHealthBar();
 	}
 
@@ -45,95 +48,80 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 	void Update (){
 		currentState.UpdateState ();
+		Debug.Log (this.name + " -- " + currentState);
 		posPlayer = this.transform.position;
 	}
 
-    //El personaje recibe daño
+	public void SightTriggered(Collider2D other) {
+		if (!parasitado && !muerto) {
+			target = other.transform;
+			currentState.ToChaseState ();
+		}
+	}
+
     public void TakeDamage(float damage)
     {
-        if (healthBar.TakeDamage(damage)) //Verdadero es que el personajes tiene la vida a 0
+        if (healthBar.TakeDamage(damage))
         {
-            if (controlled) Desparasitar(); //En caso de que este parasitado, se le desparasita primero
-            Die();
+            currentState.ToDiedState();
+            healthBar.DisableHealthBar();
         }
     }
 
-    //El personaje muere
-    private void Die()
-    {
-        //currentState.ToDeathState()
-        theController.Die();
-        dead = true;
-    }
-
-    //El jugador está en la zona de visión
-	public void SightTriggered(Collider2D other) {
-		target = other.transform;
-		currentState.ToChaseState();
-	}
-
-    //El jugador sale de la zona de visión
 	public void SightExit(Collider2D other) {
-		currentState.ToPatrolState();
+		if (canPatrol)
+			currentState.ToPatrolState();
 	}
 
-    //El jugador entra a la zona desde la que puede parasitar
     public void EnterControlZone(Collider2D other)
     {
-        if(!dead && other.tag == "Player")
+		if(other.tag == "Player" && !muerto)
         {
             other.GetComponent<PlayerInput>().ToCanControl(theController);
         }
     }
 
-    //El jugador se mantiene en la zona desde la que puede parasitar
     public void ControlZoneStay(Collider2D other)
     {
-        if(other.tag == "Player")
+		if(other.tag == "Player" && !muerto)
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                if (!dead && !controlled)
-                {
-                    parasite = other.GetComponent<PlayerInput>();
-                    Parasitar();
-                }
+                //Debug.Log ("Controlado");
+                controlledState.parasite = other.GetComponent<PlayerInput>();
+                controlledState.parasite.Parasitar();
+                canPatrol = false;
+				StartCoroutine (WaitForParasitar ());
+                currentState.ToControlledState();
             }
         }
     }
 
-    //El player sale de la zona desde la que puede parasitar
     public void ExitControlZone(Collider2D other)
     {
-        if(other.tag == "Player")
+		if(other.tag == "Player" && !muerto)
         {
             other.GetComponent<PlayerInput>().ExitControlZone();
         }
     }
 
-    //Parasitar al personake
-    public void Parasitar()
-    {
-        parasite.Parasitar();
-        currentState.ToControlledState();
-        StartCoroutine("Parasitando");
-    }
+	private IEnumerator WaitForParasitar(){
+		yield return new WaitForSeconds(1.3f);
+		parasitado = true;
+        healthBar.EnableHealthBar(); //Enseñar barra de vida cuando acaba el parasitamiento
+	}
 
-    //Desparasitar al personaje
-    public void Desparasitar()
-    {
-        parasite.Desparasitar();
-        healthBar.DisableHealthBar();
-        controlled = false;
-        Die();
-    }
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.tag == "vomit" && !parado && currentState != controlledState) {
+            this.GetComponent<NpcMovement>().SetSpeed(0);
+			parado = true;
+			StartCoroutine (WaitForVomit ());
+		}
+	}
 
-    //Corutina encargada de esperar mientras se esta parasitando al personaje y activar lo necesario cuando el tiempo pasa
-    IEnumerator Parasitando()
-    {
-        yield return new WaitForSeconds(1f);
-        controlled = true;
-        healthBar.EnableHealthBar();
-        //currentState.ToControlledState();
-    }
+	private IEnumerator WaitForVomit(){
+		yield return new WaitForSeconds(4f);
+		parado = false;
+        this.GetComponent<NpcMovement>().SetSpeed(4);
+	}
 }

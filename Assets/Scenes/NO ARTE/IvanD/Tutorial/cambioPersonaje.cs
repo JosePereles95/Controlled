@@ -62,6 +62,7 @@ public class cambioPersonaje : MonoBehaviour {
         {
             anim.SetBool("isDead", true);
             anim.SetBool("isWalking", false);
+			anim.Play ("Dead");
 
             alienTuto.GetComponent<PlayerInput>().enabled = false;
             alienTuto.GetComponent<Controller2D>().enabled = false;
@@ -73,7 +74,7 @@ public class cambioPersonaje : MonoBehaviour {
 
     IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.9f);
 
         caida = true;
 

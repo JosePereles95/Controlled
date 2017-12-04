@@ -5,9 +5,10 @@ using UnityEngine;
 public class ControlledState : IEnemyState {
 
     StateEnemyBehavior enemy;
-
     private NpcMovement theController;
-    private float damagePerSecond = 10f;
+
+    public PlayerInput parasite;
+    public float damagePerSecond = 10f;
 
     public ControlledState (StateEnemyBehavior enemy, NpcMovement controller)
     {
@@ -22,12 +23,12 @@ public class ControlledState : IEnemyState {
 
     public void ToPatrolState()
     {
-       // enemy.currentState = enemy.patrolState;
+        enemy.currentState = enemy.patrolState;
     }
 
     public void ToChaseState()
     {
-        //enemy.currentState = enemy.chaseState;
+        enemy.currentState = enemy.chaseState;
     }
 
     public void ToControlledState()
@@ -35,14 +36,20 @@ public class ControlledState : IEnemyState {
         //Cant change to the same state
     }
 
+	public void ToDiedState(){
+        enemy.parasitado = false;
+        parasite.Desparasitar();
+        enemy.currentState = enemy.diedState;
+	}
+
     private void Controlled()
     {
-        if (enemy.controlled)
-        {
-            enemy.TakeDamage(damagePerSecond * Time.deltaTime);
+        if (enemy.parasitado) {
+            enemy.TakeDamage(damagePerSecond * Time.deltaTime); //Daño por segundo cuando está parasitado
 
-            if (Input.GetKeyDown(KeyCode.E))
-                enemy.Desparasitar();
-        }
+            if (Input.GetKeyDown (KeyCode.E)) { //Cuando desparasitamos matamos al personaje
+                ToDiedState();
+			}
+		}
     }
 }

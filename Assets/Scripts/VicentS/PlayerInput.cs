@@ -36,21 +36,21 @@ public class PlayerInput : MonoBehaviour
           switch (playerState)
         {
             case VujStates.CanControl:
-               /* if(Input.GetKeyDown(KeyCode.E)) Parasitar();
 
-                else ControlVuj();
-                break;*/
             case VujStates.NotControlling:
                 ControlVuj();
                 break;
-            case VujStates.Controlling:    
-                ControlTripulant();
-                transform.position = controlledTripulant.transform.position;
+            case VujStates.Controlling:
+                if (Input.GetKeyDown(KeyCode.E)) Desparasitar();
+                else
+                {
+                    ControlTripulant();
+                    transform.position = controlledTripulant.transform.position;
+                }
                 break;
         }
 
 		CheckInvisibility ();
-
     }
 
     //Detecta la orientacion del sprite y la cambia
@@ -73,7 +73,7 @@ public class PlayerInput : MonoBehaviour
 	private void ControlVuj()
 	{
 		//Guardamos en un vector si se mueve en algún eje y aplicamos el movimiento
-        Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 directionalInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         player.SetDirectionalInput(directionalInput);
 
         //si el movimiento en el eje X giramos el sprite
@@ -87,6 +87,9 @@ public class PlayerInput : MonoBehaviour
             anim.SetBool("isWalking", false);
         }
 
+        if (player.IsGrounded())
+            anim.SetBool("isJumping", false);
+
         //Para el salto. Las funciones están en Player.cs
         if (Input.GetButtonDown("Jump"))
         {
@@ -99,16 +102,14 @@ public class PlayerInput : MonoBehaviour
         {
             player.OnJumpInputUp();
         }
-
-        if (player.IsGrounded())
-            anim.SetBool("isJumping", false);
-		
 	}
 	
 	private void ControlTripulant()
     {
-        Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Vector2 directionalInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         controlledTripulant.SetDirectionalInput(directionalInput);
+
+        controlledTripulant.IsFalling();
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -119,8 +120,6 @@ public class PlayerInput : MonoBehaviour
         {
             controlledTripulant.OnJumpInputUp();
         }
-
-        controlledTripulant.IsGrounded();
     }
 	
     public void Parasitar()
@@ -129,7 +128,7 @@ public class PlayerInput : MonoBehaviour
         {
             playerState = VujStates.OnControlling;
             if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
-            anim.SetTrigger("parasitar");
+            anim.SetTrigger("parasitando");
             StartCoroutine("Parasitando");
         }
     }
