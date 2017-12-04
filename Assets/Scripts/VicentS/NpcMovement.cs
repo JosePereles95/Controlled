@@ -5,29 +5,34 @@ using UnityEngine;
 [RequireComponent(typeof(Player))]
 public class NpcMovement : MonoBehaviour {
     public Animator anim;
-	private GameObject shootingArm;
+	public GameObject shootingArm;
 
     public bool facingRight; //Variable para saber si el sprite mira a la derecha
 
     //Script de comportamiento de movimiento
-    private Player movementController;
+    public Player movementController;
 
 	// Use this for initialization
 	void Start () {
-		shootingArm = GameObject.FindGameObjectWithTag ("shootingArm");
-        movementController = GetComponent<Player>();
-		anim = GetComponent<Animator> ();
+		if (this.GetComponentInChildren<ControlledZone>() != null)
+			this.shootingArm.GetComponent<gunControl> ().enabled = false;
+        this.movementController = GetComponent<Player>();
+		this.anim = GetComponent<Animator> ();
         Flip(1); //lo giramos para que mire a la derecha
     }
 
 
 	void Update(){
 		if (this.GetComponentInChildren<ControlledZone>() != null) {
-			if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.Controlling) {
-				shootingArm.GetComponent<gunControl> ().enabled = true;
-			}
-			else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.NotControlling) {
-				shootingArm.GetComponent<gunControl> ().enabled = false;
+			if (GameObject.FindGameObjectWithTag ("Player")) {
+				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerInput> ().playerState == PlayerInput.VujStates.Controlling && 
+					this.GetComponent<StateEnemyBehavior>().currentState == this.GetComponent<StateEnemyBehavior>().controlledState) {
+					Debug.Log ("LOL");
+					this.shootingArm.GetComponent<gunControl> ().enabled = true;
+				} else if (GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerInput> ().playerState == PlayerInput.VujStates.NotControlling && 
+					this.GetComponent<StateEnemyBehavior>().currentState != this.GetComponent<StateEnemyBehavior>().controlledState) {
+					this.shootingArm.GetComponent<gunControl> ().enabled = false;
+				}
 			}
 		}
 	}
@@ -61,40 +66,40 @@ public class NpcMovement : MonoBehaviour {
     public void SetDirectionalInput(Vector2 directionalInput)
     {
         //Introducir justo debajo lo necesario para ejecutar la animación de movimiento
-        movementController.SetDirectionalInput(directionalInput);
+        this.movementController.SetDirectionalInput(directionalInput);
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
-			anim.Play("walking");
-			anim.SetBool("isWalking", true);
+			this.anim.Play("walking");
+			this.anim.SetBool("isWalking", true);
             Flip(directionalInput[0]);
         }
         else
         {
-			anim.Play("Iddle");
-            anim.SetBool("isWalking", false);
+			this.anim.Play("Iddle");
+            this.anim.SetBool("isWalking", false);
         }
     }
 
     public void OnJumpInputDown()
     {
-        movementController.OnJumpInputDown();
-		anim.SetBool("isJumping", true);
+        this.movementController.OnJumpInputDown();
+		this.anim.SetBool("isJumping", true);
     }
 
     public void OnJumpInputUp()
     {
-        movementController.OnJumpInputUp();
+        this.movementController.OnJumpInputUp();
         Falling();
     }
 
     public void Falling()
     {
-        anim.SetBool("isJumping", false);
+        this.anim.SetBool("isJumping", false);
     }
 
     public void Parasitar()
     {
-        anim.SetTrigger("parasitado");
+        this.anim.SetTrigger("parasitado");
     }
 }

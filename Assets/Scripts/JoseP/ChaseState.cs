@@ -1,20 +1,21 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChaseState : IEnemyState {
 
 	StateEnemyBehavior enemy;
+	private NpcMovement theController;
 
 	public int rotationSpeed = 0;
-    private NpcMovement theController;
 
 	public ChaseState (StateEnemyBehavior enemy, NpcMovement controller) {
 		this.enemy = enemy;
         theController = controller;
+		enemy.moveSpeed = 5;
 	}
 
 	public void UpdateState () {
-		enemy.moveSpeed = 5;
 		Chase ();
 	}
 
@@ -26,9 +27,15 @@ public class ChaseState : IEnemyState {
 		//Cant change to same state
 	}
 
+	public void ToDiedState(){
+		enemy.currentState = enemy.diedState;
+	}
+
     public void ToControlledState()
     {
-        //
+		theController.SetDirectionalInput(new Vector2(0, 0));
+		Debug.Log ("Pasando a ser controlado");
+		enemy.currentState = enemy.controlledState;
     }
 
 	void Chase() {

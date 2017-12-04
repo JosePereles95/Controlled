@@ -15,11 +15,14 @@ public class playerShoot : MonoBehaviour
 
     Vector2 direccion;
 
+	Sistema_Jueg morir;
+
     void Start()
     {
         lr = bullet.GetComponent<LineRenderer>();
         lrPos = bullet.GetComponent<Transform>();
         anim = GetComponent<Animator>();
+		morir = FindObjectOfType<Sistema_Jueg>();
     }
 
     void Update()
@@ -56,6 +59,7 @@ public class playerShoot : MonoBehaviour
         if (hit.collider.gameObject.tag == "Player")
         {
             print("Estas muerto. Laser.");
+			morir.RespawnPlayer ();
         }
     }
 

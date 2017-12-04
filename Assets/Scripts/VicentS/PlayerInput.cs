@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
 
     private CameraFollow theCamera;
 
+
     private void Start()
     {
         player = GetComponent<Player>();
@@ -66,7 +67,6 @@ public class PlayerInput : MonoBehaviour
 
             Vector3 theScale = vujBody.transform.localScale;
             float thePosition = transform.localPosition.x;
-
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
 
             theScale.x *= -1;
@@ -157,7 +157,7 @@ public class PlayerInput : MonoBehaviour
 
     }
 
-    private void Desparasitar()
+    public void Desparasitar()
     {
         controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
         player.enabled = true;
