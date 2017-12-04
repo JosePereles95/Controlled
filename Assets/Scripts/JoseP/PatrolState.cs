@@ -33,6 +33,7 @@ public class PatrolState : IEnemyState {
 
     public void ToControlledState()
     {
+		theController.SetDirectionalInput(new Vector2(0, 0));
 		//Debug.Log ("Pasando a ser controlado");
         enemy.currentState = enemy.controlledState;
     }
@@ -56,6 +57,10 @@ public class PatrolState : IEnemyState {
         Vector3 movementDir = (enemy.target.position - enemy.transform.position).normalized;
         theController.SetDirectionalInput(movementDir);
 
+		/*if (((enemy.target.position - enemy.transform.position).normalized).x > 0)
+			FlipDroide (1);
+		else
+			FlipDroide (-1);*/
 
 		if (Vector3.Distance (enemy.transform.position, enemy.wayPoints [nextWayPoint].position) < 1f) {
 			if (nextWayPoint < enemy.wayPoints.Length - 1)

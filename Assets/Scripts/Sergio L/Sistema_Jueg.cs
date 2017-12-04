@@ -25,5 +25,10 @@ public class Sistema_Jueg : MonoBehaviour {
 		if(player.playerState == PlayerInput.VujStates.Controlling)
 			player.Desparasitar ();
     }
+
+    public void SpawnCharacter(SpawnPoint spawnPoint)
+    {
+        spawnPoint.Spawn();
+    }
  
 }

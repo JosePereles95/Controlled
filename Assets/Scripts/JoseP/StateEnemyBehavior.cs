@@ -20,27 +20,40 @@ public class StateEnemyBehavior : MonoBehaviour {
     [HideInInspector] public ControlledState controlledState;
 	[HideInInspector] public DiedState diedState;
 
-    //Life management
-    private TankHealth healthBar;
-    public float startingLife = 100f;
-
     public static StateEnemyBehavior Instance;
+
+    //Life magement
+    public float vidaInicial = 100f;
+    private TankHealth lifeBar;
 
     private NpcMovement theController;
 
+    //Spawn management
+    public SpawnPoint spawnPoint;
+
 	void Awake(){
         theController = GetComponent<NpcMovement>();
-		parado = false;
-		patrolState = new PatrolState (this, theController);
-		chaseState = new ChaseState (this, theController);
+        parado = false;
+        patrolState = new PatrolState(this, theController);
+        chaseState = new ChaseState(this, theController);
         controlledState = new ControlledState(this, theController);
-		diedState = new DiedState(this, theController);
+        diedState = new DiedState(this, theController);
 
-        //Life initialitation
-        healthBar = GetComponent<TankHealth>();
-        healthBar.m_StartingHealth = startingLife;
-        healthBar.DisableHealthBar();
-	}
+        //Life Initialitation
+        lifeBar = GetComponent<TankHealth>();
+        lifeBar.m_StartingHealth = vidaInicial;
+        lifeBar.DisableHealthBar();
+
+        //Bool init
+        parasitado = false;
+        muerto = false;
+        canPatrol = true;
+
+        theController.anim.SetBool("isDead", false);
+
+        currentState = patrolState;
+    }
+
 
 	void Start (){
 		currentState = patrolState;
@@ -48,9 +61,17 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 	void Update (){
 		currentState.UpdateState ();
-		Debug.Log (this.name + " -- " + currentState);
 		posPlayer = this.transform.position;
 	}
+
+    public void TakeDamage(float damage)
+    {
+        if(lifeBar.TakeDamage(damage)) //La vida ha llegado a 0
+        {
+            lifeBar.DisableHealthBar();
+            currentState.ToDiedState();
+        }
+    }
 
 	public void SightTriggered(Collider2D other) {
 		if (!parasitado && !muerto) {
@@ -58,15 +79,6 @@ public class StateEnemyBehavior : MonoBehaviour {
 			currentState.ToChaseState ();
 		}
 	}
-
-    public void TakeDamage(float damage)
-    {
-        if (healthBar.TakeDamage(damage))
-        {
-            currentState.ToDiedState();
-            healthBar.DisableHealthBar();
-        }
-    }
 
 	public void SightExit(Collider2D other) {
 		if (canPatrol)
@@ -87,9 +99,8 @@ public class StateEnemyBehavior : MonoBehaviour {
         {
             if(Input.GetKeyDown(KeyCode.E))
             {
-                //Debug.Log ("Controlado");
-                controlledState.parasite = other.GetComponent<PlayerInput>();
-                controlledState.parasite.Parasitar();
+				controlledState.parasito = other.GetComponent<PlayerInput>();
+                controlledState.parasito.Parasitar();
                 canPatrol = false;
 				StartCoroutine (WaitForParasitar ());
                 currentState.ToControlledState();
@@ -107,13 +118,13 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 	private IEnumerator WaitForParasitar(){
 		yield return new WaitForSeconds(1.3f);
+        lifeBar.EnableHealthBar();
 		parasitado = true;
-        healthBar.EnableHealthBar(); //Enseñar barra de vida cuando acaba el parasitamiento
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "vomit" && !parado && currentState != controlledState) {
-            this.GetComponent<NpcMovement>().SetSpeed(0);
+			this.GetComponent<NpcMovement> ().movementController.moveSpeed = 0;
 			parado = true;
 			StartCoroutine (WaitForVomit ());
 		}
@@ -122,6 +133,12 @@ public class StateEnemyBehavior : MonoBehaviour {
 	private IEnumerator WaitForVomit(){
 		yield return new WaitForSeconds(4f);
 		parado = false;
-        this.GetComponent<NpcMovement>().SetSpeed(4);
+		this.GetComponent<NpcMovement> ().movementController.moveSpeed = 4;
 	}
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(3f);
+        this.gameObject.SetActive(false);
+    }
 }

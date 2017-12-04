@@ -7,8 +7,9 @@ public class ControlledState : IEnemyState {
     StateEnemyBehavior enemy;
     private NpcMovement theController;
 
-    public PlayerInput parasite;
-    public float damagePerSecond = 10f;
+    //Personaje parasitando
+    public PlayerInput parasito;
+    public float damagePerSecond = 5f;
 
     public ControlledState (StateEnemyBehavior enemy, NpcMovement controller)
     {
@@ -37,18 +38,18 @@ public class ControlledState : IEnemyState {
     }
 
 	public void ToDiedState(){
-        enemy.parasitado = false;
-        parasite.Desparasitar();
-        enemy.currentState = enemy.diedState;
+        parasito.Desparasitar();
+		enemy.currentState = enemy.diedState;
 	}
 
     private void Controlled()
     {
-        if (enemy.parasitado) {
-            enemy.TakeDamage(damagePerSecond * Time.deltaTime); //Daño por segundo cuando está parasitado
+		if (enemy.parasitado) {
+            enemy.TakeDamage(damagePerSecond * Time.deltaTime);
 
-            if (Input.GetKeyDown (KeyCode.E)) { //Cuando desparasitamos matamos al personaje
-                ToDiedState();
+			if (Input.GetKeyDown (KeyCode.E)) {
+				enemy.parasitado = false;
+				ToDiedState();
 			}
 		}
     }

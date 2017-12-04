@@ -4,21 +4,19 @@ using UnityEngine;
 
 [RequireComponent(typeof(Player))]
 public class NpcMovement : MonoBehaviour {
-    private Animator anim;
+    public Animator anim;
 	public GameObject shootingArm;
-
-    public bool debugDirectional = false;
 
     public bool facingRight; //Variable para saber si el sprite mira a la derecha
 
     //Script de comportamiento de movimiento
-    private Player movementController;
+    public Player movementController;
+
 
 	// Use this for initialization
 	void Start () {
 		if (this.GetComponentInChildren<ControlledZone>() != null)
 			this.shootingArm.GetComponent<gunControl> ().enabled = false;
-
         this.movementController = GetComponent<Player>();
 		this.anim = GetComponent<Animator> ();
         Flip(1); //lo giramos para que mire a la derecha
@@ -26,11 +24,11 @@ public class NpcMovement : MonoBehaviour {
 
 
 	void Update(){
-		if (this.GetComponentInChildren<ControlledZone>() != null && shootingArm != null) {
+		if (this.GetComponentInChildren<ControlledZone>() != null) {
 			if (GameObject.FindGameObjectWithTag ("Player")) {
 				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerInput> ().playerState == PlayerInput.VujStates.Controlling && 
 					this.GetComponent<StateEnemyBehavior>().currentState == this.GetComponent<StateEnemyBehavior>().controlledState) {
-					
+					Debug.Log ("LOL");
 					this.shootingArm.GetComponent<gunControl> ().enabled = true;
 				} else if (GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerInput> ().playerState == PlayerInput.VujStates.NotControlling && 
 					this.GetComponent<StateEnemyBehavior>().currentState != this.GetComponent<StateEnemyBehavior>().controlledState) {
@@ -68,10 +66,8 @@ public class NpcMovement : MonoBehaviour {
 
     public void SetDirectionalInput(Vector2 directionalInput)
     {
-        if (debugDirectional)
-            Debug.Log(directionalInput);
         //Introducir justo debajo lo necesario para ejecutar la animación de movimiento
-        movementController.SetDirectionalInput(directionalInput);
+        this.movementController.SetDirectionalInput(directionalInput);
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
@@ -95,7 +91,7 @@ public class NpcMovement : MonoBehaviour {
         this.movementController.OnJumpInputUp();
     }
 
-    public void IsFalling()
+    public void Falling()
     {
         if(movementController.IsGrounded())
             this.anim.SetBool("isJumping", false);
@@ -104,10 +100,5 @@ public class NpcMovement : MonoBehaviour {
     public void Parasitar()
     {
         this.anim.SetTrigger("parasitado");
-    }
-
-    public void SetSpeed(float speed)
-    {
-        movementController.moveSpeed = speed;
     }
 }

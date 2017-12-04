@@ -36,8 +36,10 @@ public class DiedState : IEnemyState {
 
 	private void Died(){
 		if (!enemy.muerto) {
-			enemy.GetComponent<Animator> ().SetTrigger ("isDead");
+			enemy.GetComponent<Animator> ().SetBool("isDead", true);
 			enemy.muerto = true;
+            GameObject.FindObjectOfType<Sistema_Jueg>().SpawnCharacter(enemy.spawnPoint);
+            enemy.StartCoroutine("Respawn");
 		}
 	}
 }

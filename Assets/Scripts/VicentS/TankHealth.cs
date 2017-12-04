@@ -43,13 +43,11 @@ public class TankHealth : MonoBehaviour
 
     public void EnableHealthBar()
     {
-        if (!m_Slider.gameObject.activeInHierarchy)
             m_Slider.gameObject.SetActive(true);
     }
 
     public void DisableHealthBar()
     {
-        if (m_Slider.gameObject.activeInHierarchy)
             m_Slider.gameObject.SetActive(false);
     }
 
