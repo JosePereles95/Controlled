@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuntosGuardado : MonoBehaviour {
+public class PuntoGuardado : MonoBehaviour {
 
-    public Sistema_Juego LevelManager;
+    public Sistema_Jueg levelManager;
 
     // Use this for initialization
     void Start()
     {
-        LevelManager = FindObjectOfType<Sistema_Juego>();
+        levelManager = FindObjectOfType<Sistema_Jueg>();
 
     }
 
@@ -22,7 +22,7 @@ public class PuntosGuardado : MonoBehaviour {
     {
         if (other.name == "Player")
         {
-            LevelManager.Checkpoint_Actual = gameObject;
+            levelManager.Checkpoint_Actual = gameObject;
         }
 
     }

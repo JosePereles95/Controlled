@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sistema_Juego : MonoBehaviour {
+public class Sistema_Jueg : MonoBehaviour {
 
     public GameObject Checkpoint_Actual;
     private PlayerInput player;
@@ -22,8 +22,6 @@ public class Sistema_Juego : MonoBehaviour {
     {
         Debug.Log("Player Respawn");
         player.transform.position = Checkpoint_Actual.transform.position;
-		if(player.playerState == PlayerInput.VujStates.Controlling)
-			player.Desparasitar ();
     }
  
 }

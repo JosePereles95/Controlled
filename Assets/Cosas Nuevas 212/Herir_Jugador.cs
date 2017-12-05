@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuntosGuardado : MonoBehaviour {
+public class Herir_Jugador : MonoBehaviour {
 
-    public Sistema_Juego LevelManager;
+    public Sistema_Jueg levelManager;
 
     // Use this for initialization
     void Start()
     {
-        LevelManager = FindObjectOfType<Sistema_Juego>();
+        levelManager = FindObjectOfType<Sistema_Jueg>();
 
     }
 
@@ -20,10 +20,10 @@ public class PuntosGuardado : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.name == "Player")
+        if(other.name == "Player")
         {
-            LevelManager.Checkpoint_Actual = gameObject;
+            levelManager.RespawnPlayer();
         }
-
+        
     }
 }
