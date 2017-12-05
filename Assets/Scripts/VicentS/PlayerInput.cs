@@ -18,10 +18,8 @@ public class PlayerInput : MonoBehaviour
 
     private CameraFollow theCamera;
 
-    public AudioClip vomitar;
-    public AudioClip sonidoandar;
+
     public AudioClip parasitar;
-    public AudioClip andar;
     AudioSource fuenteAudio;
 
     private void Start()
@@ -90,8 +88,7 @@ public class PlayerInput : MonoBehaviour
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
-            fuenteAudio.clip = sonidoandar;
-            fuenteAudio.Play();
+
             anim.SetBool("isWalking", true);
             Flip(directionalInput[0]);
         }
