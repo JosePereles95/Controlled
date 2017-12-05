@@ -12,14 +12,21 @@ public class PlayerInput : MonoBehaviour
     private NpcMovement controlledTripulant;
     public GameObject vujBody;
     public GameObject canControlFlag;
+    public bool isWalking;
 
     public VujStates playerState;
 
     private CameraFollow theCamera;
 
+    public AudioClip vomitar;
+    public AudioClip sonidoandar;
+    public AudioClip parasitar;
+    public AudioClip andar;
+    AudioSource fuenteAudio;
 
     private void Start()
     {
+        fuenteAudio = GetComponent<AudioSource>();
         player = GetComponent<Player>();
         //anim = GetComponent<Animator>();
         theCamera = FindObjectOfType<CameraFollow>();
@@ -83,6 +90,8 @@ public class PlayerInput : MonoBehaviour
         //si el movimiento en el eje X giramos el sprite
         if (directionalInput[0] != 0)
         {
+            fuenteAudio.clip = sonidoandar;
+            fuenteAudio.Play();
             anim.SetBool("isWalking", true);
             Flip(directionalInput[0]);
         }
@@ -94,12 +103,12 @@ public class PlayerInput : MonoBehaviour
         //Para el salto. Las funciones están en Player.cs
         if (Input.GetButtonDown("Jump"))
         {
-            player.OnJumpInputDown();
 
             anim.SetBool("isJumping", true);
         }
         else if(Input.GetButton("Jump"))
         {
+            player.OnJumpInputDown();
             anim.SetBool("isJumping", false);
         }
 
@@ -138,6 +147,8 @@ public class PlayerInput : MonoBehaviour
         {
             playerState = VujStates.OnControlling;
             if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
+            fuenteAudio.clip = parasitar;
+            fuenteAudio.Play();
             anim.SetTrigger("parasitar");
             StartCoroutine("Parasitando");
         }
