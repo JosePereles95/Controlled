@@ -32,6 +32,16 @@ public class StateEnemyBehavior : MonoBehaviour {
     public SpawnPoint spawnPoint;
 
 	void Awake(){
+        InitCharacter();
+    }
+
+    public void OnEnable()
+    {
+        InitCharacter();
+    }
+
+    private void InitCharacter()
+    {
         theController = GetComponent<NpcMovement>();
         parado = false;
         patrolState = new PatrolState(this, theController);
@@ -55,7 +65,7 @@ public class StateEnemyBehavior : MonoBehaviour {
     }
 
 
-	void Start (){
+    void Start (){
 		currentState = patrolState;
 	}
 
