@@ -6,6 +6,9 @@ public class tutorialCarteles : MonoBehaviour {
 
     public GameObject AlienSalvaje;
     public GameObject VUJ;
+    public GameObject tutorial;
+	public GameObject Tripulante;
+	public GameObject barrera;
 
     void Update ()
     {
@@ -17,14 +20,18 @@ public class tutorialCarteles : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelPuertas")
         {
-            this.gameObject.SetActive(false);
             VUJ.SetActive(true);
+			//Tripulante.SetActive (true);
+            this.gameObject.SetActive(false);
+			barrera.SetActive (false);
+            tutorial.SetActive(false);
         }
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelVUJ")
         {
             this.gameObject.SetActive(false);
             VUJ.SetActive(true);
+			monoTutorial.moverse = true;
         }
 
         if (Input.GetMouseButtonDown(0) == true && this.name == "cartelFIN")

@@ -14,7 +14,6 @@ public class vomitController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        jumping = false;
 		cambio = GameObject.FindGameObjectWithTag ("cambioPersonaje");
     }
 	

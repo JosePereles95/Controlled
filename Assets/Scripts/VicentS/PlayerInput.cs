@@ -13,9 +13,10 @@ public class PlayerInput : MonoBehaviour
     public GameObject vujBody;
     public GameObject canControlFlag;
 
-    private VujStates playerState;
+    public VujStates playerState;
 
     private CameraFollow theCamera;
+
 
     private void Start()
     {
@@ -32,6 +33,7 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
+
           switch (playerState)
         {
             case VujStates.CanControl:
@@ -65,7 +67,6 @@ public class PlayerInput : MonoBehaviour
 
             Vector3 theScale = vujBody.transform.localScale;
             float thePosition = transform.localPosition.x;
-
             transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
 
             theScale.x *= -1;
@@ -156,7 +157,7 @@ public class PlayerInput : MonoBehaviour
 
     }
 
-    private void Desparasitar()
+    public void Desparasitar()
     {
         controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
         player.enabled = true;
@@ -187,7 +188,7 @@ public class PlayerInput : MonoBehaviour
 
 
     //Enumerator para comparar los estados de Vuj
-    private enum VujStates
+    public enum VujStates
     {
         NotControlling, CanControl, Controlling, Dead, OnControlling
 
