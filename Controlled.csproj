@@ -301,6 +301,7 @@
     <Compile Include="Assets\Scripts\VicentS\Elevator.cs" />
     <Compile Include="Assets\Scripts\VicentS\NpcMovement.cs" />
     <Compile Include="Assets\Scripts\VicentS\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\VicentS\SightAlert.cs" />
     <Compile Include="Assets\Scripts\VicentS\TagSelector.cs" />
     <Compile Include="Assets\Scripts\VicentS\TankHealth.cs" />
     <Compile Include="Assets\Scripts\VicentS\UIDirectionControl.cs" />
