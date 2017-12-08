@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: b6575c13371fd4cbcba0652f2092d1c8
-timeCreated: 1429905888
-licenseType: Store
+timeCreated: 1512485964
+licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - titleMusic: {fileID: 8300000, guid: b680d3f762dac014cb5ef49d1f1b9f55, type: 3}
+  - mainMusic: {fileID: 8300000, guid: e98d0c05c77cc9748a09e377e753cd11, type: 3}
+  - volumeDown: {instanceID: 0}
+  - volumeUp: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
