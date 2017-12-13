@@ -58,8 +58,10 @@ public class playerShoot : MonoBehaviour
 
         if (hit.collider.gameObject.tag == "Player")
         {
-            print("Estas muerto. Laser.");
-			morir.RespawnPlayer ();
+			PlayerInput player = hit.collider.GetComponent<PlayerInput> ();
+
+			if(player.playerState != PlayerInput.VujStates.Controlling)
+				morir.RespawnPlayer ();
         }
     }
 

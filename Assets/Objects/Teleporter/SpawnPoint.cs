@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour {
 
-    public int nPersonajes;
+    //public int nPersonajes;
     public GameObject personaje;
     public Transform spawnPos;
 
-    private List<GameObject> personajes;
+    //private List<GameObject> personajes;
     private Animator anim;
 
     private int spawnHash = Animator.StringToHash("Spawn");
@@ -20,14 +20,14 @@ public class SpawnPoint : MonoBehaviour {
         anim = GetComponent<Animator>();
 
         //Cargar personajes
-        personajes = new List<GameObject>();
+        //personajes = new List<GameObject>();
 
-        for(int i = 0; i < nPersonajes+2; i++)
+        /*for(int i = 0; i < nPersonajes+2; i++)
         {
             GameObject newCharacter = (GameObject)Instantiate(personaje);
             newCharacter.SetActive(false);
             personajes.Add(newCharacter);
-        }
+        }*/
 	}
 	
 	// Update is called once per frame
@@ -44,19 +44,20 @@ public class SpawnPoint : MonoBehaviour {
         anim.SetTrigger(spawnHash);
         GameObject spawnedChar = GetCharacter();
         spawnedChar.transform.position = spawnPos.position;
+        spawnedChar.GetComponent<StateEnemyBehavior>().spawnPoint = this;
         spawnedChar.SetActive(true);
 
     }
 
     private GameObject GetCharacter()
     {
-        for (int i = 0; i < personajes.Count; i++)
+        /*for (int i = 0; i < personajes.Count; i++)
             if (personajes[i].activeInHierarchy == false)
-                return personajes[i];
+                return personajes[i];*/
 
         GameObject newCharacter = (GameObject)Instantiate(personaje);
         newCharacter.SetActive(false);
-        personajes.Add(newCharacter);
+        //personajes.Add(newCharacter);
 
         return newCharacter;
     }
