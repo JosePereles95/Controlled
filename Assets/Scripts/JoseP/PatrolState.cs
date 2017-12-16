@@ -13,11 +13,28 @@ public class PatrolState : IEnemyState {
 
     public PatrolState (StateEnemyBehavior enemy, NpcMovement controller) {
 		this.enemy = enemy;
+<<<<<<< HEAD
 		enemy.moveSpeed = 4;
+=======
+>>>>>>> 912a1225e242a34e188bfee8915dff5c924c760a
         theController = controller;
 	}
 
 	public void UpdateState () {
+<<<<<<< HEAD
+=======
+        if (stopping)
+        {
+            time += Time.deltaTime;
+            if (time > 22f)
+            {
+               enemy.moveSpeed = 4;
+                stopping = false;
+            }
+        }
+        else { enemy.moveSpeed = 4; }
+
+>>>>>>> 912a1225e242a34e188bfee8915dff5c924c760a
 		enemy.target = enemy.wayPoints [nextWayPoint];
 
 		Patrol ();

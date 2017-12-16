@@ -102,6 +102,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 			currentState.ToPatrolState();
 	}
 
+<<<<<<< HEAD
 	public void EnterControlZone(Collider2D other)
 	{
 		if(other.tag == "Player" && !muerto)
@@ -109,6 +110,15 @@ public class StateEnemyBehavior : MonoBehaviour {
 			other.GetComponent<PlayerInput>().ToCanControl(theController);
 		}
 	}
+=======
+    public void EnterControlZone(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerInput>().ToCanControl(theController);
+        }
+    }
+>>>>>>> 912a1225e242a34e188bfee8915dff5c924c760a
 
 	public void ControlZoneStay(Collider2D other)
 	{
@@ -125,6 +135,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 		}
 	}
 
+<<<<<<< HEAD
 	public void ExitControlZone(Collider2D other)
 	{
 		if(other.tag == "Player" && !muerto)
@@ -158,4 +169,13 @@ public class StateEnemyBehavior : MonoBehaviour {
 		yield return new WaitForSeconds(3f);
 		this.gameObject.SetActive(false);
 	}
+=======
+    public void ExitControlZone(Collider2D other)
+    {
+        if(other.tag == "Player")
+        {
+            other.GetComponent<PlayerInput>().ExitControlZone();
+        }
+    }
+>>>>>>> 912a1225e242a34e188bfee8915dff5c924c760a
 }

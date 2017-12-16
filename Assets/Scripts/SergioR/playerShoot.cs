@@ -15,8 +15,11 @@ public class playerShoot : MonoBehaviour
 
     Vector2 direccion;
 
+<<<<<<< HEAD
 	Sistema_Jueg morir;
 
+=======
+>>>>>>> 912a1225e242a34e188bfee8915dff5c924c760a
     void Start()
     {
         lr = bullet.GetComponent<LineRenderer>();
@@ -58,10 +61,14 @@ public class playerShoot : MonoBehaviour
 
         if (hit.collider.gameObject.tag == "Player")
         {
+<<<<<<< HEAD
 			PlayerInput player = hit.collider.GetComponent<PlayerInput> ();
 
 			if(player.playerState != PlayerInput.VujStates.Controlling)
 				morir.RespawnPlayer ();
+=======
+            print("Estas muerto. Laser.");
+>>>>>>> 912a1225e242a34e188bfee8915dff5c924c760a
         }
     }
 

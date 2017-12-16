@@ -47,6 +47,7 @@ public class PlayerInput : MonoBehaviour
 
 		CheckInvisibility ();
 
+<<<<<<< HEAD
 	}
 
 	//Detecta la orientacion del sprite y la cambia
@@ -66,6 +67,27 @@ public class PlayerInput : MonoBehaviour
 		}
 	}
 
+=======
+    }
+
+    //Detecta la orientacion del sprite y la cambia
+    private void Flip(float horizontal)
+    {
+        if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+        {
+            facingRight = !facingRight;
+
+            Vector3 theScale = vujBody.transform.localScale;
+            float thePosition = transform.localPosition.x;
+
+            transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
+
+            theScale.x *= -1;
+            vujBody.transform.localScale = theScale;
+        }
+    }
+	
+>>>>>>> 912a1225e242a34e188bfee8915dff5c924c760a
 	private void ControlVuj()
 	{
 		//Guardamos en un vector si se mueve en algún eje y aplicamos el movimiento
