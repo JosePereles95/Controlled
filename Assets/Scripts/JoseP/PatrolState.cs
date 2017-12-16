@@ -1,45 +1,23 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PatrolState : IEnemyState {
 
 	StateEnemyBehavior enemy;
-	int nextWayPoint = 0;
+	private NpcMovement theController;
 
+	public int nextWayPoint = 0;
 	public int rotationSpeed = 0;
-
 	private bool facingRight = false;
-	
-    private float time = 0.0f;
-    private bool stopping = false;
 
-    private NpcMovement theController;
-
-	public PatrolState (StateEnemyBehavior enemy, NpcMovement controller) {
+    public PatrolState (StateEnemyBehavior enemy, NpcMovement controller) {
 		this.enemy = enemy;
-<<<<<<< HEAD
-        theController = controller;
-=======
-
 		enemy.moveSpeed = 4;
->>>>>>> a8f1a5bf6eac4acc03c23fb766740b2a75af9274
+        theController = controller;
 	}
 
 	public void UpdateState () {
-<<<<<<< HEAD
-        if (stopping)
-        {
-            time += Time.deltaTime;
-            if (time > 22f)
-            {
-               enemy.moveSpeed = 4;
-                stopping = false;
-            }
-        }
-        else { enemy.moveSpeed = 4; }
-=======
->>>>>>> JoseP
-
 		enemy.target = enemy.wayPoints [nextWayPoint];
 
 		Patrol ();
@@ -55,9 +33,14 @@ public class PatrolState : IEnemyState {
 
     public void ToControlledState()
     {
-        theController.SetDirectionalInput(new Vector2(0, 0));
+		theController.SetDirectionalInput(new Vector2(0, 0));
+		//Debug.Log ("Pasando a ser controlado");
         enemy.currentState = enemy.controlledState;
     }
+
+	public void ToDiedState(){
+		enemy.currentState = enemy.diedState;
+	}
 
 	private void Patrol() {
 
@@ -102,14 +85,4 @@ public class PatrolState : IEnemyState {
 			enemy.transform.localScale = theScale;
 		}
 	}
-    private void OnTriggerEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "vomit")
-        {
-            Debug.Log("TRIGGERED");
-            enemy.moveSpeed = 0;
-            stopping = true;
-            time = 0.0f;
-        }
-    }
 }

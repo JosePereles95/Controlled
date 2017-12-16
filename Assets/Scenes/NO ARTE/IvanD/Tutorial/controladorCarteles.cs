@@ -11,6 +11,8 @@ public class controladorCarteles : MonoBehaviour {
 
     public GameObject AlienSalvaje;
     public GameObject VUJ;
+	public GameObject Tripulante;
+	public GameObject barrera;
 
     bool puerta = true;
     bool vuj = true;
@@ -39,10 +41,12 @@ public class controladorCarteles : MonoBehaviour {
             vuj = false;
         }
 
-        if (collision.tag == "Player" && this.name == "mostraCartelPuertas" && puerta == true)
+        if (collision.tag == "Tripulante" && this.name == "mostraCartelPuertas" && puerta == true)
         {
+			barrera.SetActive (true);
             cartelPuertas.SetActive(true);
             VUJ.SetActive(false);
+			//Tripulante.SetActive (false);
             puerta = false;
         }
 

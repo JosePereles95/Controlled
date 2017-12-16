@@ -4,24 +4,31 @@ using UnityEngine;
 
 public class Sistema_Jueg : MonoBehaviour {
 
-    public GameObject Checkpoint_Actual;
-    private PlayerInput player;
+	public GameObject Checkpoint_Actual;
+	private PlayerInput player;
 
 	// Use this for initialization
 	void Start () {
-        player = FindObjectOfType<PlayerInput>();
-		
+		player = FindObjectOfType<PlayerInput>();
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
-    
-    public void RespawnPlayer()
-    {
-        Debug.Log("Player Respawn");
-        player.transform.position = Checkpoint_Actual.transform.position;
-    }
- 
+
+	public void RespawnPlayer()
+	{
+		Debug.Log("Player Respawn");
+		player.transform.position = Checkpoint_Actual.transform.position;
+		if(player.playerState == PlayerInput.VujStates.Controlling)
+			player.Desparasitar ();
+	}
+
+	public void SpawnCharacter(SpawnPoint spawnPoint)
+	{
+		spawnPoint.Spawn();
+	}
+
 }

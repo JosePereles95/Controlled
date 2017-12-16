@@ -4,97 +4,103 @@ using UnityEngine;
 
 [RequireComponent(typeof(Player))]
 public class NpcMovement : MonoBehaviour {
-    public Animator anim;
-	private GameObject shootingArm;
+	public Animator anim;
+	public GameObject shootingArm;
 
-    public bool facingRight; //Variable para saber si el sprite mira a la derecha
+	public bool facingRight; //Variable para saber si el sprite mira a la derecha
 
-    //Script de comportamiento de movimiento
-    private Player movementController;
+	//Script de comportamiento de movimiento
+	public Player movementController;
+
 
 	// Use this for initialization
 	void Start () {
-		shootingArm = GameObject.FindGameObjectWithTag ("shootingArm");
-        movementController = GetComponent<Player>();
-		anim = GetComponent<Animator> ();
-        Flip(1); //lo giramos para que mire a la derecha
-    }
+		if (this.GetComponentInChildren<ControlledZone>() != null && shootingArm != null)
+			this.shootingArm.GetComponent<gunControl> ().enabled = false;
+		this.movementController = GetComponent<Player>();
+		this.anim = GetComponent<Animator> ();
+		Flip(1); //lo giramos para que mire a la derecha
+	}
 
 
 	void Update(){
 		if (this.GetComponentInChildren<ControlledZone>() != null) {
-			if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.Controlling) {
-				shootingArm.GetComponent<gunControl> ().enabled = true;
-			}
-			else if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().playerState == PlayerInput.VujStates.NotControlling) {
-				shootingArm.GetComponent<gunControl> ().enabled = false;
+			if (GameObject.FindGameObjectWithTag ("Player")) {
+				if (GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerInput> ().playerState == PlayerInput.VujStates.Controlling && 
+					this.GetComponent<StateEnemyBehavior>().currentState == this.GetComponent<StateEnemyBehavior>().controlledState) {
+					if(shootingArm != null)
+						this.shootingArm.GetComponent<gunControl> ().enabled = true;
+
+				} else if (GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerInput> ().playerState == PlayerInput.VujStates.NotControlling && 
+					this.GetComponent<StateEnemyBehavior>().currentState != this.GetComponent<StateEnemyBehavior>().controlledState) {
+					if(shootingArm != null)
+						this.shootingArm.GetComponent<gunControl> ().enabled = false;
+				}
 			}
 		}
 	}
 
-    //Detecta la orientacion del sprite y la cambia
-    private void Flip(float horizontal)
-    {
-        if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
-        {
-            facingRight = !facingRight;
+	//Detecta la orientacion del sprite y la cambia
+	private void Flip(float horizontal)
+	{
+		if (horizontal > 0 && !facingRight || horizontal < 0 && facingRight)
+		{
+			facingRight = !facingRight;
 
-            Vector3 theScale = transform.localScale;
-            float thePosition = transform.localPosition.x;
+			Vector3 theScale = transform.localScale;
+			float thePosition = transform.localPosition.x;
 
-            if (facingRight == false)
-            {
-                thePosition -= 1.5f;
-            }
-            else
-            {
-                thePosition += 1.5f;
-            }
+			if (facingRight == false)
+			{
+				thePosition -= 1.5f;
+			}
+			else
+			{
+				thePosition += 1.5f;
+			}
 
-            transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
+			transform.localPosition = new Vector3(thePosition, transform.localPosition.y, transform.localPosition.z);
 
-            theScale.x *= -1;
-            transform.localScale = theScale;
-        }
-    }
+			theScale.x *= -1;
+			transform.localScale = theScale;
+		}
+	}
 
-    public void SetDirectionalInput(Vector2 directionalInput)
-    {
-        //Introducir justo debajo lo necesario para ejecutar la animación de movimiento
-        movementController.SetDirectionalInput(directionalInput);
-        //si el movimiento en el eje X giramos el sprite
-        if (directionalInput[0] != 0)
-        {
-			anim.Play("walking");
-			anim.SetBool("isWalking", true);
-            Flip(directionalInput[0]);
-        }
-        else
-        {
-			anim.Play("Iddle");
-            anim.SetBool("isWalking", false);
-        }
-    }
+	public void SetDirectionalInput(Vector2 directionalInput)
+	{
+		//Introducir justo debajo lo necesario para ejecutar la animación de movimiento
+		this.movementController.SetDirectionalInput(directionalInput);
+		//si el movimiento en el eje X giramos el sprite
+		if (directionalInput[0] != 0)
+		{
+			this.anim.SetBool("isWalking", true);
+			Flip(directionalInput[0]);
+		}
+		else
+		{
+			this.anim.SetBool("isWalking", false);
+		}
+	}
 
-    public void OnJumpInputDown()
-    {
-        movementController.OnJumpInputDown();
-		anim.SetBool("isJumping", true);
-    }
+	public void OnJumpInputDown()
+	{
+		this.movementController.OnJumpInputDown();
+		this.anim.SetBool("isJumping", true);
+	}
 
-    public void OnJumpInputUp()
-    {
-        movementController.OnJumpInputUp();
-        Falling();
-    }
+	public void OnJumpInputUp()
+	{
+		this.movementController.OnJumpInputUp();
+	}
 
-    public void Falling()
-    {
-        anim.SetBool("isJumping", false);
-    }
+	public void Falling()
+	{
+		if(movementController.IsGrounded())
+			this.anim.SetBool("isJumping", false);
+	}
 
-    public void Parasitar()
-    {
-        anim.SetTrigger("parasitado");
-    }
+	public void Parasitar()
+	{
+		this.anim.SetTrigger("parasitado");
+	}
 }

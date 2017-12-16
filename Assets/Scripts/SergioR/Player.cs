@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float timeToJumpApex = .4f;
     private float accelerationTimeAirborne = .2f;
     private float accelerationTimeGrounded = .1f;
-    private float moveSpeed = 6f;
+    public float moveSpeed = 6.1f;
 
     //No tocar
     public Vector2 wallJumpClimb;
@@ -144,4 +144,9 @@ public class Player : MonoBehaviour
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne));
         velocity.y += gravity * Time.deltaTime;
     }
+
+	public bool IsGrounded()
+	{
+		return controller.collisions.below;
+	}
 }

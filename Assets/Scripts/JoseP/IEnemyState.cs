@@ -7,4 +7,5 @@ public interface IEnemyState
 	void ToPatrolState();
 	void ToChaseState();
     void ToControlledState();
+	void ToDiedState();
 }
