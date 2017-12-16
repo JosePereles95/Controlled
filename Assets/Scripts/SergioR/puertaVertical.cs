@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class puertaVertical : MonoBehaviour {
 
+    public AudioClip denegado;
+    public AudioClip abrir;
+    AudioSource fuenteAudio;
+
     public Animator anim;
 
     public bool Vuj;
@@ -21,6 +25,7 @@ public class puertaVertical : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        fuenteAudio = GetComponent<AudioSource>();
         doorOpen = false;
         anim = GetComponent<Animator>();
     }
@@ -41,6 +46,8 @@ public class puertaVertical : MonoBehaviour {
         {
             doorOpen = true;
             DoorControl("Open");
+            fuenteAudio.clip = abrir;
+            fuenteAudio.Play();
         }
     }
 
@@ -48,6 +55,7 @@ public class puertaVertical : MonoBehaviour {
     {
         if (doorOpen)
         {
+
             doorOpen = false;
             DoorControl("Close");
         }
