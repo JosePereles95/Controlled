@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuntosGuardado : MonoBehaviour {
+public class PuntoGuardado : MonoBehaviour {
 
-    public Sistema_Juego LevelManager;
+    public Sistema_Jueg LevelManager;
 
     // Use this for initialization
     void Start()
     {
-        LevelManager = FindObjectOfType<Sistema_Juego>();
+        LevelManager = FindObjectOfType<Sistema_Jueg>();
 
     }
 

@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Invisibility : MonoBehaviour {
 
-
-    AudioSource fuenteAudio;
-
-    public int durationFade;
+	public int durationFade;
 	public SkinnedMeshRenderer[] listSprites;
 	public float waitTime;
 	public float vomitTime;
@@ -22,12 +19,9 @@ public class Invisibility : MonoBehaviour {
 	private bool moving = false;
 	private bool vomiting = false;
 	private GameObject vomito;
-    public AudioClip sonidoinvisible;
- 
 
-    void Start(){
-        fuenteAudio = GetComponent<AudioSource>();
-        vomito = GameObject.FindGameObjectWithTag ("vomit");
+	void Start(){
+		vomito = GameObject.FindGameObjectWithTag ("vomit");
 	}
 
 	void Update () {
@@ -64,7 +58,7 @@ public class Invisibility : MonoBehaviour {
 		}
 
 		if (invisible)
-            GoInvisible();
+			GoInvisible();
 		else if(moving)
 			GoVisible();
 	}
@@ -80,10 +74,8 @@ public class Invisibility : MonoBehaviour {
 	void GoInvisible (){
 		for (int i = 0; i < listSprites.Length; i++) {
 			listSprites [i].GetComponent<SkinnedMeshRenderer>().enabled = false;
+		}
 
-        }
- 
-
-        this.GetComponentInChildren<SpriteRenderer> ().color = new Color (1f, 1f, 1f, Mathf.SmoothStep (maximum, minimum, timeVisibility/durationFade));
-    }
+		this.GetComponentInChildren<SpriteRenderer> ().color = new Color (1f, 1f, 1f, Mathf.SmoothStep (maximum, minimum, timeVisibility/durationFade));
+	}
 }

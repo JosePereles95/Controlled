@@ -19,15 +19,15 @@ public class DiedState : IEnemyState {
 	}
 
 	public void ToPatrolState(){
-		
+
 	}
 
 	public void ToChaseState(){
-		
+
 	}
 
 	public void ToControlledState(){
-		
+
 	}
 
 	public void ToDiedState(){
@@ -36,8 +36,10 @@ public class DiedState : IEnemyState {
 
 	private void Died(){
 		if (!enemy.muerto) {
-			enemy.GetComponent<Animator> ().Play ("faint");
+			enemy.GetComponent<Animator> ().SetBool("isDead", true);
 			enemy.muerto = true;
+			GameObject.FindObjectOfType<Sistema_Jueg>().SpawnCharacter(enemy.spawnPoint);
+			enemy.StartCoroutine("Respawn");
 		}
 	}
 }

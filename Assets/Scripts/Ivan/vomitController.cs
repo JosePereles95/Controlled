@@ -12,13 +12,9 @@ public class vomitController : MonoBehaviour {
 
     private float time = 0.0f;
 
-    public AudioClip soundvomito;
-    AudioSource fuenteAudio;
-
     // Use this for initialization
     void Start () {
-        fuenteAudio = GetComponent<AudioSource>();
-        cambio = GameObject.FindGameObjectWithTag ("cambioPersonaje");
+		cambio = GameObject.FindGameObjectWithTag ("cambioPersonaje");
     }
 	
 	// Update is called once per frame
@@ -35,8 +31,6 @@ public class vomitController : MonoBehaviour {
         }
 
 		if (vomiting && Input.GetKeyDown(KeyCode.V) && !jumping && !cambio.GetComponent<cambioPersonaje>().caida){
-            fuenteAudio.clip = soundvomito;
-            fuenteAudio.Play();
             Vomit ();
         }
     }

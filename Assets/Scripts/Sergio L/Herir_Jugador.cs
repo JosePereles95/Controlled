@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dañar_Jugador: MonoBehaviour {
+public class Herir_Jugador: MonoBehaviour {
 
-    public Sistema_Juego LevelManager;
+    public Sistema_Jueg LevelManager;
 
     // Use this for initialization
     void Start()
     {
-        LevelManager = FindObjectOfType<Sistema_Juego>();
+        LevelManager = FindObjectOfType<Sistema_Jueg>();
 
     }
 
