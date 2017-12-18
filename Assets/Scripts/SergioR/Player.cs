@@ -38,8 +38,16 @@ public class Player : MonoBehaviour
     private bool wallSliding;
     private int wallDirX;
 
+    //Sonido
+    public AudioClip salto;
+    public AudioClip andar;
+ 
+    AudioSource fuenteAudio;
+
     private void Start()
     {
+        fuenteAudio = GetComponent<AudioSource>();
+
         controller = GetComponent<Controller2D>();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -87,6 +95,8 @@ public class Player : MonoBehaviour
         }
         if (controller.collisions.below)
         {
+            fuenteAudio.clip = salto;
+            fuenteAudio.Play();
             velocity.y = maxJumpVelocity;
             isDoubleJumping = false;
         }

@@ -8,7 +8,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 	public Transform[] wayPoints;
 	[HideInInspector] public Vector3 posPlayer;
 	[HideInInspector] public Transform target;
-	[HideInInspector] public int moveSpeed = 4;
+	[HideInInspector] public int moveSpeed;
 	[HideInInspector] public bool parasitado = false;
 	[HideInInspector] public bool muerto = false;
 	[HideInInspector] public bool canPatrol = true;
@@ -19,6 +19,8 @@ public class StateEnemyBehavior : MonoBehaviour {
 	[HideInInspector] public ChaseState chaseState;
 	[HideInInspector] public ControlledState controlledState;
 	[HideInInspector] public DiedState diedState;
+
+	private float aux;
 
 	public static StateEnemyBehavior Instance;
 
@@ -40,7 +42,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 		InitCharacter();
 	}
 
-	private void InitCharacter()
+	public void InitCharacter()
 	{
 		theController = GetComponent<NpcMovement>();
 		parado = false;
@@ -62,7 +64,11 @@ public class StateEnemyBehavior : MonoBehaviour {
 		canPatrol = true;
 
 		if(theController.anim != null)
-			theController.anim.SetBool("isDead", false);
+        {
+            theController.anim.SetBool("isDead", false);
+            theController.anim.Play("Iddle");
+        }
+			
 
 		currentState = patrolState;
 	}
@@ -137,6 +143,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "vomit" && !parado && currentState != controlledState) {
+			aux = this.GetComponent<NpcMovement> ().movementController.moveSpeed;
 			this.GetComponent<NpcMovement> ().movementController.moveSpeed = 0;
 			parado = true;
 			StartCoroutine (WaitForVomit ());
@@ -146,7 +153,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 	private IEnumerator WaitForVomit(){
 		yield return new WaitForSeconds(4f);
 		parado = false;
-		this.GetComponent<NpcMovement> ().movementController.moveSpeed = 4;
+		this.GetComponent<NpcMovement> ().movementController.moveSpeed = aux;
 	}
 
 	private IEnumerator Respawn()

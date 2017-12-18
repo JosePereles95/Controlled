@@ -30,7 +30,7 @@ public class particleSystemController : MonoBehaviour {
 			jumping = false;
 		}
 
-		if (Input.GetKeyDown(KeyCode.V) && vomiting && !jumping && !cambio.GetComponent<cambioPersonaje>().caida) { 
+		if (Input.GetKeyDown(KeyCode.F) && vomiting && !jumping && !cambio.GetComponent<cambioPersonaje>().caida) { 
 			vomiting = false;
 			StartCoroutine (Wait());
 
