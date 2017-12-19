@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour {
 
-    public int nPersonajes;
     public GameObject personaje;
     public Transform spawnPos;
 
-    private List<GameObject> personajes;
     private Animator anim;
 
     private int spawnHash = Animator.StringToHash("Spawn");
@@ -18,16 +16,6 @@ public class SpawnPoint : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         anim = GetComponent<Animator>();
-
-        //Cargar personajes
-        personajes = new List<GameObject>();
-
-        for(int i = 0; i < nPersonajes+2; i++)
-        {
-            GameObject newCharacter = (GameObject)Instantiate(personaje);
-            newCharacter.SetActive(false);
-            personajes.Add(newCharacter);
-        }
 	}
 	
 	// Update is called once per frame
@@ -50,13 +38,9 @@ public class SpawnPoint : MonoBehaviour {
 
     private GameObject GetCharacter()
     {
-        for (int i = 0; i < personajes.Count; i++)
-            if (personajes[i].activeInHierarchy == false)
-                return personajes[i];
-
         GameObject newCharacter = (GameObject)Instantiate(personaje);
+		newCharacter.GetComponent<StateEnemyBehavior> ().spawnPoint = this;
         newCharacter.SetActive(false);
-        personajes.Add(newCharacter);
 
         return newCharacter;
     }
