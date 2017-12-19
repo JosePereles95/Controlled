@@ -5,4 +5,7 @@ public interface IEnemyState
 {
 	void UpdateState();
 	void ToPatrolState();
+	void ToChaseState();
+    void ToControlledState();
+	void ToDiedState();
 }
