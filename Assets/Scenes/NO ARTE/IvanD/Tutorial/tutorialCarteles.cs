@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class tutorialCarteles : MonoBehaviour {
 
@@ -12,13 +13,13 @@ public class tutorialCarteles : MonoBehaviour {
 
     void Update ()
     {
-        if (Input.GetMouseButtonDown(0) == true && this.name == "cartelTutorial")
+		if ((Input.GetMouseButtonDown(0)||Input.GetKey(KeyCode.Return)) && this.name == "cartelTutorial")
         {
             this.gameObject.SetActive(false);
             AlienSalvaje.SetActive(true);
         }
 
-        if (Input.GetMouseButtonDown(0) == true && this.name == "cartelPuertas")
+		if ((Input.GetMouseButtonDown(0)||Input.GetKey(KeyCode.Return)) && this.name == "cartelPuertas")
         {
             VUJ.SetActive(true);
 			//Tripulante.SetActive (true);
@@ -27,15 +28,16 @@ public class tutorialCarteles : MonoBehaviour {
             tutorial.SetActive(false);
         }
 
-        if (Input.GetMouseButtonDown(0) == true && this.name == "cartelVUJ")
+		if ((Input.GetMouseButtonDown(0)||Input.GetKey(KeyCode.Return)) && this.name == "cartelVUJ")
         {
             this.gameObject.SetActive(false);
             VUJ.SetActive(true);
 			monoTutorial.moverse = true;
         }
 
-        if (Input.GetMouseButtonDown(0) == true && this.name == "cartelFIN")
+		if ((Input.GetMouseButtonDown(0)||Input.GetKey(KeyCode.Return)) && this.name == "cartelFIN")
         {
+			SceneManager.LoadScene(2);
             this.gameObject.SetActive(false);
         }
     }

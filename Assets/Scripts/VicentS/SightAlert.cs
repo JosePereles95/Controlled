@@ -20,15 +20,15 @@ public class SightAlert : MonoBehaviour {
         theRenderer.sprite = alertSprite;
         this.gameObject.SetActive(true);
 
-        StartCoroutine("DeactivateAlarm");
+        StartCoroutine("DeactivateAlert");
     }
 
     public void ActivaLost()
     {
-        theRenderer.sprite = alertSprite;
+        theRenderer.sprite = lostSprite;
         this.gameObject.SetActive(true);
 
-        StartCoroutine("DeactivateAlarm");
+        StartCoroutine("DeactivateAlert");
     }
 
     private IEnumerator DeactivateAlert()

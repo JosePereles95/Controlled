@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Herir_Jugador : MonoBehaviour {
+public class Herir_Jugador: MonoBehaviour {
 
-    public Sistema_Jueg levelManager;
+    public Sistema_Jueg LevelManager;
 
     // Use this for initialization
     void Start()
     {
-        levelManager = FindObjectOfType<Sistema_Jueg>();
+        LevelManager = FindObjectOfType<Sistema_Jueg>();
 
     }
 
@@ -22,7 +22,7 @@ public class Herir_Jugador : MonoBehaviour {
     {
         if(other.name == "Player" || other.tag == "Tripulante")
         {
-            levelManager.RespawnPlayer();
+            LevelManager.RespawnPlayer();
         }
         
     }

@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Muerte : MonoBehaviour {
 
+
+	//Sonidos
+
+	public AudioClip muerte;
+
+	public AudioClip daño;
+    AudioSource fuenteAudio;
+
+
+
+
+	//
+
 	public int vidas = 2;
 	private float time = 0f;
 	private float waitTime = 3f;
@@ -12,6 +25,7 @@ public class Muerte : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		anim = GetComponentInChildren<Animator> ();
+		fuenteAudio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -28,11 +42,19 @@ public class Muerte : MonoBehaviour {
 	}
 
 	void Morir(){
+
+        fuenteAudio.clip = muerte;
+        fuenteAudio.Play();
+
 		anim.Play ("Death");
 	}
 
 	void RecibirDaño(){
 		if (time > waitTime) {
+
+			fuenteAudio.clip = daño;
+			fuenteAudio.Play();
+
 			vidas--;
 			time = 0f;
 		}

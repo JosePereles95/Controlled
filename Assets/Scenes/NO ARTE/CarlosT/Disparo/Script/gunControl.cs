@@ -11,6 +11,10 @@ public class gunControl : MonoBehaviour {
     float angle;
     float lastAngle;
 
+   
+    public AudioClip disparo;
+    AudioSource fuenteAudio;
+
     private NpcMovement theController;
     public WeaponController cargador;
 
@@ -30,6 +34,7 @@ public class gunControl : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        fuenteAudio = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         theController = GetComponentInParent<NpcMovement>();
         //brazo.localEulerAngles = Vector3.forward;
@@ -65,6 +70,8 @@ public class gunControl : MonoBehaviour {
         if (fireRate == 0) {
             if (Input.GetButtonDown("Fire1")) {
                 Shoot();
+                fuenteAudio.clip = disparo;
+                fuenteAudio.Play();
             }
         }
 
@@ -72,6 +79,8 @@ public class gunControl : MonoBehaviour {
             if (Input.GetButtonDown("Fire1") && Time.time > timeToFiere) {
                 timeToFiere = Time.time + 1 / fireRate;
                 Shoot();
+                fuenteAudio.clip = disparo;
+                fuenteAudio.Play();
             }
         }
 

@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class PlatformController : RaycastController
 {
+    //Sonido
+        public AudioClip plataforma;
+    AudioSource fuenteAudio;
+
+    //
+
+
+
     public LayerMask passengerMask;
 
     public Vector3[] localWaypoints;
@@ -43,6 +51,10 @@ public class PlatformController : RaycastController
         MovePassengers(true);
         transform.Translate(velocity);
         MovePassengers(false);
+
+
+            fuenteAudio.clip = plataforma;
+            fuenteAudio.Play();
     }
 
     private float Ease(float x)

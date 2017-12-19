@@ -26,7 +26,6 @@ public class SpawnPoint : MonoBehaviour {
         {
             GameObject newCharacter = (GameObject)Instantiate(personaje);
             newCharacter.SetActive(false);
-            newCharacter.GetComponent<StateEnemyBehavior>().spawnPoint = this;
             personajes.Add(newCharacter);
         }
 	}
@@ -51,7 +50,7 @@ public class SpawnPoint : MonoBehaviour {
 
     private GameObject GetCharacter()
     {
-       for (int i = 0; i < personajes.Count; i++)
+        for (int i = 0; i < personajes.Count; i++)
             if (personajes[i].activeInHierarchy == false)
                 return personajes[i];
 

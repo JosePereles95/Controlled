@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PuntoGuardado : MonoBehaviour {
 
-    public Sistema_Jueg levelManager;
+    public Sistema_Jueg LevelManager;
 
     // Use this for initialization
     void Start()
     {
-        levelManager = FindObjectOfType<Sistema_Jueg>();
+        LevelManager = FindObjectOfType<Sistema_Jueg>();
 
     }
 
@@ -22,7 +22,7 @@ public class PuntoGuardado : MonoBehaviour {
     {
         if (other.name == "Player")
         {
-            levelManager.Checkpoint_Actual = gameObject;
+            LevelManager.Checkpoint_Actual = gameObject;
         }
 
     }
