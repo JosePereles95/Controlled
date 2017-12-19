@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: e2343953a3b0cd243ad82bbe8c1b83f2
-timeCreated: 1513095264
+guid: 65b180ea280b7ae47b8f63095b68f3c7
+timeCreated: 1513446461
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Alien 5 Illustrator Atlas_0
-    21300002: Alien 5 Illustrator Atlas_1
-    21300004: Alien 5 Illustrator Atlas_2
-    21300006: Alien 5 Illustrator Atlas_3
-    21300008: Alien 5 Illustrator Atlas_4
-    21300010: Alien 5 Illustrator Atlas_5
-    21300012: Alien 5 Illustrator Atlas_6
-    21300014: Alien 5 Illustrator Atlas_7
+    21300000: Carteles_0
+    21300002: Carteles_1
+    21300004: Carteles_2
+    21300006: Carteles_3
+    21300008: Carteles_4
+    21300010: Carteles_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -86,41 +84,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_0
+      name: Carteles_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1001
-        width: 477
-        height: 730
-      alignment: 9
-      pivot: {x: 0.4947589, y: 0.50342464}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_1
-      rect:
-        serializedVersion: 2
-        x: 714
-        y: 1203
-        width: 380
-        height: 449
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_2
-      rect:
-        serializedVersion: 2
-        x: 489
-        y: 1115
-        width: 328
-        height: 55
+        x: 1
+        y: 1117
+        width: 711
+        height: 115
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,71 +98,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_3
+      name: Carteles_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 622
-        width: 364
-        height: 370
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+        x: 1
+        y: 900
+        width: 711
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_4
+      name: Carteles_2
       rect:
         serializedVersion: 2
-        x: 447.49997
-        y: 425.5
-        width: 268.00003
-        height: 525
-      alignment: 9
-      pivot: {x: 0.49440306, y: 0.50095236}
+        x: 1
+        y: 694
+        width: 711
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_5
+      name: Carteles_3
       rect:
         serializedVersion: 2
-        x: 960
-        y: 482.00003
-        width: 188
-        height: 490.99997
-      alignment: 9
-      pivot: {x: 0.49999997, y: 0.49999997}
+        x: 1
+        y: 495
+        width: 711
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_6
+      name: Carteles_4
       rect:
         serializedVersion: 2
-        x: 6
-        y: 0
-        width: 445
-        height: 605
-      alignment: 9
-      pivot: {x: 0.5, y: 0.4966942}
+        x: 1
+        y: 258
+        width: 711
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Alien 5 Illustrator Atlas_7
+      name: Carteles_5
       rect:
         serializedVersion: 2
-        x: 745
-        y: 0
-        width: 474
-        height: 411
-      alignment: 9
-      pivot: {x: 0.50738394, y: 0.49270073}
+        x: 1
+        y: 1
+        width: 711
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -200,6 +170,6 @@ TextureImporter:
     outline: []
     physicsShape: []
   spritePackingTag: 
-  userData: 99162209122333
+  userData: 
   assetBundleName: 
   assetBundleVariant: 
