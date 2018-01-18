@@ -4,7 +4,10 @@ using System.Collections;
 [RequireComponent(typeof(Player))]
 public class PlayerInput : MonoBehaviour
 {
-	private Player player;
+    public AudioClip parasitar;
+    AudioSource fuenteAudio;
+
+    private Player player;
 
 	public Animator anim;
 	private bool facingRight; //variable para saber si el sprite mira a la derecha
@@ -17,9 +20,12 @@ public class PlayerInput : MonoBehaviour
 
 	private CameraFollow theCamera;
 
-	private void Start()
+
+    private void Start()
 	{
-		player = GetComponent<Player>();
+        fuenteAudio = GetComponent<AudioSource>();
+
+        player = GetComponent<Player>();
 		//anim = GetComponent<Animator>();
 		theCamera = FindObjectOfType<CameraFollow>();
 
@@ -125,7 +131,9 @@ public class PlayerInput : MonoBehaviour
 		{
 			playerState = VujStates.OnControlling;
 			if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
-			anim.SetTrigger("parasitar");
+            fuenteAudio.clip = parasitar;
+            fuenteAudio.Play();
+            anim.SetTrigger("parasitar");
 			StartCoroutine("Parasitando");
 		}
 	}

@@ -38,8 +38,16 @@ public class Player : MonoBehaviour
     private bool wallSliding;
     private int wallDirX;
 
+    //Sonido
+    public AudioClip salto;
+    public AudioClip andar;
+ 
+    AudioSource fuenteAudio;
+
     private void Start()
     {
+        fuenteAudio = GetComponent<AudioSource>();
+
         controller = GetComponent<Controller2D>();
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -51,7 +59,15 @@ public class Player : MonoBehaviour
         CalculateVelocity();
         HandleWallSliding();
 
+        if (IsGrounded() && fuenteAudio.isPlaying == false && velocity.magnitude > 2f)
+        {
+        fuenteAudio.clip = andar;//test
+        fuenteAudio.Play();//test
+        }
+
         controller.Move(velocity * Time.deltaTime, directionalInput);
+
+        
 
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -62,6 +78,7 @@ public class Player : MonoBehaviour
     public void SetDirectionalInput(Vector2 input)
     {
         directionalInput = input;
+
     }
 
     public void OnJumpInputDown()
@@ -87,6 +104,8 @@ public class Player : MonoBehaviour
         }
         if (controller.collisions.below)
         {
+            fuenteAudio.clip = salto;
+            fuenteAudio.Play();
             velocity.y = maxJumpVelocity;
             isDoubleJumping = false;
         }
@@ -148,5 +167,6 @@ public class Player : MonoBehaviour
 	public bool IsGrounded()
 	{
 		return controller.collisions.below;
+
 	}
 }
