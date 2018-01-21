@@ -32,6 +32,7 @@ public class SpawnPoint : MonoBehaviour {
         anim.SetTrigger(spawnHash);
         GameObject spawnedChar = GetCharacter();
         spawnedChar.transform.position = spawnPos.position;
+        spawnedChar.GetComponent<StateEnemyBehavior>().spawnPoint = this;
         spawnedChar.SetActive(true);
 
     }
@@ -39,7 +40,6 @@ public class SpawnPoint : MonoBehaviour {
     private GameObject GetCharacter()
     {
         GameObject newCharacter = (GameObject)Instantiate(personaje);
-		newCharacter.GetComponent<StateEnemyBehavior> ().spawnPoint = this;
         newCharacter.SetActive(false);
 
         return newCharacter;

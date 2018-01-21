@@ -59,15 +59,7 @@ public class Player : MonoBehaviour
         CalculateVelocity();
         HandleWallSliding();
 
-        if (IsGrounded() && fuenteAudio.isPlaying == false && velocity.magnitude > 2f)
-        {
-        fuenteAudio.clip = andar;//test
-        fuenteAudio.Play();//test
-        }
-
         controller.Move(velocity * Time.deltaTime, directionalInput);
-
-        
 
         if (controller.collisions.above || controller.collisions.below)
         {
@@ -78,7 +70,6 @@ public class Player : MonoBehaviour
     public void SetDirectionalInput(Vector2 input)
     {
         directionalInput = input;
-
     }
 
     public void OnJumpInputDown()
@@ -167,6 +158,5 @@ public class Player : MonoBehaviour
 	public bool IsGrounded()
 	{
 		return controller.collisions.below;
-
 	}
 }
