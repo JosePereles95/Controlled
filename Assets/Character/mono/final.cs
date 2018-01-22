@@ -10,6 +10,7 @@ public class final : MonoBehaviour {
 	{
 		if (collision.gameObject.tag == "Player")
 		{
+			print ("Tocando a la cria");
 			cartelFIN.gameObject.SetActive (true);
 		}
 	}

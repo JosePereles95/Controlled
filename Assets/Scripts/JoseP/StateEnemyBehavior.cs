@@ -108,7 +108,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 	{
 		if(other.tag == "Player" && !muerto)
 		{
-			other.GetComponent<PlayerInput>().ToCanControl(theController);
+			other.GetComponent<PlayerInput>().ToCanControl();
 		}
 	}
 
@@ -119,7 +119,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.E))
 			{
 				controlledState.parasito = other.GetComponent<PlayerInput>();
-				controlledState.parasito.Parasitar();
+				controlledState.parasito.Parasitar(theController);
 				canPatrol = false;
 				StartCoroutine (WaitForParasitar ());
 				currentState.ToControlledState();
@@ -129,7 +129,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 
 	public void ExitControlZone(Collider2D other)
 	{
-		if(other.tag == "Player" && !muerto)
+		if(other.tag == "Player" && !muerto && !parasitado)
 		{
 			other.GetComponent<PlayerInput>().ExitControlZone();
 		}
@@ -142,6 +142,7 @@ public class StateEnemyBehavior : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
+		Debug.Log ("Colisionado" + " - " + parado + " - " + other.tag + " - " + currentState);
 		if (other.tag == "vomit" && !parado && currentState != controlledState) {
 			aux = this.GetComponent<NpcMovement> ().movementController.moveSpeed;
 			this.GetComponent<NpcMovement> ().movementController.moveSpeed = 0;
@@ -153,12 +154,13 @@ public class StateEnemyBehavior : MonoBehaviour {
 	private IEnumerator WaitForVomit(){
 		yield return new WaitForSeconds(4f);
 		parado = false;
+		Debug.Log (parado);
 		this.GetComponent<NpcMovement> ().movementController.moveSpeed = aux;
 	}
 
 	private IEnumerator Respawn()
 	{
 		yield return new WaitForSeconds(3f);
-		this.gameObject.SetActive(false);
+        DestroyObject(this.gameObject);
 	}
 }

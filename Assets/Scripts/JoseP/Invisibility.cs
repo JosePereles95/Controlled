@@ -22,12 +22,12 @@ public class Invisibility : MonoBehaviour {
 	private bool invisible = false;
 	private bool moving = false;
 	private bool vomiting = false;
-	private GameObject vomito;
+	private vomitController vomito;
 
 	void Start(){
         fuenteAudio = GetComponent<AudioSource>();
 
-        vomito = GameObject.FindGameObjectWithTag ("vomit");
+        vomito = GameObject.FindGameObjectWithTag ("vomit").GetComponent<vomitController>();
 	}
 
 	void Update () {
@@ -52,7 +52,7 @@ public class Invisibility : MonoBehaviour {
 			if (invisible) {
 				vomiting = true;
 				moving = true;
-				vomito.GetComponent<vomitController> ().Vomit ();
+				vomito.Vomit ();
 			}
 		}
 

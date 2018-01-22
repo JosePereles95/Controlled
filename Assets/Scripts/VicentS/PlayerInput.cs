@@ -20,6 +20,8 @@ public class PlayerInput : MonoBehaviour
 
 	private CameraFollow theCamera;
 
+    private StartOptions uiManager;
+
 
     private void Start()
 	{
@@ -34,6 +36,8 @@ public class PlayerInput : MonoBehaviour
 
 		facingRight = false; //al principio no mira a la derecha
                              //Flip(1); //lo giramos para que mire a la derecha
+
+        uiManager = GameObject.FindGameObjectWithTag("Objetivo").GetComponent<StartOptions>();
 	}
 
 	private void Update()
@@ -41,14 +45,16 @@ public class PlayerInput : MonoBehaviour
 
 		switch (playerState)
 		{
-		case VujStates.CanControl:
-		case VujStates.NotControlling:
-			ControlVuj();
-			break;
-		case VujStates.Controlling:
-			ControlTripulant();
-			transform.position = controlledTripulant.transform.position;
-			break;
+		    case VujStates.CanControl:
+		    case VujStates.NotControlling:
+			    ControlVuj();
+			    break;
+		    case VujStates.Controlling:
+			    ControlTripulant();
+			    if(controlledTripulant != null) transform.position = controlledTripulant.transform.position;
+			    break;
+            default:
+                break;
 		}
 
 		CheckInvisibility ();
@@ -110,38 +116,45 @@ public class PlayerInput : MonoBehaviour
 	private void ControlTripulant()
 	{
 		Vector2 directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-		controlledTripulant.SetDirectionalInput(directionalInput);
+		if(controlledTripulant != null)
+        {
+            controlledTripulant.SetDirectionalInput(directionalInput);
 
-		controlledTripulant.Falling();
+            controlledTripulant.Falling();
 
-		if (Input.GetButtonDown("Jump"))
-		{
-			controlledTripulant.OnJumpInputDown();
-		}
+            if (Input.GetButtonDown("Jump"))
+            {
+                controlledTripulant.OnJumpInputDown();
+            }
 
-		if (Input.GetButtonUp("Jump"))
-		{
-			controlledTripulant.OnJumpInputUp();
-		}
+            if (Input.GetButtonUp("Jump"))
+            {
+                controlledTripulant.OnJumpInputUp();
+            }
+        }
 	}
 
-	public void Parasitar()
+	public void Parasitar(NpcMovement enemy)
 	{
 		if(playerState == VujStates.CanControl)
 		{
-			playerState = VujStates.OnControlling;
+            controlledTripulant = enemy;
+            playerState = VujStates.OnControlling;
+
 			if (canControlFlag.activeInHierarchy == true) canControlFlag.SetActive(false);
+
             fuenteAudio.clip = parasitar;
             fuenteAudio.Play();
-            anim.SetTrigger("parasitar");
-			StartCoroutine("Parasitando");
+            uiManager.PlayNewMusic(2);
+
+            //anim.SetBool("parasitar", true);
+            controlledTripulant.Parasitar();
+            StartCoroutine("Parasitando");
 		}
 	}
 
 	private IEnumerator Parasitando()
 	{
-		yield return new WaitForSeconds(0.2f);
-		controlledTripulant.Parasitar();
 		player.enabled = false;
 		vujBody.SetActive(false);
 		theCamera.target = controlledTripulant.GetComponent<Controller2D>();
@@ -154,19 +167,20 @@ public class PlayerInput : MonoBehaviour
 
 	public void Desparasitar()
 	{
-		controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
+        if(controlledTripulant != null) controlledTripulant.SetDirectionalInput(new Vector2(0, 0));
+        anim.SetBool("parasitar", false);
 		player.enabled = true;
 		vujBody.SetActive(true);
 		theCamera.target = this.GetComponent<Controller2D>();
+        controlledTripulant = null;
+        playerState = VujStates.NotControlling;
+        uiManager.PlayNewMusic(1);
+    }
 
-		playerState = VujStates.NotControlling;
-	}
-
-	public void ToCanControl(NpcMovement enemy)
+	public void ToCanControl()
 	{
 		if(playerState == VujStates.NotControlling)
 		{
-			controlledTripulant = enemy;
 			canControlFlag.SetActive(true);
 			playerState = VujStates.CanControl;
 		}

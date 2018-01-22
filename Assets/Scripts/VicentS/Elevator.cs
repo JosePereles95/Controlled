@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Elevator : MonoBehaviour {
-
-
-    public AudioClip ascend;
-    AudioSource fuenteAudio;
-
     public string tagSubir = ""; //Etiqueta del rango del tripulante con el que se puede subir en el ascensor
     public string tagBajar = "";        //Etiqueta del rango del tripulante con el que se puede bajar en el ascensor
 
@@ -46,10 +41,6 @@ public class Elevator : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) //Mover al ascensor de arriba
             {
-
-            fuenteAudio.clip = ascend;
-            fuenteAudio.Play();
- 
                 if (ascensorSuperior != null)
                     other.transform.position = ascensorSuperior.teleportPoint.position;
             }
@@ -59,8 +50,6 @@ public class Elevator : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) //Mover al ascensor de arriba
             {
-            fuenteAudio.clip = ascend;
-            fuenteAudio.Play();
                ;
                 if (ascensorInferior != null)
                     other.transform.position = ascensorInferior.teleportPoint.position;
